@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Menu extends Component {
-    
-    render() {
-        return (
-            <div>
-                
+const Menu = (props) => {
+    return (
+        <div className="menu-container container">
+            <div onClick={() => props.addToOrder(props.item)} className="items">
+                <h4>{props.item.name} <span>{props.item.price}</span> </h4>
             </div>
-        );
-    }
+        </div>
+    )
 }
 
 export default Menu;

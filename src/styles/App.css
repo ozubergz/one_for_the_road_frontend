@@ -24,3 +24,12 @@
 .menu-container {
     margin-left: 260px;
 }
+
+.cart {
+    margin-left: 260px;
+}
+
+.items {
+    background-color: rgb(192, 192, 192);
+    cursor: pointer;
+}

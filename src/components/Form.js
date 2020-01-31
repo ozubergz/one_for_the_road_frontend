@@ -26,7 +26,7 @@ class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        let amount = this.state.amount;
+        let amount = this.props.amount;
         
         let token = this.props.stripe.createToken({name: this.state.name});
         token.then(res => {
@@ -47,6 +47,7 @@ class Form extends Component {
     }
 
     render() {
+        // console.log(this.props.amount)
         return (
             <form onSubmit={this.handleSubmit}>
                 <input 
@@ -58,7 +59,7 @@ class Form extends Component {
                 <input 
                     type="text" name="amount"
                     onChange={this.handleChange}
-                    value={this.state.amount}
+                    value={this.props.amount}
                 />
 
                 <CardElement />
