@@ -1,0 +1,15 @@
+.main-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background-color: #000000;
+    width: 260px;
+}
+
+.home-container {
+    margin-left: 260px;
+}
+
+.menu-container {
+    margin-left: 260px;
+}
