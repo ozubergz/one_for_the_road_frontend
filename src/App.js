@@ -1,30 +1,45 @@
 // import React, { useEffect, useState } from 'react';
-import React from 'react';
+import React, { Component } from 'react';
 import './styles/App.css';
 import { Route, Switch } from "react-router";
-import Menu from "./components/Menu";
+import Menu from "./containers/MenuContainer";
 import Home from "./components/Home";
+import { connect } from "react-redux";
+import { fetchAllData } from './actions';
+
 // import {StripeProvider, Elements} from 'react-stripe-elements';
 // import Form from './components/Form';
-
 // import Categories from './containers/Categories'
 
-function App() {
+class App extends Component {
 
-  return (
-    <div className='App'>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/order" component={Menu}/>
-      </Switch>
+  componentDidMount() {
+   this.props.fetchAllData()
+  }
 
-      {/* <StripeProvider apiKey="pk_test_VfFbfNGD19WUOZQYldfMwr0l00s8N3zW2x">
-        <Elements>
-           <Form/>
-        </Elements>
-      </StripeProvider> */}
-    </div>
-  );
+  render() {
+    console.log(this.props.menus)
+    return (
+      <div className='App'>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/order" component={Menu}/>
+        </Switch>
+  
+        {/* <StripeProvider apiKey="pk_test_VfFbfNGD19WUOZQYldfMwr0l00s8N3zW2x">
+          <Elements>
+             <Form/>
+          </Elements>
+        </StripeProvider> */}
+      </div>
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    menus: state.menu.menus
+  }
+}
+
+export default connect(mapStateToProps, { fetchAllData })(App);
