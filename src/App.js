@@ -1,4 +1,3 @@
-// import React, { useEffect, useState } from 'react';
 import React, { Component } from 'react';
 import './styles/App.css';
 import { Route, Switch } from "react-router";
@@ -14,11 +13,10 @@ import { fetchAllData } from './actions';
 class App extends Component {
 
   componentDidMount() {
-   this.props.fetchAllData()
+    this.props.fetchAllData()
   }
 
   render() {
-    console.log(this.props.menus)
     return (
       <div className='App'>
         <Switch>
@@ -36,10 +34,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    menus: state.menu.menus
-  }
-}
-
-export default connect(mapStateToProps, { fetchAllData })(App);
+export default connect(null, { fetchAllData })(App);

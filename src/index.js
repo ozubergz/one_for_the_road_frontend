@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers/index';
-import thunk from 'redux-thunk';
+import thunk from 'redux-thunk'; //redux middle allows you fetch inside action create
 
 //reducer should be seperate from redux
 //createStore should take reducer as an argumnent
