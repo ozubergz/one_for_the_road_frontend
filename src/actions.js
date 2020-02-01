@@ -9,3 +9,10 @@ export const fetchAllData = () => {
         });
     }
 }
+
+export const addItemToCart = (item) => {
+    return {
+        type: "ADD_ITEM_CART",
+        payload: item
+    }
+}

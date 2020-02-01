@@ -1,16 +1,11 @@
-const initialState = {
-    menus: []
-}
-
 //Reducer changes state; it receives state and action
-export default (state = initialState, action) => {
+//Add all data to state
+export default (state = [], action) => {
     switch(action.type) {
         case "ADD_MENUS":
-            return { 
-                ...state,
-                menus: [...action.payload]
-            }
+            return [...state, ...action.payload];
         default:
             return state
     }
 }
+
