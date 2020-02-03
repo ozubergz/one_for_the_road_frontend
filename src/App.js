@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import { fetchAllData } from './actions';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
+import Register from './components/Register';
+import Login from './components/Login';
 
 class App extends Component {
 
@@ -22,6 +24,8 @@ class App extends Component {
           <Route path="/order" component={MenuContainer}/>
           <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={Checkout} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
         </Switch>
       </div>
     )
