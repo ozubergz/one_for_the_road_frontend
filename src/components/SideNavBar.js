@@ -5,7 +5,7 @@ class SideNavBar extends Component {
     render() {
         return (
             <div className="main-sidebar">
-                <h1>Main NavBar</h1>
+                <h1>NavBar</h1>
                 <Link className="links" to="/order" >Order Online</Link>
             </div>
         );

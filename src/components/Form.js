@@ -5,10 +5,10 @@ import {CardElement, injectStripe} from 'react-stripe-elements';
 class Form extends Component {
     
     state = {
-        name: '',
-        amount: 0
+        name: ''
     }
 
+    //handles token to send to backend
     tokenHandler(tokenId, amount) {
         fetch('http://localhost:3000/charge', {
             method: "POST",
@@ -23,11 +23,13 @@ class Form extends Component {
         })
     }
 
+    ///handles form submit event handler
     handleSubmit = (e) => {
         e.preventDefault();
 
         let amount = this.props.amount;
         
+        //creates strip token
         let token = this.props.stripe.createToken({name: this.state.name});
         token.then(res => {
             if(res.error) {
@@ -35,6 +37,7 @@ class Form extends Component {
                 console.log(res.error)
             } else {
                 let token = res.token
+                //method to handle fetch
                 this.tokenHandler(token.id, amount)
             }
         })
@@ -42,12 +45,11 @@ class Form extends Component {
 
     handleChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            name: e.target.value
         })
     }
 
     render() {
-        // console.log(this.props.amount)
         return (
             <form onSubmit={this.handleSubmit}>
                 <input 
@@ -56,12 +58,7 @@ class Form extends Component {
                     onChange={this.handleChange} 
                     value={this.state.name} 
                 />
-                <input 
-                    type="text" name="amount"
-                    onChange={this.handleChange}
-                    value={this.props.amount}
-                />
-
+                <input readOnly value={this.props.amount} />
                 <CardElement />
                 <button>Confirm order</button>
             </form>

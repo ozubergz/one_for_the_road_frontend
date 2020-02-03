@@ -12,24 +12,67 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    background-color: #000000;
+    background-color: rgb(37, 37, 37);
     width: 260px;
     color: white;
+    overflow-y: scroll;
 }
 
-.home-container {
+.home-body {
     margin-left: 260px;
 }
 
-.menu-container {
+.menu-body {
     margin-left: 260px;
 }
 
-.cart {
-    margin-left: 260px;
+.cart-logo-container {
+    position: relative;
+    background-color: rgb(235, 238, 45);
+    height: 150px;
+    width: 150px;
+    margin: auto;
+    padding: 7px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.cart-logo {
+    height: 150px;
+    width: 150px;
+}
+
+.cart-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.cart-number {
+    position: relative;
+    top: -20px;
+    left: 140px;
+    height: 30px;
+    width: 30px;
+    background-color: red;
+    border-radius: 100%;
+    color: rgb(56, 56, 56);
+    text-align: center;
+    padding: 3px;
+    font-weight: bold;    
+}
+
+.category-list {
+    position: relative;
 }
 
 .items {
-    background-color: rgb(192, 192, 192);
+    /* background-color: rgb(192, 192, 192); */
     cursor: pointer;
+}
+
+.cart-body {
+    margin-left: 260px;
 }

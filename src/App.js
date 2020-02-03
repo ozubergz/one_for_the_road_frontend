@@ -5,9 +5,8 @@ import MenuContainer from "./containers/MenuContainer";
 import Home from "./components/Home";
 import { connect } from "react-redux";
 import { fetchAllData } from './actions';
-
-// import {StripeProvider, Elements} from 'react-stripe-elements';
-// import Form from './components/Form';
+import Cart from './components/Cart';
+import Checkout from './components/Checkout';
 
 class App extends Component {
 
@@ -21,13 +20,9 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/order" component={MenuContainer}/>
+          <Route path="/cart" component={Cart} />
+          <Route path="/checkout" component={Checkout} />
         </Switch>
-  
-        {/* <StripeProvider apiKey="pk_test_VfFbfNGD19WUOZQYldfMwr0l00s8N3zW2x">
-          <Elements>
-             <Form/>
-          </Elements>
-        </StripeProvider> */}
       </div>
     )
   }
