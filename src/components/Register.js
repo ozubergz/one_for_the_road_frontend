@@ -7,8 +7,8 @@ class Register extends Component {
         email: '',
         password: '',
         telephone: '',
-        firstName: '',
-        lastName: ''
+        first_name: '',
+        last_name: ''
     }
 
     handleChange = (e) => {
@@ -16,6 +16,28 @@ class Register extends Component {
             [e.target.name]: e.target.value
         });
     }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        
+        fetch('http://localhost:3000/api/signup', {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(!data.id) {
+                //check if there was an registration error
+                console.log('error', data)
+            } else {
+                console.log(data)
+            }
+        });
+    }
+    
     
     
     render() {
@@ -24,7 +46,7 @@ class Register extends Component {
                 <SideNavBar />
                 <div className="register-body">
                     <h1>Register</h1>
-                    <form>
+                    <form onSubmit={(e) => this.handleSubmit(e)}>
                         <div className="form-group">
                             <label htmlFor="inputEmail">Email address</label>
                             <input type="email" onChange={this.handleChange} className="form-control" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
@@ -35,11 +57,11 @@ class Register extends Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="firstName">First Name</label>
-                            <input type="text" onChange={this.handleChange} className="form-control" name="firstName" id="firstName" placeholder="First Name"/>
+                            <input type="text" onChange={this.handleChange} className="form-control" name="first_name" id="firstName" placeholder="First Name"/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="lastName">Last Name</label>
-                            <input type="text" onChange={this.handleChange} className="form-control" name="lastName" id="lastName" placeholder="Last Name"/>
+                            <input type="text" onChange={this.handleChange} className="form-control" name="last_name" id="lastName" placeholder="Last Name"/>
                         </div>
 
                         <div className="form-group">

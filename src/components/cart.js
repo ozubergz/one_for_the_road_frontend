@@ -7,6 +7,8 @@ import { setTotalPrice } from '../actions';
 
 class Cart extends Component {
 
+    
+
     renderCartItems() {
         let items = this.props.items
         if(items.length === 0) {

@@ -7,6 +7,10 @@ import { addItemToCart } from '../actions';
 
 class MenuContainer extends Component {
 
+    // componentDidMount() {
+    //     console.log(localStorage)
+    // }
+
     //render the main menu page
     renderMenu = (renderProps) => {
         let id = Number(renderProps.match.params.id);
