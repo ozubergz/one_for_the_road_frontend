@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom';
 
 
 class SideNavBar extends Component {
+
+    clearLocalStorage = () => {
+        //clear localStorage
+        localStorage.clear();
+    }
+    
     render() {
         return (
             <div className="main-sidebar">
@@ -20,6 +26,10 @@ class SideNavBar extends Component {
 
                 {/* Link to Register */}
                 <Link className="register-link" to="/register">Sign Up</Link>
+
+                <br/>
+
+                <button onClick={this.clearLocalStorage} className="btn btn-primary">Log Out</button>
 
             </div>
         );

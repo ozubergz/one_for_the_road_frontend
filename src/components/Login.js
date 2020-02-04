@@ -14,8 +14,10 @@ class Login extends Component {
         });
     }
 
+    //subt user's email and password
     handleSubmit = (e) => {
         e.preventDefault();
+        //fetch user's authentication
         fetch('http://localhost:3000/api/login', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -25,10 +27,18 @@ class Login extends Component {
         })
         .then(res => res.json())
         .then(data => {
-            if(!data.id) {
-                //check if user's login was unauthenticated
+            
+            if(!data.user) {
+                //check if user's login is unauthenticated
+                //output => {message: "Invalid Username or Password"}
                 console.log('error', data)
             } else {
+                //set token and user id to localStorage
+                localStorage.token = data.jwt
+                localStorage.id = data.user.id
+                console.log('login success');
+
+                //redirect to main page
                 
             }
         });

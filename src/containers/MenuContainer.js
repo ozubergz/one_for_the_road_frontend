@@ -7,9 +7,9 @@ import { addItemToCart } from '../actions';
 
 class MenuContainer extends Component {
 
-    // componentDidMount() {
-    //     console.log(localStorage)
-    // }
+    componentDidMount() {
+        console.log(localStorage)
+    }
 
     //render the main menu page
     renderMenu = (renderProps) => {

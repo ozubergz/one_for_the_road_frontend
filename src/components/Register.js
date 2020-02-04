@@ -16,7 +16,8 @@ class Register extends Component {
             [e.target.name]: e.target.value
         });
     }
-
+    
+    //send user's info to the backend
     handleSubmit = (e) => {
         e.preventDefault();
         
@@ -29,11 +30,19 @@ class Register extends Component {
         })
         .then(res => res.json())
         .then(data => {
-            if(!data.id) {
-                //check if there was an registration error
+            if(!data.user) {
+                //check if there is an registration error
+                //output => {message: "Username already exists"}
                 console.log('error', data)
+
             } else {
-                console.log(data)
+                //set token and user id to localStorage
+                localStorage.token = data.jwt
+                localStorage.id = data.user.id
+
+                console.log('registration success');
+
+                //redirect to main page
             }
         });
     }

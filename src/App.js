@@ -13,7 +13,29 @@ import Login from './components/Login';
 class App extends Component {
 
   componentDidMount() {
-    this.props.fetchAllData()
+    this.props.fetchAllData();
+    
+    //get token from localStorage
+    const token = localStorage.getItem('token');
+
+    //fetch user's profile by sending token to the backend
+    //send the jwt token in the Authorization header
+    fetch("http://localhost:3000/api/profile", {
+      method: "GET",
+      headers: {
+        Authorization: token
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(!data.user) {
+        //when there's no current user, send "Please log in message"
+        console.log('error', data)
+      } else {
+        console.log(data)
+      }
+    });
+    
   }
 
   render() {

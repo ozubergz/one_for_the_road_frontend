@@ -1,5 +1,6 @@
 
 //action creator returns action object that is sent to the reducer
+//fetch all category data
 export const fetchAllData = () => {
     return(dispatch) => {
         fetch("http://localhost:3000/api/categories")
