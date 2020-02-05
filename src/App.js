@@ -35,7 +35,38 @@ class App extends Component {
         console.log(data)
       }
     });
-    
+  }
+
+  calculateTotal() {
+    let items = this.props.items;
+    let total = 0
+    if(items.length > 0) {
+        total = items.reduce((accum, curr) => {
+            return accum + curr.price
+        }, 0);
+    }
+
+    return total.toFixed(2);
+  }
+
+  //return Cart component
+  Cart = () => {
+    let total = this.calculateTotal();
+    let items = this.props.items
+    return (
+      <Cart 
+        items={items}
+        total={total}
+      />
+    );
+  }
+
+  //return Checkout component
+  Checkout = () => {
+    let total = this.calculateTotal();
+    return (
+      <Checkout total={total} />
+    );
   }
 
   render() {
@@ -44,8 +75,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/order" component={MenuContainer}/>
-          <Route path="/cart" component={Cart} />
-          <Route path="/checkout" component={Checkout} />
+          <Route path="/cart" render={this.Cart} />
+          <Route path="/checkout" render={this.Checkout} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
         </Switch>
@@ -54,4 +85,14 @@ class App extends Component {
   }
 }
 
-export default connect(null, { fetchAllData })(App);
+const mapStateToProps = state => {
+  if(localStorage.cart) {
+      // when localStorage cart exists assign props with localStorage cart
+      return { items: JSON.parse(localStorage.cart) }
+  } else  {
+      //when localStorage cart does not exists assign props with state
+      return { items: state.cart.items }
+  }
+}
+
+export default connect(mapStateToProps, { fetchAllData })(App);

@@ -10,13 +10,12 @@ export default (state = initialState, action) => {
                 ...state,
                 items: [...state.items, action.payload]
             }
-        case "SET_TOTAL":
+        case "REMOVE_ALL_CART_ITEMS":
             return {
                 ...state,
-                total: action.payload
+                items: action.payload
             }
         default:
             return state
-        
     }
 }

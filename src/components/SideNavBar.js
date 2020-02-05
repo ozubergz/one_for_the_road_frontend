@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { removeAllCartItems } from '../actions';
 
 class SideNavBar extends Component {
 
@@ -11,7 +13,8 @@ class SideNavBar extends Component {
     clearLocalStorage = () => {
         //clear localStorage
         localStorage.clear();
-        this.setState({redirect: true})
+        this.setState({redirect: true});
+        this.props.removeAllCartItems();
     }
 
     renderLoginAndRegisterLinks() {
@@ -59,4 +62,10 @@ class SideNavBar extends Component {
     }
 }
 
-export default SideNavBar;
+const mapDispatchToProps = dispatch => {
+    return {
+        removeAllCartItems: () => dispatch(removeAllCartItems())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SideNavBar);

@@ -30,10 +30,12 @@ class MenuContainer extends Component {
         this.props.addItem(item);
         
         if(!localStorage.cart) {
+            //create new cart array when cart does not exists from localStorage
             let newCart = [];
-            newCart[0] = item
+            newCart[0] = item;
             localStorage.cart = JSON.stringify(newCart);
         } else {
+            //else get cart from localStorage and push items into cart array
             let cartLS = JSON.parse(localStorage.cart);
             cartLS.push(item);
             localStorage.cart = JSON.stringify(cartLS)

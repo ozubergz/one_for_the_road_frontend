@@ -18,7 +18,7 @@ class Form extends Component {
             body: JSON.stringify({token: tokenId, amount})
         })
         .then(res => {
-            // check if transaction failed
+            // check if transaction failed or not
             console.log(res)
         })
     }
@@ -37,6 +37,7 @@ class Form extends Component {
                 console.log(res.error)
             } else {
                 let token = res.token
+                console.log(token)
                 //method to handle fetch
                 this.tokenHandler(token.id, amount)
             }

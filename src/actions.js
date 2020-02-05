@@ -22,9 +22,9 @@ export const addItemToCart = (item) => {
     }
 }
 
-export const setTotalPrice = (total) => {
+export const removeAllCartItems = () => {
     return {
-        type: "SET_TOTAL",
-        payload: total
+        type: "REMOVE_ALL_CART_ITEMS",
+        payload: []
     }
 }
