@@ -18,6 +18,18 @@ class Cart extends Component {
             )
         }
     }
+
+    calculateTotal() {
+        let items = this.props.items;
+        let total = 0
+        if(items.length > 0) {
+            total = items.reduce((accum, curr) => {
+                return accum + curr.price
+            }, 0);
+        }
+    
+        return total.toFixed(2);
+      }
     
     render() {
         return (
@@ -26,7 +38,7 @@ class Cart extends Component {
                 <div className="cart-body">
                     {this.renderCartItems()}
                     <div>
-                        Total: {this.props.total}
+                        Total: {this.calculateTotal()}
                     </div>
                     <Link 
                         className="checkout-btn" 
@@ -40,4 +52,14 @@ class Cart extends Component {
     }
 }
 
-export default Cart
+const mapStateToProps = state => {
+    if(localStorage.cart) {
+        // when localStorage cart exists assign props with localStorage cart
+        return { items: JSON.parse(localStorage.cart) }
+    } else  {
+        //when localStorage cart does not exists assign props with state
+        return { items: state.cart.items }
+    }
+  }
+
+export default connect(mapStateToProps)(Cart)

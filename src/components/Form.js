@@ -5,8 +5,44 @@ import {CardElement, injectStripe} from 'react-stripe-elements';
 class Form extends Component {
     
     state = {
-        name: ''
+        first_name: '',
+        last_name: '',
+        email: '',
+        address: '',
+        city: '',
+        state: '',
+        zip: ''
     }
+
+    componentDidMount() {
+        
+        //get token from localStorage
+        const token = localStorage.token;
+    
+        //fetch user's profile by sending token to the backend
+        //send the jwt token in the Authorization header
+        fetch("http://localhost:3000/api/profile", {
+          method: "GET",
+          headers: {
+            Authorization: token
+          }
+        })
+        .then(res => res.json())
+        .then(data => {
+          if(!data.user) {
+            //when there's no current user, send "Please log in message"
+            console.log('error', data)
+          } else {
+            console.log(data)
+            this.setState({
+                first_name: data.user.first_name,
+                last_name: data.user.last_name,
+                email: data.user.email
+            })
+          }
+        });
+    }
+    
 
     //handles token to send to backend
     tokenHandler(tokenId, amount) {
@@ -30,7 +66,14 @@ class Form extends Component {
         let amount = this.props.amount;
         
         //creates strip token
-        let token = this.props.stripe.createToken({name: this.state.name});
+        let token = this.props.stripe.createToken({
+            name: `${this.state.first_name} ${this.state.last_name}`,
+            address_line1: this.state.address,
+            address_city: this.state.city,
+            address_state: this.state.state,
+            address_state: this.state.zip
+        });
+
         token.then(res => {
             if(res.error) {
                 // error wrong inputs
@@ -41,28 +84,78 @@ class Form extends Component {
                 //method to handle fetch
                 this.tokenHandler(token.id, amount)
             }
-        })
+        });
     }
 
     handleChange = (e) => {
         this.setState({
-            name: e.target.value
-        })
+           [e.target.name]: e.target.value
+        });
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input 
-                    type="text" 
-                    name="name" 
-                    onChange={this.handleChange} 
-                    value={this.state.name} 
-                />
-                <input readOnly value={this.props.amount} />
-                <CardElement />
-                <button>Confirm order</button>
-            </form>
+            <div className="container">
+                <form onSubmit={this.handleSubmit}>
+                    Total: <input id="total" readOnly value={this.props.amount} required/><br/>
+                    <input 
+                        type="text" 
+                        name="first_name" 
+                        placeholder="First Name"
+                        onChange={this.handleChange} 
+                        value={this.state.first_name} 
+                        required
+                    /><br/>
+                    <input 
+                        type="text" 
+                        name="last_name" 
+                        placeholder="Last Name"
+                        onChange={this.handleChange} 
+                        value={this.state.last_name} 
+                        required
+                    /><br/>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="Email"
+                        onChange={this.handleChange} 
+                        value={this.state.email} 
+                        required
+                    /><br/>
+                    <input 
+                        type="text" 
+                        name="address" 
+                        placeholder="Address"
+                        onChange={this.handleChange} 
+                        value={this.state.address} 
+                        required
+                    /><br/>
+                    <input 
+                        type="text" 
+                        name="city" 
+                        placeholder="City"
+                        onChange={this.handleChange}
+                        value={this.state.city}
+                    /><br />
+                    <input 
+                        type="text" 
+                        name="state"
+                        placeholder="State" 
+                        onChange={this.handleChange}
+                        value={this.state.state}
+                    /><br />
+                    <input 
+                        type="text" 
+                        name="zip" 
+                        placeholder="Zip Code"
+                        onChange={this.handleChange}
+                        value={this.state.zip}
+                    /><br />
+
+                    <CardElement />
+                    <button>Confirm order</button>
+                </form>
+            </div>
         );
     }
 }
