@@ -14,6 +14,7 @@ class SideNavBar extends Component {
         //clear localStorage
         localStorage.clear();
         this.setState({redirect: true});
+        //clear state's cart
         this.props.removeAllCartItems();
     }
 
@@ -62,10 +63,4 @@ class SideNavBar extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        removeAllCartItems: () => dispatch(removeAllCartItems())
-    }
-}
-
-export default connect(null, mapDispatchToProps)(SideNavBar);
+export default connect(null, {removeAllCartItems})(SideNavBar);

@@ -3,15 +3,28 @@ import React from 'react';
 const Items = (props) => {
     
     const { item } = props;
-    const price = item.price;
-    const name = item.name;
+    const { price, name, description } = item;
 
     return (
         <div 
-            onClick={() => props.addItemsToCart(item)}
-            className="items"
+            
+            className="items-body"
         >
-            <h4>{name} <span>{price.toFixed(2)}</span> </h4>
+            <div className="items-title">
+                <h5>{name.toUpperCase()}</h5>
+                <span>{description}</span>
+            </div>
+            <div className="items-price">
+                <h5>{price.toFixed(2)}</h5>
+            </div>
+            <div className="btn-groups">
+                <button 
+                    onClick={() => props.addItemsToCart(item)}
+                    className="btn btn-warning btn-sm add-btns">
+                    <i className="fa fa-plus"></i>
+                </button>
+            </div>
+            
         </div>
     )
 }

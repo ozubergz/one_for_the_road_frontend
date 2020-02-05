@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
+import { connect } from 'react-redux';
+import { removeAllCartItems } from '../actions';
+
 // import {CardElement, CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe } from 'react-stripe-elements';
 
 class Form extends Component {
     
     state = {
+        user_id: null,
         first_name: '',
         last_name: '',
         email: '',
@@ -30,19 +34,33 @@ class Form extends Component {
         .then(res => res.json())
         .then(data => {
           if(!data.user) {
-            //when there's no current user, send "Please log in message"
+            //when there's no current user:  "Please log in message"
             console.log('error', data)
           } else {
             console.log(data)
             this.setState({
                 first_name: data.user.first_name,
                 last_name: data.user.last_name,
-                email: data.user.email
+                email: data.user.email,
+                user_id: data.user.id
             })
           }
         });
     }
-    
+
+    clear() {
+        //clear localStorage
+        localStorage.removeItem("cart");
+        //clear cart items from redux state
+        this.props.removeAllCartItems();
+
+        this.setState({
+            address: '',
+            city: '',
+            state: '',
+            zip: ''
+        });
+    }
 
     //handles token to send to backend
     tokenHandler(tokenId, amount) {
@@ -54,9 +72,40 @@ class Form extends Component {
             body: JSON.stringify({token: tokenId, amount})
         })
         .then(res => {
+            console.log(res.ok)
+            
             // check if transaction failed or not
-            console.log(res)
-        })
+            if(res.ok) {
+                //when charge was a success
+                //persist users cart to the backend if payment was successful
+                this.handleSaveCart();
+                this.clear();
+                
+            }
+        });
+        this.handleSaveCart();
+    }
+
+    handleSaveCart() {
+        
+        if(this.state.user_id && localStorage.cat) {
+            let items = JSON.parse(localStorage.cart);
+
+            fetch('http://localhost:3000/api/checkout', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    user_id: this.state.user_id,
+                    items
+                })
+            })
+            .then(res => res.json())
+            .then(res => {
+               console.log(res)
+            });
+        }
     }
 
     ///handles form submit event handler
@@ -71,7 +120,7 @@ class Form extends Component {
             address_line1: this.state.address,
             address_city: this.state.city,
             address_state: this.state.state,
-            address_state: this.state.zip
+            address_zip: this.state.zip
         });
 
         token.then(res => {
@@ -85,6 +134,7 @@ class Form extends Component {
                 this.tokenHandler(token.id, amount)
             }
         });
+
     }
 
     handleChange = (e) => {
@@ -160,4 +210,4 @@ class Form extends Component {
     }
 }
 
-export default injectStripe(Form);
+export default connect(null, {removeAllCartItems})(injectStripe(Form));

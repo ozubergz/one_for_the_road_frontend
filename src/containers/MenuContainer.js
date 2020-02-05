@@ -17,8 +17,12 @@ class MenuContainer extends Component {
         
         if(foundCategory) {
             return (
-                <div className="menu-body container">
-                    <h1>{foundCategory.name}</h1>
+                <div className="menu-body">
+                    <div className="menu-header">
+                        <h3>{foundCategory.name.toUpperCase()}</h3>
+                        {/* <hr /> */}
+                    </div>
+
                     {this.renderMenuItems(foundCategory.items)}
                 </div>
             )

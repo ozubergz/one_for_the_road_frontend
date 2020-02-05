@@ -8,9 +8,11 @@ const MenuSideBar = (props) => {
         return props.categories.map(category => {
             return (
                 <div className="category-list" key={category.id}>
-                    <Link to={`/order/menu/${category.id}`}>
+                    <button className="category-links-wrapper">
                         {category.name}
-                    </Link>
+                        <Link className="category-links" to={`/order/menu/${category.id}`}>
+                        </Link>
+                    </button>
                 </div>
             )
         });
