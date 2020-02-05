@@ -16,7 +16,7 @@ class App extends Component {
     this.props.fetchAllData();
     
     //get token from localStorage
-    const token = localStorage.getItem('token');
+    const token = localStorage.token;
 
     //fetch user's profile by sending token to the backend
     //send the jwt token in the Authorization header

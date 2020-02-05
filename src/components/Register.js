@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import SideNavBar from './SideNavBar';
+import { Redirect } from 'react-router-dom';
+
 
 class Register extends Component {
 
@@ -8,7 +10,8 @@ class Register extends Component {
         password: '',
         telephone: '',
         first_name: '',
-        last_name: ''
+        last_name: '',
+        redirect: null
     }
 
     handleChange = (e) => {
@@ -37,16 +40,27 @@ class Register extends Component {
 
             } else {
                 //set token and user id to localStorage
-                localStorage.token = data.jwt
-                localStorage.id = data.user.id
+                localStorage.token = data.jwt;
+                localStorage.id = data.user.id;
 
-                console.log('registration success');
-
-                //redirect to main page
+                this.setState({
+                    email: '',
+                    password: '',
+                    telephone: '',
+                    first_name: '',
+                    last_name: '',
+                    redirect: true
+                });
             }
         });
     }
     
+    redirectToHome() {
+        //when state redirect is true return to main page
+        if(this.state.redirect) {
+            return <Redirect to="/" />
+        } 
+    }
     
     
     render() {
@@ -55,6 +69,7 @@ class Register extends Component {
                 <SideNavBar />
                 <div className="register-body">
                     <h1>Register</h1>
+                    {this.redirectToHome()}
                     <form onSubmit={(e) => this.handleSubmit(e)}>
                         <div className="form-group">
                             <label htmlFor="inputEmail">Email address</label>

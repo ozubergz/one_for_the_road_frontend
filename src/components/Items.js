@@ -8,7 +8,7 @@ const Items = (props) => {
 
     return (
         <div 
-            onClick={() => props.addItem(item)}
+            onClick={() => props.addItemsToCart(item)}
             className="items"
         >
             <h4>{name} <span>{price.toFixed(2)}</span> </h4>

@@ -6,10 +6,7 @@ import MenuSideBar from '../components/MenuSideBar';
 import { addItemToCart } from '../actions';
 
 class MenuContainer extends Component {
-
-    componentDidMount() {
-        console.log(localStorage)
-    }
+    
 
     //render the main menu page
     renderMenu = (renderProps) => {
@@ -28,13 +25,29 @@ class MenuContainer extends Component {
         }
     }
 
+    addItemsToCart = (item) => {
+        // call dispatch to addItems
+        this.props.addItem(item);
+        
+        if(!localStorage.cart) {
+            let newCart = [];
+            newCart[0] = item
+            localStorage.cart = JSON.stringify(newCart);
+        } else {
+            let cartLS = JSON.parse(localStorage.cart);
+            cartLS.push(item);
+            localStorage.cart = JSON.stringify(cartLS)
+        }
+        
+    }
+
     //render all menu items
     renderMenuItems = (items) => {
         return items.map(item => {
             return ( 
                 <Items 
                     key={item.id} 
-                    addItem={this.props.addItem}
+                    addItemsToCart={this.addItemsToCart}
                     item={item}
                 />
             )
@@ -45,7 +58,7 @@ class MenuContainer extends Component {
         return (
             <div>
                 <MenuSideBar 
-                    numOfItems={this.props.items.length}      
+                    numOfItems={ localStorage.cart ? JSON.parse(localStorage.cart).length : this.props.items.length}      
                     categories={this.props.categories} 
                 />
                 <Route path="/order/menu/:id" render={this.renderMenu}/>

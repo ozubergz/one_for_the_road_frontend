@@ -7,8 +7,6 @@ import { setTotalPrice } from '../actions';
 
 class Cart extends Component {
 
-    
-
     renderCartItems() {
         let items = this.props.items
         if(items.length === 0) {
@@ -63,8 +61,12 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => {
-    return {
-        items: state.cart.items
+    if(localStorage.cart) {
+        // when localStorage cart exists assign props with localStorage cart
+        return { items: JSON.parse(localStorage.cart) }
+    } else  {
+        //when localStorage cart does not exists assign props with state
+        return { items: state.cart.items }
     }
 }
 

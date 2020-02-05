@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import SideNavBar from './SideNavBar';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
 
     state = {
         email: '',
-        password: ''
+        password: '',
+        redirect: null
     }
 
     handleChange = (e) => {
@@ -34,14 +36,23 @@ class Login extends Component {
                 console.log('error', data)
             } else {
                 //set token and user id to localStorage
-                localStorage.token = data.jwt
-                localStorage.id = data.user.id
-                console.log('login success');
+                localStorage.token = data.jwt;
+                localStorage.id = data.user.id;
 
-                //redirect to main page
-                
+                this.setState({
+                    email: '',
+                    password: '',
+                    redirect: true
+                });                
             }
         });
+    }
+
+    redirectToHome() {
+        //when state redirect is true return to main page
+        if(this.state.redirect) {
+            return <Redirect to="/" />
+        } 
     }
 
     render() {
@@ -50,6 +61,7 @@ class Login extends Component {
                 <SideNavBar />
                 <div className="login-body">
                     <h1>Login</h1>
+                    {this.redirectToHome()}      
                     <form onSubmit={(e) => this.handleSubmit(e)}>
                         <div className="form-group">
                             <label htmlFor="inputEmail">Email address</label>
