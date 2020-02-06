@@ -4,11 +4,11 @@ import { Route } from 'react-router';
 import Items from '../components/Items';
 import MenuSideBar from '../components/MenuSideBar';
 import { addItemToCart } from '../actions';
+import CartBox from '../components/CartBox';
 
 class MenuContainer extends Component {
-    
 
-    //render the main menu page
+    //render the main menu page of food items
     renderMenu = (renderProps) => {
         let id = Number(renderProps.match.params.id);
         let foundCategory = this.props.categories.find(category => {
@@ -17,18 +17,33 @@ class MenuContainer extends Component {
         
         if(foundCategory) {
             return (
-                <div className="menu-body">
-                    <div className="menu-header">
-                        <h3>{foundCategory.name.toUpperCase()}</h3>
-                        {/* <hr /> */}
+                <div className="menu-page">
+                    <div className="menu-body">
+                        <div className="menu-header">
+                            <h3>{foundCategory.name.toUpperCase()}</h3>
+                        </div>
+                        {this.renderMenuItems(foundCategory.items)}
                     </div>
-
-                    {this.renderMenuItems(foundCategory.items)}
+                    <CartBox items={this.props.items} />
                 </div>
             )
         }
     }
 
+    //render all menu items
+    renderMenuItems = (items) => {
+        return items.map(item => {
+            return ( 
+                <Items 
+                    key={item.id} 
+                    addItemsToCart={this.addItemsToCart}
+                    item={item}
+                />
+            )
+        });
+    }
+
+    //add item to redux state and localStorage
     addItemsToCart = (item) => {
         // call dispatch to addItems
         this.props.addItem(item);
@@ -46,25 +61,11 @@ class MenuContainer extends Component {
         }
         
     }
-
-    //render all menu items
-    renderMenuItems = (items) => {
-        return items.map(item => {
-            return ( 
-                <Items 
-                    key={item.id} 
-                    addItemsToCart={this.addItemsToCart}
-                    item={item}
-                />
-            )
-        });
-    }
     
     render() {
         return (
             <div>
                 <MenuSideBar 
-                    numOfItems={ localStorage.cart ? JSON.parse(localStorage.cart).length : this.props.items.length}      
                     categories={this.props.categories} 
                 />
                 <Route path="/order/menu/:id" render={this.renderMenu}/>
@@ -76,7 +77,7 @@ class MenuContainer extends Component {
 const mapStateToProps = state => {
     return {
         categories: state.menu,
-        items: state.cart.items
+        items: localStorage.cart ? JSON.parse(localStorage.cart) : state.cart.items
     }
 }
 

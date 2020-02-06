@@ -40,12 +40,9 @@ class Cart extends Component {
                     <div>
                         Total: {this.calculateTotal()}
                     </div>
-                    <Link 
-                        className="checkout-btn" 
-                        to="/checkout"
-                    >
+                    {/* <Link className="checkout-btn" to="/checkout">
                         Checkout
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         );

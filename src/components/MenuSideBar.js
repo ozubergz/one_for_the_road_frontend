@@ -20,13 +20,13 @@ const MenuSideBar = (props) => {
 
     return (
         <div className="menu-sidebar">
-            <div className="cart-logo-container">
+            {/* <div className="cart-logo-container">
                 <img className="cart-logo" src={cartLogo} alt="cart logo"/>
                 <Link className="cart-link" to="/cart"></Link>
-            </div>
-            <div className="cart-number">
+            </div> */}
+            {/* <div className="cart-number">
                 {props.numOfItems}
-            </div>
+            </div> */}
             {renderCategoryList()}
         </div>
     )

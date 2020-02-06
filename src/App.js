@@ -9,6 +9,7 @@ import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import Register from './components/Register';
 import Login from './components/Login';
+import Banner from './components/Banner'
 
 class App extends Component {
 
@@ -20,6 +21,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
+        <Banner />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/order" component={MenuContainer}/>
