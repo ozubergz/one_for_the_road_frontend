@@ -57,21 +57,22 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
+            <div className="login-page">
                 <SideNavBar />
+                <div className="login-bg"></div>
                 <div className="login-body">
-                    <h1>Login</h1>
+                    <h3 className="text-center mb-5">Log In</h3>
                     {this.redirectToHome()}      
-                    <form onSubmit={(e) => this.handleSubmit(e)}>
+                    <form onSubmit={(e) => this.handleSubmit(e)} className="login-form">
                         <div className="form-group">
-                            <label htmlFor="inputEmail">Email address</label>
+                            <label htmlFor="inputEmail">Email</label>
                             <input type="email" onChange={this.handleChange} className="form-control" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputPassword">Password</label>
                             <input type="password" onChange={this.handleChange} className="form-control" name="password" id="inputPassword" placeholder="Password"/>
                         </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-success login-btn">Submit</button>
                     </form>
                 </div>
             </div>

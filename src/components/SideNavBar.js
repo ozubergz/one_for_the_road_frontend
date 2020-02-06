@@ -50,7 +50,7 @@ class SideNavBar extends Component {
         return (
             <div className="main-sidebar">
                 {this.redirectToHome()}
-                <Link className="links" to="/order" >Order Online</Link>
+                <Link className="links" to="/order/menu/281" >Order Online</Link>
                 
                 <br/>
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import cartLogo from '../images/cart-logo.png';
 
 const MenuSideBar = (props) => {
 
@@ -20,13 +19,6 @@ const MenuSideBar = (props) => {
 
     return (
         <div className="menu-sidebar">
-            {/* <div className="cart-logo-container">
-                <img className="cart-logo" src={cartLogo} alt="cart logo"/>
-                <Link className="cart-link" to="/cart"></Link>
-            </div> */}
-            {/* <div className="cart-number">
-                {props.numOfItems}
-            </div> */}
             {renderCategoryList()}
         </div>
     )
