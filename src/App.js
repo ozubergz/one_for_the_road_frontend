@@ -5,7 +5,6 @@ import MenuContainer from "./containers/MenuContainer";
 import Home from "./components/Home";
 import { connect } from "react-redux";
 import { fetchAllData } from './actions';
-import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import Register from './components/Register';
 import Login from './components/Login';
@@ -25,7 +24,6 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/order" component={MenuContainer}/>
-          <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />

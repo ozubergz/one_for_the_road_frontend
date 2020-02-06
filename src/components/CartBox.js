@@ -19,7 +19,7 @@ class CartBox extends Component {
             return (
                 <div className="cart-items" key={uuid()}>
                     <button className="btn btn-danger btn-sm remove-btn">
-                        <i class="fa fa-minus"></i>
+                        <i className="fa fa-minus"></i>
                     </button>
                     <div className="cart-items-name">
                         {item.name} 

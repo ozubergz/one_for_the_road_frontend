@@ -14,7 +14,7 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    background-color: #f8b400;
+    background-color: #21243d;
     width: 260px;
     color: white;
     overflow-y: scroll;
@@ -65,14 +65,6 @@
 }
 
 /*******************************/
-
-.register-body {
-    margin-left: 260px;
-}
-
-.login-body {
-    margin-left: 260px;
-}
 
 .add-btns {
     color: white;
@@ -253,4 +245,16 @@
 
 .banner-logo {
     margin: auto;
+}
+
+/******************** LOGIN PAGE *************************/
+
+.login-body {
+    margin-left: 260px;
+}
+
+
+
+.register-body {
+    margin-left: 260px;
 }
