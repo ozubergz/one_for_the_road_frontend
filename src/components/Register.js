@@ -65,35 +65,38 @@ class Register extends Component {
     
     render() {
         return (
-            <div>
+            <div className="register-page">
                 <SideNavBar />
+                <div className="register-bg"></div>
                 <div className="register-body">
-                    <h1>Register</h1>
                     {this.redirectToHome()}
-                    <form onSubmit={(e) => this.handleSubmit(e)}>
+                    <form onSubmit={(e) => this.handleSubmit(e)} className="register-form">
+                        <h3 className="mb-4">Sign Up</h3>
                         <div className="form-group">
-                            <label htmlFor="inputEmail">Email address</label>
+                        <div className="name-form-group">
+                            <div className="form-group first-name">
+                                <label htmlFor="firstName">First Name</label>
+                                <input type="text" onChange={this.handleChange} className="form-control" name="first_name" id="firstName" placeholder="First Name"/>
+                            </div>
+
+                            <div className="form-group last-name">
+                                <label htmlFor="lastName">Last Name</label>
+                                <input type="text" onChange={this.handleChange} className="form-control" name="last_name" id="lastName" placeholder="Last Name"/>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="telephone">Telephone Number</label>
+                            <input type="text" onChange={this.handleChange} className="form-control" name="telephone" id="telephone" placeholder="Telephone"/>
+                        </div>
+                        <label htmlFor="inputEmail">Email</label>
                             <input type="email" onChange={this.handleChange} className="form-control" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputPassword">Password</label>
                             <input type="password" onChange={this.handleChange} className="form-control" name="password" id="inputPassword" placeholder="Password"/>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="firstName">First Name</label>
-                            <input type="text" onChange={this.handleChange} className="form-control" name="first_name" id="firstName" placeholder="First Name"/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="lastName">Last Name</label>
-                            <input type="text" onChange={this.handleChange} className="form-control" name="last_name" id="lastName" placeholder="Last Name"/>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="telephone">Telephone Number</label>
-                            <input type="text" onChange={this.handleChange} className="form-control" name="telephone" id="telephone" placeholder="telephone"/>
-                        </div>
                         
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-success register-btn">Submit</button>
                     </form>
                     
                 </div>

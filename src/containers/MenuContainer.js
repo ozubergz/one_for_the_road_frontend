@@ -5,6 +5,8 @@ import Items from '../components/Items';
 import MenuSideBar from '../components/MenuSideBar';
 import { addItemToCart } from '../actions';
 import CartBox from '../components/CartBox';
+import Banner from '../components/Banner'
+
 
 class MenuContainer extends Component {
 
@@ -65,6 +67,7 @@ class MenuContainer extends Component {
     render() {
         return (
             <div>
+                <Banner/>
                 <MenuSideBar 
                     categories={this.props.categories} 
                 />

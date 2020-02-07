@@ -61,9 +61,9 @@ class Login extends Component {
                 <SideNavBar />
                 <div className="login-bg"></div>
                 <div className="login-body">
-                    <h3 className="text-center mb-5">Log In</h3>
                     {this.redirectToHome()}      
                     <form onSubmit={(e) => this.handleSubmit(e)} className="login-form">
+                        <h3 className="mb-5">Login</h3>
                         <div className="form-group">
                             <label htmlFor="inputEmail">Email</label>
                             <input type="email" onChange={this.handleChange} className="form-control" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email"/>

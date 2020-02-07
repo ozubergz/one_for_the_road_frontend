@@ -50,7 +50,8 @@ class SideNavBar extends Component {
         return (
             <div className="main-sidebar">
                 {this.redirectToHome()}
-                <Link className="links" to="/order/menu/281" >Order Online</Link>
+                
+                <Link className="links" to="/order" >Order Online</Link>
                 
                 <br/>
 
@@ -63,4 +64,10 @@ class SideNavBar extends Component {
     }
 }
 
-export default connect(null, {removeAllCartItems})(SideNavBar);
+const mapStateToProps = state => {
+    return {
+        firstMenu: state.menu[0],
+    }
+}
+
+export default connect(mapStateToProps, {removeAllCartItems})(SideNavBar);
