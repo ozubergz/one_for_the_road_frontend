@@ -12,75 +12,14 @@ body, html {
     height: 100%;
 }
 
-/**************** SIDE BARS ***************/
+/*******************************/
 
-.main-sidebar {
-    padding: 1rem;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    background-color: #333333;
-    width: 260px;
-    z-index: 1;
-    -webkit-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
-    -moz-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
-    box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
-}
 
-/* .menu-sidebar {
-    padding: 1rem;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    background-color: #21243d;
-    width: 260px;
-    color: white;
-    overflow-y: scroll;
-} */
 
 .home-body {
     margin-left: 260px;
 }
 
-/**************** SIDE BARS ***************/
-
-.cart-logo-container {
-    position: relative;
-    background-color: #faf5e4;
-    height: 150px;
-    width: 150px;
-    margin: auto;
-    padding: 7px;
-    border-radius: 100%;
-    overflow: hidden;
-}
-
-.cart-logo {
-    height: 150px;
-    width: 150px;
-}
-
-.cart-link {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.cart-number {
-    position: relative;
-    top: -20px;
-    left: 140px;
-    height: 30px;
-    width: 30px;
-    background-color: red;
-    border-radius: 100%;
-    color: white;
-    text-align: center;
-    padding: 3px;
-    font-weight: bold;    
-}
 
 /******************** CATEGORY LIST *********************/
 
@@ -363,7 +302,38 @@ body, html {
     display: inline-block;
 }
 
-/************************ SIDE BAR FOOTER *************************/
+/************************ SIDE BAR *************************/
+
+.main-sidebar {
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background-color: #333333;
+    width: 260px;
+    z-index: 1;
+    -webkit-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
+    -moz-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
+    box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
+}
+
+.side-bar-logo {
+    position: relative;
+    top: 50px;
+    /* margin: auto; */
+    background-color: black;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    background-image: url("../images/banner-logo.png");
+    background-position: center;
+    background-size: 130px;
+    background-repeat: no-repeat;
+}
+
+/* .logo {
+    b
+} */
 
 .side-bar-footer {
     color: white;
