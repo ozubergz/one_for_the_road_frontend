@@ -143,6 +143,15 @@ body, html {
     bottom: 2px;
 }
 
+.disabled-checkout-btn {
+    background-color: gray;
+    width: 100%;
+}
+
+.disabled-checkout-btn:hover {
+    cursor: not-allowed;
+}
+
 .checkout-btn {
     width: 100%;
     position: relative;
@@ -167,6 +176,8 @@ body, html {
     border-bottom: 1px solid rgb(194, 194, 194);
     display: flex;
     padding: 1rem;
+    position: relative;
+    /* background-color: gray; */
 }
 
 .items-content {
@@ -181,6 +192,26 @@ body, html {
     width: 20%;
     text-align: right;
     color: rgb(1, 55, 155);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(37, 48, 80, 0.8);
+    color: white;
+}
+
+.overlay-text {
+    position: absolute;
+    background-color: pink;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 /******************** BANNER *************************/
@@ -219,7 +250,6 @@ body, html {
     bottom: 0;
     filter: blur(5px);
     -webkit-filter: blur(5px);
-    /* background-color: black; */
 }
 
 .login-body {
@@ -320,7 +350,7 @@ body, html {
 .side-bar-logo {
     position: relative;
     top: 50px;
-    /* margin: auto; */
+    margin: auto;
     background-color: black;
     width: 150px;
     height: 150px;
@@ -329,16 +359,50 @@ body, html {
     background-position: center;
     background-size: 130px;
     background-repeat: no-repeat;
+    -webkit-box-shadow: 7px 6px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 6px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 7px 6px 0px 0px rgba(0,0,0,0.75);
 }
 
-/* .logo {
-    b
-} */
+.side-bar-logo:active {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+}
+
+.side-bar-btn-group {
+    position: relative;
+    top: 100px;
+}
+
+.or {
+    color: white;
+}
 
 .side-bar-footer {
     color: white;
     position: absolute;
     bottom: 40px;
+}
+
+.link-btn {
+    position: relative;
+    width: 100%;
+    -webkit-box-shadow: 7px 6px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 6px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 7px 6px 0px 0px rgba(0,0,0,0.75);
+}
+
+.link-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+}
+
+.sidebar-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .info-heading {

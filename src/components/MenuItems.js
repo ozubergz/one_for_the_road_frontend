@@ -14,6 +14,13 @@ const MenuItems = (props) => {
             <div className="items-price">
                 <h5>{price.toFixed(2)}</h5>
             </div>
+            
+            <div className="overlay">
+                <div className="overlay-text">
+                    <i class="fa fa-plus"></i> Add to Cart <i class="fa fa-shopping-cart"></i>
+                </div>
+            </div>
+
         </div>
     )
 }

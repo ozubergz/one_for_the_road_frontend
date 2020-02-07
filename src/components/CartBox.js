@@ -33,6 +33,25 @@ class CartBox extends Component {
         });
     }
 
+    renderCheckoutBtn() {
+        let total = Math.round(this.calculateTotal());
+        if(total === 0.00) {
+            return (
+                <button className="btn btn-secondary disabled-checkout-btn" disabled>
+                    Checkout
+                </button>
+            )
+        } else {
+            return (
+                <button className="btn btn-danger checkout-btn">
+                    Checkout
+                    <Link className="checkout-link" to="/checkout">
+                    </Link>
+                </button>   
+            )
+        }
+    }
+
     calculateTotal() {
         let items = this.props.items;
         let total = 0
@@ -41,9 +60,8 @@ class CartBox extends Component {
                 return accum + curr.price
             }, 0);
         }
-    
         return total.toFixed(2);
-      }
+    }
 
     render() {
         return (
@@ -59,13 +77,9 @@ class CartBox extends Component {
                         <div className="cart-total">
                             SUBTOTAL: {this.calculateTotal()}
                         </div>
-                        <button className="btn btn-danger checkout-btn">
-                            Checkout
-                            <Link className="checkout-link" to="/checkout">
-                            </Link>
-                        </button>
+                        {this.renderCheckoutBtn()}    
                     </div>
-
+                    
                 </div>
             </div>
         );

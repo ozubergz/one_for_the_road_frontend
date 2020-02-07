@@ -13,7 +13,7 @@ class SideNavBar extends Component {
     clearLocalStorage = () => {
         //clear localStorage
         localStorage.clear();
-        this.setState({redirect: true});
+        // this.setState({redirect: true});
         //clear user state
         this.props.removeUser();
         //clear state's cart
@@ -22,20 +22,23 @@ class SideNavBar extends Component {
 
     renderLoginAndRegisterLinks() {
         return (
-            <div>
-                <Link className="login-link" to="/login">Login</Link>
-                    <br/>
-                <Link className="register-link" to="/register">Sign Up</Link>
+            <div className="mt-4">
+                <button className="btn btn-primary link-btn">
+                    Login
+                    <Link className="sidebar-link" to="/login"></Link>
+                </button>
+                    <div className="text-center my-1 or">or</div>
+                <button className="btn btn-success link-btn">
+                    Sign Up
+                    <Link className="sidebar-link" to="/register"></Link>
+                </button>
             </div>
         )
     }
 
     renderLogoutBtn() {
         return (
-            <button 
-                onClick={this.clearLocalStorage} 
-                className="btn btn-primary"
-            >
+            <button onClick={this.clearLocalStorage} className="btn btn-danger link-btn mt-4">
                 Log Out
             </button>
         );
@@ -52,15 +55,19 @@ class SideNavBar extends Component {
         return (
             <div className="main-sidebar">
                 {this.redirectToHome()}
-                
-                <div className="side-bar-logo"></div>
 
-                
-                <Link className="links" to="/order" >Order Online</Link>
-                
-                <br/>
+                <div className="side-bar-logo">
+                    <Link className="sidebar-link" to="/"></Link>
+                </div>
 
-                {localStorage.token ? this.renderLogoutBtn() : this.renderLoginAndRegisterLinks()}
+                <div className="side-bar-btn-group">
+                    <button className="btn btn-light link-btn">
+                        Order Online
+                        <Link className="sidebar-link" to="/order" ></Link>
+                    </button>
+                    
+                    {localStorage.token ? this.renderLogoutBtn() : this.renderLoginAndRegisterLinks()}
+                </div>
 
                 <div className="side-bar-footer">
                     <div className="contact mt-3">
@@ -112,7 +119,6 @@ class SideNavBar extends Component {
                         </div>
                     </div>
                 </div>
-
             </div>
         );
     }
