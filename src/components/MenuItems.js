@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Items = (props) => {
+const MenuItems = (props) => {
     
     const { item } = props;
     const { price, name, description } = item;
@@ -18,4 +18,4 @@ const Items = (props) => {
     )
 }
 
-export default Items;
+export default MenuItems;

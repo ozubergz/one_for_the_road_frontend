@@ -8,6 +8,7 @@ import { fetchAllData } from './actions';
 import Checkout from './components/Checkout';
 import Register from './components/Register';
 import Login from './components/Login';
+import SideNavBar from './components/SideNavBar';
 
 class App extends Component {
 
@@ -19,6 +20,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
+        <SideNavBar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/order" component={MenuContainer}/>

@@ -50,7 +50,7 @@ class CartBox extends Component {
             <div className="menu-cart">
                 <div className="cart-box">
                     <div className="cart-header">
-                        <span>YOUR CART</span>
+                        <i className="fa fa-shopping-cart"></i><span>Cart</span>
                     </div>
                     <div className="cart-body">
                         {this.renderCartItems()}

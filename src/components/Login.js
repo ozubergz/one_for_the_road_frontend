@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import SideNavBar from './SideNavBar';
+import { connect } from 'react-redux';
+import { setUser } from '../actions';
 import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
@@ -38,6 +39,12 @@ class Login extends Component {
                 //set token and user id to localStorage
                 localStorage.token = data.jwt;
                 localStorage.id = data.user.id;
+                
+                //set user's token and id into redux state
+                this.props.setUser({
+                    token: data.jwt,
+                    id: data.user.id
+                });
 
                 this.setState({
                     email: '',
@@ -58,7 +65,6 @@ class Login extends Component {
     render() {
         return (
             <div className="login-page">
-                <SideNavBar />
                 <div className="login-bg"></div>
                 <div className="login-body">
                     {this.redirectToHome()}      
@@ -80,4 +86,5 @@ class Login extends Component {
     }
 }
 
-export default Login;
+
+export default connect(null, {setUser})(Login);

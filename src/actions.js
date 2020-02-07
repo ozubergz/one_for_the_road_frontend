@@ -28,3 +28,16 @@ export const removeAllCartItems = () => {
         payload: []
     }
 }
+
+export const setUser = (object) => {
+    return {
+        type: "SET_USER",
+        payload: object
+    }
+}
+
+export const removeUser = () => {
+    return {
+        type: "REMOVE_USER"
+    }
+}

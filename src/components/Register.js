@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SideNavBar from './SideNavBar';
 import { Redirect } from 'react-router-dom';
-
+import { setUser } from '../actions';
+import { connect } from 'react-redux';
 
 class Register extends Component {
 
@@ -43,6 +43,12 @@ class Register extends Component {
                 localStorage.token = data.jwt;
                 localStorage.id = data.user.id;
 
+                 //set user's token and id into redux state
+                 this.props.setUser({
+                    token: data.jwt,
+                    id: data.user.id
+                 });
+
                 this.setState({
                     email: '',
                     password: '',
@@ -66,7 +72,6 @@ class Register extends Component {
     render() {
         return (
             <div className="register-page">
-                <SideNavBar />
                 <div className="register-bg"></div>
                 <div className="register-body">
                     {this.redirectToHome()}
@@ -105,4 +110,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default connect(null, {setUser})(Register);
