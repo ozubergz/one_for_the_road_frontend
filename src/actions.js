@@ -22,6 +22,13 @@ export const addItemToCart = (item) => {
     }
 }
 
+export const addLocalItems = (items) => {
+    return {
+        type: "ADD_LOCAL_ITEMS",
+        payload: items
+    }
+}
+
 export const removeAllCartItems = () => {
     return {
         type: "REMOVE_ALL_CART_ITEMS",

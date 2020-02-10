@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router";
 import MenuContainer from "./containers/MenuContainer";
 import Home from "./components/Home";
 import { connect } from "react-redux";
-import { fetchAllData } from './actions';
+import { fetchAllData, addLocalItems } from './actions';
 import Checkout from './components/Checkout';
 import Register from './components/Register';
 import Login from './components/Login';
@@ -14,7 +14,18 @@ class App extends Component {
 
   componentDidMount() {
     //fetch all data from backend
-    this.props.fetchAllData();    
+    this.props.fetchAllData();
+
+    if(localStorage.cart) {
+      //if localStorage cart exists, put the cart items in redux state
+      let cartLS = JSON.parse(localStorage.cart);
+      this.props.addLocalItems(cartLS)
+    } else {
+      //else create new empty array in localStorage
+      let newCart = [];
+      localStorage.cart = JSON.stringify(newCart)
+    }
+
   }
 
   render() {
@@ -34,4 +45,4 @@ class App extends Component {
 }
 
 
-export default connect(null, { fetchAllData })(App);
+export default connect(null, { fetchAllData, addLocalItems })(App);

@@ -61,42 +61,42 @@ class MenuContainer extends Component {
         }
     }
 
-    nestedArray() {
-        let arr = this.props.menus;
-        let nestedArr = [];
-        for(let i = 0; i < arr.length; i++) {
-            nestedArr.push(arr.splice(0, 6));
-            if(arr.length < 6) nestedArr.push(arr.splice(0, arr.length))
-        }        
-        return nestedArr;
-    }
+    // nestedArray() {
+    //     let arr = this.props.menus;
+    //     let nestedArr = [];
+    //     for(let i = 0; i < arr.length; i++) {
+    //         nestedArr.push(arr.splice(0, 6));
+    //         if(arr.length < 6) nestedArr.push(arr.splice(0, arr.length))
+    //     }        
+    //     return nestedArr;
+    // }
 
-    carouselItems = () => {
-        let nestedArr = this.nestedArray();
-        let firstArr = nestedArr[0];
-        let lastArrs = nestedArr.slice(0, nestedArr.length);
+    // carouselItems = () => {
+    //     let nestedArr = this.nestedArray();
+    //     let firstArr = nestedArr[0];
+    //     let lastArrs = nestedArr.slice(0, nestedArr.length);
         
-        return(
-            <div className="container carousel-inner no-padding">
-                <div className="carousel-item active">
-                    {this.renderCarouselItems(firstArr)}
-                </div> 
-                {lastArrs.map(arr => {
-                    return (
-                        <div className="carousal-item">
-                            {arr.map(category => {
-                                return (
-                                    <div className="col-sm-2">
-                                        <span>{category.name}</span>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    )
-                })}
-            </div>
-        );
-    }
+    //     return(
+    //         <div className="container carousel-inner no-padding">
+    //             <div className="carousel-item active">
+    //                 {this.renderCarouselItems(firstArr)}
+    //             </div> 
+    //             {lastArrs.map(arr => {
+    //                 return (
+    //                     <div className="carousal-item">
+    //                         {arr.map(category => {
+    //                             return (
+    //                                 <div className="col-sm-2">
+    //                                     <span>{category.name}</span>
+    //                                 </div>
+    //                             )
+    //                         })}
+    //                     </div>
+    //                 )
+    //             })}
+    //         </div>
+    //     );
+    // }
 
     // allCarouselItems = () => {
     //     // let items = this.nestedArray();
@@ -193,7 +193,7 @@ const mapStateToProps = state => {
     
     return {
         menus: state.menu,
-        cartItems: localStorage.cart ? JSON.parse(localStorage.cart) : state.cart.items
+        cartItems: state.cart
     }
 }
 

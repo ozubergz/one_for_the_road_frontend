@@ -69,7 +69,7 @@ class SideNavBar extends Component {
                     {localStorage.token ? this.renderLogoutBtn() : this.renderLoginAndRegisterLinks()}
                 </div>
 
-                <div className="side-bar-footer">
+                {/* <div className="side-bar-footer">
                     <div className="contact mt-3">
                         <h6 className="info-heading">Contact <i className="fa fa-phone"></i></h6>
                         <div>
@@ -118,7 +118,7 @@ class SideNavBar extends Component {
                             <div>6:30am - 9:00pm</div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         );
     }
