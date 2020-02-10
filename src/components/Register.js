@@ -68,7 +68,6 @@ class Register extends Component {
         } 
     }
     
-    
     render() {
         return (
             <div className="register-page">
@@ -78,30 +77,61 @@ class Register extends Component {
                     {this.redirectToHome()}
                     <form onSubmit={(e) => this.handleSubmit(e)} className="register-form">
                         <h3 className="mb-4">Sign Up</h3>
-                        <div className="form-group">
-                        <div className="name-form-group">
-                            <div className="form-group first-name">
+                        <div className="form-row">
+                            <div className="form-group col-md-6">
                                 <label htmlFor="firstName">First Name</label>
-                                <input type="text" onChange={this.handleChange} className="form-control" name="first_name" id="firstName" placeholder="First Name"/>
+                                <input 
+                                    type="text" 
+                                    onChange={this.handleChange} 
+                                    className="form-control" 
+                                    name="first_name" 
+                                    id="firstName" 
+                                />
                             </div>
-
-                            <div className="form-group last-name">
+                            <div className="form-group col-md-6">
                                 <label htmlFor="lastName">Last Name</label>
-                                <input type="text" onChange={this.handleChange} className="form-control" name="last_name" id="lastName" placeholder="Last Name"/>
+                                <input 
+                                    type="text" 
+                                    onChange={this.handleChange} 
+                                    className="form-control" 
+                                    name="last_name" 
+                                    id="lastName" 
+                                />
                             </div>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="telephone">Telephone Number</label>
-                            <input type="text" onChange={this.handleChange} className="form-control" name="telephone" id="telephone" placeholder="Telephone"/>
-                        </div>
-                        <label htmlFor="inputEmail">Email</label>
-                            <input type="email" onChange={this.handleChange} className="form-control" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
+                        <div className="form-row">
+                            <div className="form-group col-md-6">
+                                <label htmlFor="phone-num">Phone Number</label>
+                                <input 
+                                    type="text" 
+                                    onChange={this.handleChange} 
+                                    className="form-control" 
+                                    name="telephone" 
+                                    id="phone-num" 
+                                />
+                            </div>
+                            <div className="form-group col-md-6">
+                                <label htmlFor="inputEmail">Email</label>
+                                    <input 
+                                        type="email" 
+                                        onChange={this.handleChange} 
+                                        className="form-control" 
+                                        name="email" 
+                                        id="inputEmail"
+                                        aria-describedby="emailHelp" 
+                                    />
+                            </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputPassword">Password</label>
-                            <input type="password" onChange={this.handleChange} className="form-control" name="password" id="inputPassword" placeholder="Password"/>
+                            <input 
+                                type="password" 
+                                onChange={this.handleChange} 
+                                className="form-control" 
+                                name="password" 
+                                id="inputPassword" 
+                            />
                         </div>
-                        
                         <button type="submit" className="btn btn-success register-btn">Submit</button>
                     </form>
                     

@@ -8,7 +8,7 @@ class CartBox extends Component {
     renderCartItems() {
         let items = this.props.items
         if(items.length === 0) {
-            return <h5 className="text-center" style={{color: "gray"}}>Add items to your cart</h5>
+            return <h6 className="text-center" style={{color: "gray"}}>Add items to your cart</h6>
         } else {
             return this.cartItems();
         }
@@ -75,7 +75,7 @@ class CartBox extends Component {
                     </div>
                     <div className="cart-box-footer">
                         <div className="cart-total">
-                            SUBTOTAL: {this.calculateTotal()}
+                            Subtotal: {this.calculateTotal()}
                         </div>
                         {this.renderCheckoutBtn()}    
                     </div>

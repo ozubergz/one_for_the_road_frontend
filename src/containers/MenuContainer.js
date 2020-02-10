@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Route } from 'react-router';
 import MenuItems from '../components/MenuItems';
-// import MenuSideBar from '../components/MenuSideBar';
 import { addItemToCart } from '../actions';
 import CartBox from '../components/CartBox';
 import Banner from '../components/Banner'
@@ -16,16 +15,14 @@ class MenuContainer extends Component {
         let categories = this.props.menus;
         return categories.map(category => {
             return (
-                
                 <div className="menu-page" key={category.id}>
                     <div className="menu-body">
                         <div className="menu-header">
-                            <h3>{category.name.toUpperCase()}</h3>
+                            <h4>{category.name.toUpperCase()}</h4>
                         </div>
                         {this.renderMenuItems(category.items)}
                     </div>
                 </div>
-                
             )
         });
     }

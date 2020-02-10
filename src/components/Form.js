@@ -13,9 +13,11 @@ class Form extends Component {
         last_name: '',
         email: '',
         address: '',
+        address1: '',
         city: '',
         state: '',
-        zip: ''
+        zip: '',
+        phone: ''
     }
 
     componentDidMount() {
@@ -42,8 +44,9 @@ class Form extends Component {
                 first_name: data.user.first_name,
                 last_name: data.user.last_name,
                 email: data.user.email,
-                user_id: data.user.id
-            })
+                user_id: data.user.id,
+                phone: data.user.telephone
+            });
           }
         });
     }
@@ -56,6 +59,7 @@ class Form extends Component {
 
         this.setState({
             address: '',
+            address1: '',
             city: '',
             state: '',
             zip: ''
@@ -73,21 +77,19 @@ class Form extends Component {
         })
         .then(res => {
             console.log(res.ok)
-            
+            console.log(res)
             // check if transaction failed or not
             if(res.ok) {
                 //when charge was a success
                 //persist users cart to the backend if payment was successful
                 this.handleSaveCart();
                 this.clear();
-                
             }
         });
         this.handleSaveCart();
     }
 
     handleSaveCart() {
-        
         if(this.state.user_id && localStorage.cat) {
             let items = JSON.parse(localStorage.cart);
 
@@ -118,6 +120,7 @@ class Form extends Component {
         let token = this.props.stripe.createToken({
             name: `${this.state.first_name} ${this.state.last_name}`,
             address_line1: this.state.address,
+            address_line2: this.state.address1,
             address_city: this.state.city,
             address_state: this.state.state,
             address_zip: this.state.zip
@@ -125,6 +128,7 @@ class Form extends Component {
 
         token.then(res => {
             if(res.error) {
+
                 // error wrong inputs
                 console.log(res.error)
             } else {
@@ -145,65 +149,149 @@ class Form extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="checkout-form">
                 <form onSubmit={this.handleSubmit}>
-                    Total: <input id="total" readOnly value={this.props.amount} required/><br/>
-                    <input 
-                        type="text" 
-                        name="first_name" 
-                        placeholder="First Name"
-                        onChange={this.handleChange} 
-                        value={this.state.first_name} 
-                        required
-                    /><br/>
-                    <input 
-                        type="text" 
-                        name="last_name" 
-                        placeholder="Last Name"
-                        onChange={this.handleChange} 
-                        value={this.state.last_name} 
-                        required
-                    /><br/>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        placeholder="Email"
-                        onChange={this.handleChange} 
-                        value={this.state.email} 
-                        required
-                    /><br/>
-                    <input 
-                        type="text" 
-                        name="address" 
-                        placeholder="Address"
-                        onChange={this.handleChange} 
-                        value={this.state.address} 
-                        required
-                    /><br/>
-                    <input 
-                        type="text" 
-                        name="city" 
-                        placeholder="City"
-                        onChange={this.handleChange}
-                        value={this.state.city}
-                    /><br />
-                    <input 
-                        type="text" 
-                        name="state"
-                        placeholder="State" 
-                        onChange={this.handleChange}
-                        value={this.state.state}
-                    /><br />
-                    <input 
-                        type="text" 
-                        name="zip" 
-                        placeholder="Zip Code"
-                        onChange={this.handleChange}
-                        value={this.state.zip}
-                    /><br />
+                    <div className="contact-info">
+                        <h5>Contact Info</h5>
+                        <hr/>
+                        <div className="form-row">
+                            <div className="form-group col-md-6">
+                                <label htmlFor="firstName">First Name</label>
+                                <input 
+                                    id="firstName"
+                                    type="text" 
+                                    name="first_name" 
+                                    onChange={this.handleChange} 
+                                    value={this.state.first_name} 
+                                    className="form-control"
+                                    required
+                                /><br/>
+                            </div>
+                            <div className="form-group col-md-6">
+                                <label htmlFor="lastName">Last Name</label>
+                                <input 
+                                    id="lastName"
+                                    type="text" 
+                                    name="last_name" 
+                                    onChange={this.handleChange} 
+                                    value={this.state.last_name} 
+                                    className="form-control"
+                                    required
+                                /><br/>
+                            </div>
+                        </div>
+                        <div className="form-row email-phone-row">
+                            <div className="form-group col-md-6">
+                                <label htmlFor="email">Email</label>
+                                <input 
+                                    id="email"
+                                    type="email" 
+                                    name="email" 
+                                    onChange={this.handleChange} 
+                                    value={this.state.email} 
+                                    className="form-control"
+                                    required
+                                /><br/>
+                            </div>
+                            <div className="form-group col-md-6">
+                                <label htmlFor="phone-num">Phone Number</label>
+                                <input 
+                                    id="phone-num"
+                                    type="text" 
+                                    name="phone"
+                                    onChange={this.handleChange} 
+                                    value={this.state.phone} 
+                                    className="form-control"
+                                    required
+                                /><br/>
+                            </div>
+                        </div>
+                    </div>
 
-                    <CardElement />
-                    <button>Confirm order</button>
+                    <div className="address-info">
+                        <h5>Address Info</h5>
+                        <hr/>
+                        <div className="form-row">
+                            <div className="col-md-6">
+                                <label htmlFor="address">Address</label>
+                                <input 
+                                    id="address"
+                                    type="text" 
+                                    name="address" 
+                                    placeholder="1234 Main st."
+                                    onChange={this.handleChange} 
+                                    value={this.state.address} 
+                                    className="form-control"
+                                    required
+                                /><br/>
+                            </div>
+                            <div className="col-md-6">
+                                <label htmlFor="address1">Address 2</label>
+                                <input 
+                                    id="address1"
+                                    type="text" 
+                                    name="address1" 
+                                    placeholder="Apartment, studio, or floor "
+                                    onChange={this.handleChange} 
+                                    value={this.state.address1} 
+                                    className="form-control"
+                                /><br/>
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group col-md-6">
+                                <label htmlFor="city">City</label>
+                                <input
+                                    id="city" 
+                                    type="text" 
+                                    name="city" 
+                                    onChange={this.handleChange}
+                                    value={this.state.city}
+                                    className="form-control"
+                                    required
+                                /><br />
+                            </div>
+                            <div className="form-group col-md-4">
+                                <label htmlFor="state">State</label>
+                                <input
+                                    id="state" 
+                                    type="text" 
+                                    name="state"
+                                    placeholder="State" 
+                                    onChange={this.handleChange}
+                                    value={this.state.state}
+                                    className="form-control"
+                                    required
+                                /><br />
+                            </div>
+                            <div className="form-group col-md-2">
+                                <label htmlFor="zip">ZIP Code</label>
+                                <input 
+                                    id="zip"
+                                    type="text" 
+                                    name="zip" 
+                                    onChange={this.handleChange}
+                                    value={this.state.zip}
+                                    className="form-control"
+                                    required
+                                /><br />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="payment-info">
+                        <h5>Payment</h5>
+                        <hr/>
+                        <label>Card Detail</label>
+                        <CardElement className="form-control"  />
+                    </div>
+                    
+                    <div className="total mt-4">
+                        <h5>Total </h5>
+                        <input readOnly value={`$${this.props.amount}`} required/><br/>
+                    </div>
+                    
+                    <button className="btn btn-primary order-btn mt-2">Confirm order</button>
                 </form>
             </div>
         );

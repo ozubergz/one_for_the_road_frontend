@@ -69,14 +69,27 @@ class Login extends Component {
                 <div className="login-body">
                     {this.redirectToHome()}      
                     <form onSubmit={(e) => this.handleSubmit(e)} className="login-form">
-                        <h3 className="mb-5">Login</h3>
+                        <h4 className="mb-5">Login</h4>
                         <div className="form-group">
                             <label htmlFor="inputEmail">Email</label>
-                            <input type="email" onChange={this.handleChange} className="form-control" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
+                            <input 
+                                type="email" 
+                                onChange={this.handleChange} 
+                                className="form-control" 
+                                name="email" 
+                                id="inputEmail" 
+                                aria-describedby="emailHelp" 
+                            />
                         </div>
                         <div className="form-group">
                             <label htmlFor="inputPassword">Password</label>
-                            <input type="password" onChange={this.handleChange} className="form-control" name="password" id="inputPassword" placeholder="Password"/>
+                            <input 
+                                type="password" 
+                                onChange={this.handleChange} 
+                                className="form-control" 
+                                name="password" 
+                                id="inputPassword" 
+                            />
                         </div>
                         <button type="submit" className="btn btn-success login-btn">Submit</button>
                     </form>

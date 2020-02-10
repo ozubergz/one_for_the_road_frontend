@@ -14,14 +14,17 @@ class MenuItems extends Component {
         this.setState({position: null})
     }
     
+    //add opacity effect when item is hovered 
     opacity(id) {
         if(id === this.state.position) {
+            //add style when item is hovered
             return  {
                 display: 'block',
                 backgroundColor: "rgba(37, 48, 80, 0.8)",
                 animation: "opacity 1s"
             };
         }
+        //else display overlay as none
         return {display: 'none'}
     }
     
@@ -36,11 +39,11 @@ class MenuItems extends Component {
                     className="items-body"
                 >
                 <div className="items-content">
-                    <h5 className="items-name">{name.toUpperCase()}</h5>
+                    <h6 className="items-name">{name.toUpperCase()}</h6>
                     <span className="items-description">{description}</span>
                 </div>
                 <div className="items-price">
-                    <h5>{price.toFixed(2)}</h5>
+                    <h6>{price.toFixed(2)}</h6>
                 </div>
                 
                 <div className="overlay" style={this.opacity(item.id)}>
