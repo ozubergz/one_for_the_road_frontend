@@ -442,15 +442,24 @@ input {
 
 .checkout-body {
     margin-left: 260px;
-    padding: 2rem;
+    /* padding: 2rem; */
 }
 
 .checkout-form {
     margin: auto;
-    width: 50%;
+    width: 70%;
     font-size: 0.8rem;
     font-weight: bold;
 }
+
+.form-inputs {
+    padding: 1rem;
+}
+
+.form-total {
+    padding: 1rem;
+}
+
 
 .email-phone-row {
     margin-top: -15px;
@@ -460,11 +469,18 @@ input {
     width: 100%;
 }
 
-.total > h5 {
+.total-box {
+    border: 1px solid rgb(189, 189, 189);
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.total-box > h5 {
     display: inline;
 }
 
-.total > input {
+.total-box > input {
+    
     border: none;
     outline: none !important;
     box-shadow: none !important;

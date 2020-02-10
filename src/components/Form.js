@@ -19,7 +19,8 @@ class Form extends Component {
         zip: '',
         phone: '',
         display: false,
-        redirect: false
+        redirect: false,
+        error: ''
     }
 
     componentDidMount() {
@@ -76,8 +77,6 @@ class Form extends Component {
             body: JSON.stringify({token: tokenId, amount})
         })
         .then(res => {
-            console.log(res.ok)
-            console.log(res)
             // check if transaction failed or not
             if(res.ok) {
                 //when charge was a success
@@ -85,6 +84,8 @@ class Form extends Component {
                 this.handleSaveCart();
                 this.clear();
                 this.setState({display: true})
+            } else {
+                this.setState({error: "Your payment has failed, please try again."})
             }
         });
         this.handleSaveCart();
@@ -176,153 +177,160 @@ class Form extends Component {
             <div className="checkout-form">
                 {this.redirectToOrder()}
                 <SuccessModel hideModel={this.hideModel} display={this.state.display}/>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="contact-info">
-                        <div className="contact-header">
-                            <i className='fa fa-user-circle'></i> Contact Info
-                            <hr/>
+                <form onSubmit={this.handleSubmit} className="row">
+                    <div className="form-inputs col-md-8">
+                        <div className="contact-info">
+                            <div className="contact-header">
+                                <i className='fa fa-user-circle'></i> Contact Info
+                                <hr/>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="firstName">First Name</label>
+                                    <input 
+                                        id="firstName"
+                                        type="text" 
+                                        name="first_name" 
+                                        onChange={this.handleChange} 
+                                        value={this.state.first_name} 
+                                        className="form-control"
+                                        required
+                                    /><br/>
+                                </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="lastName">Last Name</label>
+                                    <input 
+                                        id="lastName"
+                                        type="text" 
+                                        name="last_name" 
+                                        onChange={this.handleChange} 
+                                        value={this.state.last_name} 
+                                        className="form-control"
+                                        required
+                                    /><br/>
+                                </div>
+                            </div>
+                            <div className="form-row email-phone-row">
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="email">Email</label>
+                                    <input 
+                                        id="email"
+                                        type="email" 
+                                        name="email" 
+                                        onChange={this.handleChange} 
+                                        value={this.state.email} 
+                                        className="form-control"
+                                        required
+                                    /><br/>
+                                </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="phone-num">Phone Number</label>
+                                    <input 
+                                        id="phone-num"
+                                        type="text" 
+                                        name="phone"
+                                        onChange={this.handleChange} 
+                                        value={this.state.phone} 
+                                        className="form-control"
+                                        required
+                                    /><br/>
+                                </div>
+                            </div>
                         </div>
-                        <div className="form-row">
-                            <div className="form-group col-md-6">
-                                <label htmlFor="firstName">First Name</label>
-                                <input 
-                                    id="firstName"
-                                    type="text" 
-                                    name="first_name" 
-                                    onChange={this.handleChange} 
-                                    value={this.state.first_name} 
-                                    className="form-control"
-                                    required
-                                /><br/>
-                            </div>
-                            <div className="form-group col-md-6">
-                                <label htmlFor="lastName">Last Name</label>
-                                <input 
-                                    id="lastName"
-                                    type="text" 
-                                    name="last_name" 
-                                    onChange={this.handleChange} 
-                                    value={this.state.last_name} 
-                                    className="form-control"
-                                    required
-                                /><br/>
-                            </div>
-                        </div>
-                        <div className="form-row email-phone-row">
-                            <div className="form-group col-md-6">
-                                <label htmlFor="email">Email</label>
-                                <input 
-                                    id="email"
-                                    type="email" 
-                                    name="email" 
-                                    onChange={this.handleChange} 
-                                    value={this.state.email} 
-                                    className="form-control"
-                                    required
-                                /><br/>
-                            </div>
-                            <div className="form-group col-md-6">
-                                <label htmlFor="phone-num">Phone Number</label>
-                                <input 
-                                    id="phone-num"
-                                    type="text" 
-                                    name="phone"
-                                    onChange={this.handleChange} 
-                                    value={this.state.phone} 
-                                    className="form-control"
-                                    required
-                                /><br/>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div className="address-info">
-                        <div className="address-header">
-                            <i className="fa fa-address-card"></i> Address Info
-                            <hr/>
+                        <div className="address-info">
+                            <div className="address-header">
+                                <i className="fa fa-address-card"></i> Address Info
+                                <hr/>
+                            </div>
+                            <div className="form-row">
+                                <div className="col-md-6">
+                                    <label htmlFor="address">Address</label>
+                                    <input 
+                                        id="address"
+                                        type="text" 
+                                        name="address" 
+                                        placeholder="1234 Main st."
+                                        onChange={this.handleChange} 
+                                        value={this.state.address} 
+                                        className="form-control"
+                                        required
+                                    /><br/>
+                                </div>
+                                <div className="col-md-6">
+                                    <label htmlFor="address1">Address 2</label>
+                                    <input 
+                                        id="address1"
+                                        type="text" 
+                                        name="address1" 
+                                        placeholder="Apartment, studio, or floor "
+                                        onChange={this.handleChange} 
+                                        value={this.state.address1} 
+                                        className="form-control"
+                                    /><br/>
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="city">City</label>
+                                    <input
+                                        id="city" 
+                                        type="text" 
+                                        name="city" 
+                                        onChange={this.handleChange}
+                                        value={this.state.city}
+                                        className="form-control"
+                                        required
+                                    /><br />
+                                </div>
+                                <div className="form-group col-md-4">
+                                    <label htmlFor="state">State</label>
+                                    <input
+                                        id="state" 
+                                        type="text" 
+                                        name="state"
+                                        placeholder="State" 
+                                        onChange={this.handleChange}
+                                        value={this.state.state}
+                                        className="form-control"
+                                        required
+                                    /><br />
+                                </div>
+                                <div className="form-group col-md-2">
+                                    <label htmlFor="zip">ZIP Code</label>
+                                    <input 
+                                        id="zip"
+                                        type="text" 
+                                        name="zip" 
+                                        onChange={this.handleChange}
+                                        value={this.state.zip}
+                                        className="form-control"
+                                        required
+                                    /><br />
+                                </div>
+                            </div>
                         </div>
-                        <div className="form-row">
-                            <div className="col-md-6">
-                                <label htmlFor="address">Address</label>
-                                <input 
-                                    id="address"
-                                    type="text" 
-                                    name="address" 
-                                    placeholder="1234 Main st."
-                                    onChange={this.handleChange} 
-                                    value={this.state.address} 
-                                    className="form-control"
-                                    required
-                                /><br/>
+                        <div className="payment-info">
+                            <div className="payment-header">
+                                <i className="fa fa-credit-card"></i> Payment
+                                <hr/>
                             </div>
-                            <div className="col-md-6">
-                                <label htmlFor="address1">Address 2</label>
-                                <input 
-                                    id="address1"
-                                    type="text" 
-                                    name="address1" 
-                                    placeholder="Apartment, studio, or floor "
-                                    onChange={this.handleChange} 
-                                    value={this.state.address1} 
-                                    className="form-control"
-                                /><br/>
-                            </div>
+                            <label>Card Detail</label>
+                            <CardElement className="form-control"  />
                         </div>
-                        <div className="form-row">
-                            <div className="form-group col-md-6">
-                                <label htmlFor="city">City</label>
-                                <input
-                                    id="city" 
-                                    type="text" 
-                                    name="city" 
-                                    onChange={this.handleChange}
-                                    value={this.state.city}
-                                    className="form-control"
-                                    required
-                                /><br />
-                            </div>
-                            <div className="form-group col-md-4">
-                                <label htmlFor="state">State</label>
-                                <input
-                                    id="state" 
-                                    type="text" 
-                                    name="state"
-                                    placeholder="State" 
-                                    onChange={this.handleChange}
-                                    value={this.state.state}
-                                    className="form-control"
-                                    required
-                                /><br />
-                            </div>
-                            <div className="form-group col-md-2">
-                                <label htmlFor="zip">ZIP Code</label>
-                                <input 
-                                    id="zip"
-                                    type="text" 
-                                    name="zip" 
-                                    onChange={this.handleChange}
-                                    value={this.state.zip}
-                                    className="form-control"
-                                    required
-                                /><br />
-                            </div>
+                        <div className="error-message mt-4">
+                            <h6>{this.state.error}</h6>
                         </div>
-                    </div>
-
-                    <div className="payment-info">
-                        <div className="payment-header">
-                            <i className="fa fa-credit-card"></i> Payment
-                            <hr/>
-                        </div>
-                        <label>Card Detail</label>
-                        <CardElement className="form-control"  />
                     </div>
                     
-                    <div className="total mt-4">
-                        <h5>Total </h5>
-                        <input readOnly value={`$${this.props.amount}`} required/><br/>
+                    <div className="form-total col-md-4">
+                        <div className="total-box">
+                            <h5>Total </h5>
+                            <input readOnly value={`$${this.props.amount}`} required/><br/>
+                            {this.renderSubmitBtn()}
+                        </div>
                     </div>
-                    {this.renderSubmitBtn()}
+                    
                 </form>
             </div>
         );
