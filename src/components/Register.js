@@ -73,6 +73,7 @@ class Register extends Component {
         return (
             <div className="register-page">
                 <div className="register-bg"></div>
+                <div className="register-overlay"></div>
                 <div className="register-body">
                     {this.redirectToHome()}
                     <form onSubmit={(e) => this.handleSubmit(e)} className="register-form">
