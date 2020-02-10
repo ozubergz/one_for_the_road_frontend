@@ -12,8 +12,15 @@ body, html {
     height: 100%;
 }
 
-/************** HOME PAGE *****************/
+input {
+    font-size: 0.9rem !important;
+}
 
+.error-message {
+    color: red;
+}
+
+/************** HOME PAGE *****************/
 
 
 .home-body {
@@ -64,7 +71,6 @@ body, html {
 .menu-body {
     width: 70%;
     padding: 3rem;
-    /* background-color: gray; */
 }
 
 .menu-header {
@@ -75,10 +81,9 @@ body, html {
 /********************* CART *************************/
 
 .menu-cart {
-    /* background-color: pink; */
     position: fixed;
     width: 28%;
-    padding: 1rem;
+    padding: 2rem;
     top: 180px;
     right: 0;
     bottom: 0;
@@ -86,7 +91,6 @@ body, html {
 }
 
 .cart-box {
-    width: 80%;
     border: 1px solid rgb(219, 219, 219);
     border-radius: 5px;
     -webkit-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
@@ -323,7 +327,7 @@ body, html {
 
 .register-form {
     margin: auto;
-    width: 40%;
+    width: 45%;
 }
 
 .register-btn {
@@ -419,7 +423,6 @@ body, html {
 
 .info-heading {
     margin-bottom: 2px;
-    /* font-weight: bold; */
 }
 
 .address_1 {
@@ -439,12 +442,12 @@ body, html {
 
 .checkout-body {
     margin-left: 260px;
-    padding: 1rem;
+    padding: 2rem;
 }
 
 .checkout-form {
     margin: auto;
-    width: 45%;
+    width: 50%;
     font-size: 0.8rem;
     font-weight: bold;
 }
@@ -470,6 +473,85 @@ body, html {
     font-weight: bold;
 }
 
-input {
-    font-size: 0.9rem !important;
+.contact-header, .address-header, .payment-header {
+    font-size: 1.1rem;
+}
+
+/********************* Success Model ***********************/
+.success-model {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+}
+
+.model {
+    margin-left: 60px;
+    position: relative;
+    z-index: 2;
+    color: black;
+    background-color: white;
+    border-radius: 5px;
+    width: 25%;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: reveal 0.5s linear;
+}
+
+@keyframes reveal {
+    0% { 
+        opacity: 0;
+        top: 0%;
+    }
+
+    100% { 
+        opacity: 1;
+        top: 20%;
+    }
+}
+
+.model-header {
+    padding: 1rem;
+}
+
+.model-footer {
+    padding: 1rem;
+}
+
+.check-mark {
+    background-color: green;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    border-radius: 100%;
+    margin: auto;
+}
+
+.btn-wrapper {
+    width: 100%;
+    text-align: right;
+}
+
+.close-model-btn {
+    outline: none !important;
+    background-color: white;
+    color: black;
+    border: none;
+    font-size: 30px;
+    margin-right: 10px;
+    
+}
+
+.fa-check {
+    color: white;
+    font-size: 80px;
+    vertical-align: middle;
+}
+
+.fa-window-close {
+    font-size: 30px;
 }

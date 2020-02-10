@@ -14,7 +14,6 @@ class Checkout extends Component {
                 return accum + curr.price
             }, 0);
         }
-    
         return total.toFixed(2);
       }
 
@@ -36,13 +35,7 @@ class Checkout extends Component {
 }
 
 const mapStateToProps = state => {
-    if(localStorage.cart) {
-        // when localStorage cart exists assign props with localStorage cart
-        return { items: JSON.parse(localStorage.cart) }
-    } else  {
-        //when localStorage cart does not exists assign props with state
-        return { items: state.cart.items }
-    }
+    return { items: state.cart }
   }
 
 export default connect(mapStateToProps)(Checkout);

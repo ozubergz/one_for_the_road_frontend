@@ -11,7 +11,8 @@ class Register extends Component {
         telephone: '',
         first_name: '',
         last_name: '',
-        redirect: null
+        redirect: null,
+        errors: null
     }
 
     handleChange = (e) => {
@@ -35,8 +36,9 @@ class Register extends Component {
         .then(data => {
             if(!data.user) {
                 //check if there is an registration error
-                //output => {message: "Username already exists"}
-                console.log('error', data)
+                //output => {message: "Email has already been taken"}
+                // console.log(data)
+                this.setState({errors: data})
 
             } else {
                 //set token and user id to localStorage
@@ -67,6 +69,12 @@ class Register extends Component {
             return <Redirect to="/" />
         } 
     }
+
+    showErrors() {
+        return this.state.errors.map((err, i) => {
+            return <h6 key={i}>{err}</h6>
+        });
+    }
     
     render() {
         return (
@@ -76,7 +84,7 @@ class Register extends Component {
                 <div className="register-body">
                     {this.redirectToHome()}
                     <form onSubmit={(e) => this.handleSubmit(e)} className="register-form">
-                        <h3 className="mb-4">Sign Up</h3>
+                        <h4 className="mb-4">Sign Up</h4>
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label htmlFor="firstName">First Name</label>
@@ -122,8 +130,12 @@ class Register extends Component {
                                     />
                             </div>
                         </div>
+                        
                         <div className="form-group">
                             <label htmlFor="inputPassword">Password</label>
+                            <div className="error-message">
+                                {this.state.errors ? this.showErrors() : null}
+                            </div>
                             <input 
                                 type="password" 
                                 onChange={this.handleChange} 

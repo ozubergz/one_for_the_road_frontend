@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import { connect } from 'react-redux';
 import { removeAllCartItems } from '../actions';
-
-// import {CardElement, CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe } from 'react-stripe-elements';
+import SuccessModel from './SuccessModel';
+import { Redirect } from 'react-router-dom';
 
 class Form extends Component {
     
@@ -17,7 +17,9 @@ class Form extends Component {
         city: '',
         state: '',
         zip: '',
-        phone: ''
+        phone: '',
+        display: false,
+        redirect: false
     }
 
     componentDidMount() {
@@ -35,19 +37,17 @@ class Form extends Component {
         })
         .then(res => res.json())
         .then(data => {
-          if(!data.user) {
-            //when there's no current user:  "Please log in message"
-            console.log('error', data)
-          } else {
-            console.log(data)
-            this.setState({
-                first_name: data.user.first_name,
-                last_name: data.user.last_name,
-                email: data.user.email,
-                user_id: data.user.id,
-                phone: data.user.telephone
-            });
-          }
+            // console.log(data)
+            if(data.user) {
+                const {first_name, last_name, email, id, telephone} = data.user;
+                this.setState({
+                    first_name: first_name,
+                    last_name: last_name,
+                    email: email,
+                    user_id: id,
+                    phone: telephone
+                });
+            } 
         });
     }
 
@@ -84,6 +84,7 @@ class Form extends Component {
                 //persist users cart to the backend if payment was successful
                 this.handleSaveCart();
                 this.clear();
+                this.setState({display: true})
             }
         });
         this.handleSaveCart();
@@ -103,10 +104,10 @@ class Form extends Component {
                     items
                 })
             })
-            .then(res => res.json())
-            .then(res => {
-               console.log(res)
-            });
+            // .then(res => res.json())
+            // .then(res => {
+            //    console.log(res)
+            // });
         }
     }
 
@@ -128,17 +129,27 @@ class Form extends Component {
 
         token.then(res => {
             if(res.error) {
-
                 // error wrong inputs
-                console.log(res.error)
+                // console.log(res.error)
+                return;
             } else {
                 let token = res.token
-                console.log(token)
                 //method to handle fetch
                 this.tokenHandler(token.id, amount)
             }
         });
 
+    }
+
+    renderSubmitBtn() {
+        let amount = Math.round(this.props.amount);
+        if(amount === 0) {
+            return (<button className="btn btn-secondary order-btn mt-2" disabled>Confirm order</button>)
+        } else {
+            return (
+                <button className="btn btn-danger order-btn mt-2">Confirm order</button>
+            )
+        }
     }
 
     handleChange = (e) => {
@@ -147,13 +158,30 @@ class Form extends Component {
         });
     }
 
+    hideModel = () => {
+        this.setState({
+            redirect: true,
+            display: false
+        });
+    }
+
+    redirectToOrder() {
+        if(this.state.redirect) {
+            return <Redirect to="/order" />
+        }
+    }
+
     render() {
         return (
             <div className="checkout-form">
+                {this.redirectToOrder()}
+                <SuccessModel hideModel={this.hideModel} display={this.state.display}/>
                 <form onSubmit={this.handleSubmit}>
                     <div className="contact-info">
-                        <h5>Contact Info</h5>
-                        <hr/>
+                        <div className="contact-header">
+                            <i className='fa fa-user-circle'></i> Contact Info
+                            <hr/>
+                        </div>
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label htmlFor="firstName">First Name</label>
@@ -209,8 +237,10 @@ class Form extends Component {
                     </div>
 
                     <div className="address-info">
-                        <h5>Address Info</h5>
-                        <hr/>
+                        <div className="address-header">
+                            <i className="fa fa-address-card"></i> Address Info
+                            <hr/>
+                        </div>
                         <div className="form-row">
                             <div className="col-md-6">
                                 <label htmlFor="address">Address</label>
@@ -280,8 +310,10 @@ class Form extends Component {
                     </div>
 
                     <div className="payment-info">
-                        <h5>Payment</h5>
-                        <hr/>
+                        <div className="payment-header">
+                            <i className="fa fa-credit-card"></i> Payment
+                            <hr/>
+                        </div>
                         <label>Card Detail</label>
                         <CardElement className="form-control"  />
                     </div>
@@ -290,8 +322,7 @@ class Form extends Component {
                         <h5>Total </h5>
                         <input readOnly value={`$${this.props.amount}`} required/><br/>
                     </div>
-                    
-                    <button className="btn btn-primary order-btn mt-2">Confirm order</button>
+                    {this.renderSubmitBtn()}
                 </form>
             </div>
         );

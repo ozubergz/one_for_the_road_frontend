@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeAllCartItems, removeUser } from '../actions';
 
 class SideNavBar extends Component {
 
-    state = {
-        redirect: null
-    }
 
     clearLocalStorage = () => {
         //clear localStorage
         localStorage.clear();
-        // this.setState({redirect: true});
         //clear user state
         this.props.removeUser();
         //clear state's cart
@@ -43,18 +38,10 @@ class SideNavBar extends Component {
             </button>
         );
     }
-
-    redirectToHome() {
-        //when state redirect is true return to main page
-        if(this.state.redirect) {
-            return <Redirect to="/" />
-        }
-    }
     
     render() {
         return (
             <div className="main-sidebar">
-                {this.redirectToHome()}
 
                 <div className="side-bar-logo">
                     <Link className="sidebar-link" to="/"></Link>

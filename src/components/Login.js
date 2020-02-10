@@ -8,7 +8,8 @@ class Login extends Component {
     state = {
         email: '',
         password: '',
-        redirect: null
+        redirect: null,
+        error: null
     }
 
     handleChange = (e) => {
@@ -34,7 +35,8 @@ class Login extends Component {
             if(!data.user) {
                 //check if user's login is unauthenticated
                 //output => {message: "Invalid Username or Password"}
-                console.log('error', data)
+                // console.log(data)
+                this.setState({error: data.message});
             } else {
                 //set token and user id to localStorage
                 localStorage.token = data.jwt;
@@ -70,6 +72,9 @@ class Login extends Component {
                     {this.redirectToHome()}      
                     <form onSubmit={(e) => this.handleSubmit(e)} className="login-form">
                         <h4 className="mb-5">Login</h4>
+                        <div className="error-message">
+                            <h6 style={{color: 'red'}}>{this.state.error}</h6>
+                        </div>
                         <div className="form-group">
                             <label htmlFor="inputEmail">Email</label>
                             <input 

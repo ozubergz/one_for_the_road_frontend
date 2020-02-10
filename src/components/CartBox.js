@@ -35,7 +35,7 @@ class CartBox extends Component {
 
     renderCheckoutBtn() {
         let total = Math.round(this.calculateTotal());
-        if(total === 0.00) {
+        if(total === 0) {
             return (
                 <button className="btn btn-secondary disabled-checkout-btn" disabled>
                     Checkout
