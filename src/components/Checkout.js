@@ -26,7 +26,6 @@ class Checkout extends Component {
                 <div className="checkout-page">
                     <Banner />
                     <div className="checkout-body">
-                        
                         <StripeProvider apiKey="pk_test_VfFbfNGD19WUOZQYldfMwr0l00s8N3zW2x">
                             <Elements>
                                 <Form amount={this.calculateTotal()} />

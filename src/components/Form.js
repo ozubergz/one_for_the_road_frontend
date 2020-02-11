@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { removeAllCartItems } from '../actions';
 import SuccessModel from './SuccessModel';
 import { Redirect } from 'react-router-dom';
+import { trackPromise} from 'react-promise-tracker';
+import LoadingPyament from './LoadingPayment';
 
 class Form extends Component {
     
@@ -69,25 +71,27 @@ class Form extends Component {
 
     //handles token to send to backend
     tokenHandler(tokenId, amount) {
-        fetch('http://localhost:3000/charge', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({token: tokenId, amount})
-        })
-        .then(res => {
-            // check if transaction failed or not
-            if(res.ok) {
-                //when charge was a success
-                //persist users cart to the backend if payment was successful
-                this.handleSaveCart();
-                this.clear();
-                this.setState({display: true})
-            } else {
-                this.setState({error: "Your payment has failed, please try again."})
-            }
-        });
+        trackPromise(
+            fetch('http://localhost:3000/charge', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({token: tokenId, amount})
+            })
+            .then(res => {
+                if(res.ok) {
+                    //when charge was a success
+                    //persist users cart to the backend if payment was successful
+                    this.handleSaveCart();
+                    this.clear();
+                    this.setState({display: true});
+
+                } else {
+                    this.setState({error: "Your payment has failed, please try again."})
+                }
+            })
+        )
     }
 
     handleSaveCart() {
@@ -174,6 +178,7 @@ class Form extends Component {
     render() {
         return (
             <div className="checkout-form">
+                <LoadingPyament />
                 {this.redirectToOrder()}
                 <SuccessModel hideModel={this.hideModel} display={this.state.display}/>
                 <form onSubmit={this.handleSubmit} className="row">

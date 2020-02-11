@@ -5,7 +5,7 @@ import { addItemToCart, addLocalItems } from '../actions';
 import CartBox from '../components/CartBox';
 import Banner from '../components/Banner';
 import SideNavBar from '../components/SideNavBar';
-
+import LoadingIndicator from '../components/LoadingIndicator';
 
 class MenuContainer extends Component {
     
@@ -77,6 +77,7 @@ class MenuContainer extends Component {
             <div>
                 <SideNavBar />
                 <Banner/>
+                <LoadingIndicator />
                 {this.renderMenu()}
                 <CartBox removeCartItems={this.removeCartItems} items={this.props.cartItems} />
             </div>
