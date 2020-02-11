@@ -15,16 +15,17 @@ class CartBox extends Component {
     }
 
     cartItems() {
-        return this.props.items.map(item => {
+        return this.props.items.map((item, index) => {
             return (
                 <div className="cart-items" key={uuid()}>
-                    <button className="btn btn-danger btn-sm remove-btn">
+                    <button 
+                        onClick={() => this.props.removeCartItems(index)} 
+                        className="btn btn-danger btn-sm remove-btn">
                         <i className="fa fa-minus"></i>
                     </button>
                     <div className="cart-items-name">
                         {item.name} 
                     </div>
-                    
                     <div className="cart-items-price">
                         {item.price.toFixed(2)}
                     </div>

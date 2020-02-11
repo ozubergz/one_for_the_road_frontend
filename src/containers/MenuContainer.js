@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Route } from 'react-router';
 import MenuItems from '../components/MenuItems';
-import { addItemToCart } from '../actions';
+import { addItemToCart, addLocalItems } from '../actions';
 import CartBox from '../components/CartBox';
 import Banner from '../components/Banner'
-
 
 class MenuContainer extends Component {
     
@@ -43,7 +41,7 @@ class MenuContainer extends Component {
     //add item to redux state and localStorage
     addItemsToCart = (item) => {
         // call dispatch to addItems
-        this.props.addItem(item);
+        this.props.addItemToCart(item);
         
         if(!localStorage.cart) {
             //create new cart array when cart does not exists from localStorage
@@ -57,30 +55,37 @@ class MenuContainer extends Component {
             localStorage.cart = JSON.stringify(cartLS)
         }
     }
+
+    removeCartItems = (index) => {
+        if(localStorage.cart) {
+            //remove cart items
+            let cartItems = JSON.parse(localStorage.cart);
+            //filter cart items based on index postion
+            let newCart = cartItems.filter((item, i) => i !== index);
+            //set new cart to localStorage
+            localStorage.cart = JSON.stringify(newCart);
+
+            //store new cart to redux state
+            this.props.addLocalItems(newCart);
+        }
+    }
     
     render() {
         return (
             <div>
                 <Banner/>
                 {this.renderMenu()}
-                <CartBox items={this.props.cartItems} />
+                <CartBox removeCartItems={this.removeCartItems} items={this.props.cartItems} />
             </div>
         );
     }
 }
 
 const mapStateToProps = state => {
-    
     return {
         menus: state.menu,
         cartItems: state.cart
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        addItem:(item) => dispatch(addItemToCart(item))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MenuContainer);
+export default connect(mapStateToProps, {addItemToCart, addLocalItems})(MenuContainer);
