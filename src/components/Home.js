@@ -47,8 +47,56 @@ class Home extends Component {
                             </div>
                         </div>
                     </div>
+                    
                     <div className='footer'>
-                        
+                        <div className="footer-col mx-5">
+                            <div className="business-hours">
+                                <h5 className="footer-heading"><i className="fa fa-clock-o"></i> Business Hours</h5>
+                                <div className="schedule">
+                                    <div className="days">Mon</div>
+                                    <div>6:30am - 9:00pm</div>
+                                </div>
+                                <div className="schedule">
+                                    <div className="days">Tues</div>
+                                    <div>6:30am - 9:00pm</div>
+                                </div>
+                                <div className="schedule">
+                                    <div className="days">Wed</div>
+                                    <div>6:30am - 9:00pm</div>
+                                </div>
+                                <div className="schedule">
+                                    <div className="days">Thu</div>
+                                    <div>6:30am - 9:00pm</div>
+                                </div>
+                                <div className="schedule">
+                                    <div className="days">Fri</div>
+                                    <div>6:30am - 9:00pm</div>
+                                </div>
+                                <div className="schedule">
+                                    <div className="days">Sat</div>
+                                    <div>6:30am - 9:00pm</div>
+                                </div>
+                                <div className="schedule">
+                                    <div className="days">Sun</div>
+                                    <div>6:30am - 9:00pm</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="footer-col mr-5">
+                            <h5 className="footer-heading">Address <i className="fa fa-home"></i></h5>
+                            <div className="address">
+                                <div className="address_1">
+                                    40-25 150th Street
+                                </div>
+                                <div>
+                                    Flushing, NY 11354
+                                </div>
+                            </div>
+                        </div>
+                        <div className="footer-col">
+                            <h5 className="footer-heading">Contact <i className="fa fa-phone"></i></h5>
+                            <h6>347-732-9732</h6>
+                        </div>
                     </div>
                 </div>
             </div>

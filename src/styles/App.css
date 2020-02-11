@@ -31,7 +31,7 @@ input {
     position: relative;
     display: flex;
     width: 100%;
-    height: 800px;
+    height: 700px;
 }
 
 .text-col {
@@ -69,6 +69,29 @@ input {
     bottom: 0;
 }
 
+.footer {
+    background-color: rgb(53, 53, 80);
+    display: flex;
+    color: white;
+}
+
+.footer-col {
+    padding: 1rem;
+}
+
+.footer-heading {
+    font-family: 'Pacifico', cursive;
+}
+
+.schedule {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.days {
+    width: 80px;
+    text-align: left;
+}
 
 
 /******************** CATEGORY LIST *********************/
@@ -108,7 +131,6 @@ input {
     margin-left: 260px;
     font-size: 0.85rem;
     display: flex;
-    /* padding: 2rem; */
 }
 
 .menu-body {
@@ -379,12 +401,6 @@ input {
 
 /********************* TOP NAV *************************/
 
-/* .top-nav { */
-    /* margin-left: 260px; */
-    /* display: flex; */
-    /* flex-direction: column; */
-/* } */
-
 .col-sm-2 {
     /* background-color: pink; */
     display: inline-block;
@@ -462,23 +478,6 @@ input {
     left: 0;
     right: 0;
     bottom: 0;
-}
-
-.info-heading {
-    margin-bottom: 2px;
-}
-
-.address_1 {
-    margin-bottom: -5px;
-}
-
-.time-row {
-    display: flex;
-    margin-bottom: -5px;
-}
-
-.days {
-    width: 50px;
 }
 
 /************************ CHECKOUT PAGE *************************/
