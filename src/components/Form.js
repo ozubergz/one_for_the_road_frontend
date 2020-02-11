@@ -88,11 +88,10 @@ class Form extends Component {
                 this.setState({error: "Your payment has failed, please try again."})
             }
         });
-        this.handleSaveCart();
     }
 
     handleSaveCart() {
-        if(this.state.user_id && localStorage.cat) {
+        if(this.state.user_id && localStorage.cart) {
             let items = JSON.parse(localStorage.cart);
 
             fetch('http://localhost:3000/api/checkout', {
@@ -105,10 +104,10 @@ class Form extends Component {
                     items
                 })
             })
-            // .then(res => res.json())
-            // .then(res => {
-            //    console.log(res)
-            // });
+            .then(res => res.json())
+            .then(res => {
+               console.log(res)
+            });
         }
     }
 

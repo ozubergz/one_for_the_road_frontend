@@ -3,6 +3,8 @@ import { StripeProvider, Elements}  from 'react-stripe-elements';
 import Form from '../components/Form';
 import { connect } from 'react-redux';
 import Banner from './Banner';
+import SideNavBar from './SideNavBar';
+
 
 class Checkout extends Component {
 
@@ -19,15 +21,18 @@ class Checkout extends Component {
 
     render() {
         return (
-            <div className="checkout-page">
-                <Banner />
-                <div className="checkout-body">
-                    
-                    <StripeProvider apiKey="pk_test_VfFbfNGD19WUOZQYldfMwr0l00s8N3zW2x">
-                        <Elements>
-                            <Form amount={this.calculateTotal()} />
-                        </Elements>
-                    </StripeProvider>
+            <div>
+                <SideNavBar />
+                <div className="checkout-page">
+                    <Banner />
+                    <div className="checkout-body">
+                        
+                        <StripeProvider apiKey="pk_test_VfFbfNGD19WUOZQYldfMwr0l00s8N3zW2x">
+                            <Elements>
+                                <Form amount={this.calculateTotal()} />
+                            </Elements>
+                        </StripeProvider>
+                    </div>
                 </div>
             </div>
         );

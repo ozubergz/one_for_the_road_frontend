@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { setUser } from '../actions';
 import { connect } from 'react-redux';
+import SideNavBar from './SideNavBar';
+
 
 class Register extends Component {
 
@@ -78,75 +80,78 @@ class Register extends Component {
     
     render() {
         return (
-            <div className="register-page">
-                <div className="register-bg"></div>
-                <div className="register-overlay"></div>
-                <div className="register-body">
-                    {this.redirectToHome()}
-                    <form onSubmit={(e) => this.handleSubmit(e)} className="register-form">
-                        <h4 className="mb-4">Sign Up</h4>
-                        <div className="form-row">
-                            <div className="form-group col-md-6">
-                                <label htmlFor="firstName">First Name</label>
-                                <input 
-                                    type="text" 
-                                    onChange={this.handleChange} 
-                                    className="form-control" 
-                                    name="first_name" 
-                                    id="firstName" 
-                                />
-                            </div>
-                            <div className="form-group col-md-6">
-                                <label htmlFor="lastName">Last Name</label>
-                                <input 
-                                    type="text" 
-                                    onChange={this.handleChange} 
-                                    className="form-control" 
-                                    name="last_name" 
-                                    id="lastName" 
-                                />
-                            </div>
-                        </div>
-                        <div className="form-row">
-                            <div className="form-group col-md-6">
-                                <label htmlFor="phone-num">Phone Number</label>
-                                <input 
-                                    type="text" 
-                                    onChange={this.handleChange} 
-                                    className="form-control" 
-                                    name="telephone" 
-                                    id="phone-num" 
-                                />
-                            </div>
-                            <div className="form-group col-md-6">
-                                <label htmlFor="inputEmail">Email</label>
+            <div>
+                <SideNavBar />
+                <div className="register-page">
+                    <div className="register-bg"></div>
+                    <div className="register-overlay"></div>
+                    <div className="register-body">
+                        {this.redirectToHome()}
+                        <form onSubmit={(e) => this.handleSubmit(e)} className="register-form">
+                            <h4 className="mb-4">Sign Up</h4>
+                            <div className="form-row">
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="firstName">First Name</label>
                                     <input 
-                                        type="email" 
+                                        type="text" 
                                         onChange={this.handleChange} 
                                         className="form-control" 
-                                        name="email" 
-                                        id="inputEmail"
-                                        aria-describedby="emailHelp" 
+                                        name="first_name" 
+                                        id="firstName" 
                                     />
+                                </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="lastName">Last Name</label>
+                                    <input 
+                                        type="text" 
+                                        onChange={this.handleChange} 
+                                        className="form-control" 
+                                        name="last_name" 
+                                        id="lastName" 
+                                    />
+                                </div>
                             </div>
-                        </div>
+                            <div className="form-row">
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="phone-num">Phone Number</label>
+                                    <input 
+                                        type="text" 
+                                        onChange={this.handleChange} 
+                                        className="form-control" 
+                                        name="telephone" 
+                                        id="phone-num" 
+                                    />
+                                </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="inputEmail">Email</label>
+                                        <input 
+                                            type="email" 
+                                            onChange={this.handleChange} 
+                                            className="form-control" 
+                                            name="email" 
+                                            id="inputEmail"
+                                            aria-describedby="emailHelp" 
+                                        />
+                                </div>
+                            </div>
+                            
+                            <div className="form-group">
+                                <label htmlFor="inputPassword">Password</label>
+                                <div className="error-message">
+                                    {this.state.errors ? this.showErrors() : null}
+                                </div>
+                                <input 
+                                    type="password" 
+                                    onChange={this.handleChange} 
+                                    className="form-control" 
+                                    name="password" 
+                                    id="inputPassword" 
+                                />
+                            </div>
+                            <button type="submit" className="btn btn-success register-btn">Submit</button>
+                        </form>
                         
-                        <div className="form-group">
-                            <label htmlFor="inputPassword">Password</label>
-                            <div className="error-message">
-                                {this.state.errors ? this.showErrors() : null}
-                            </div>
-                            <input 
-                                type="password" 
-                                onChange={this.handleChange} 
-                                className="form-control" 
-                                name="password" 
-                                id="inputPassword" 
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-success register-btn">Submit</button>
-                    </form>
-                    
+                    </div>
                 </div>
             </div>
         );

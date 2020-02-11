@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import MenuItems from '../components/MenuItems';
 import { addItemToCart, addLocalItems } from '../actions';
 import CartBox from '../components/CartBox';
-import Banner from '../components/Banner'
+import Banner from '../components/Banner';
+import SideNavBar from '../components/SideNavBar';
+
 
 class MenuContainer extends Component {
     
@@ -73,6 +75,7 @@ class MenuContainer extends Component {
     render() {
         return (
             <div>
+                <SideNavBar />
                 <Banner/>
                 {this.renderMenu()}
                 <CartBox removeCartItems={this.removeCartItems} items={this.props.cartItems} />

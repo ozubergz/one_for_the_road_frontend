@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import Banner from './Banner';
 import ribs from '../images/ribs.jpg';
 import chicken from '../images/roasted-chicken.jpg';
-
+import SideNavBar from './SideNavBar';
 
 class Home extends Component {
     render() {
         return (
             <div>
+                <SideNavBar />
                 <Banner />
                 <div className="home-body">
                     <div className="bg-1">

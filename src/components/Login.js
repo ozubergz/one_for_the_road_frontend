@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setUser } from '../actions';
 import { Redirect } from 'react-router-dom';
+import SideNavBar from './SideNavBar';
 
 class Login extends Component {
 
@@ -66,38 +67,41 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="login-page">
-                <div className="login-bg"></div>
-                <div className="login-body">
-                    {this.redirectToHome()}      
-                    <form onSubmit={(e) => this.handleSubmit(e)} className="login-form">
-                        <h4 className="mb-5">Login</h4>
-                        <div className="error-message">
-                            <h6 style={{color: 'red'}}>{this.state.error}</h6>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="inputEmail">Email</label>
-                            <input 
-                                type="email" 
-                                onChange={this.handleChange} 
-                                className="form-control" 
-                                name="email" 
-                                id="inputEmail" 
-                                aria-describedby="emailHelp" 
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="inputPassword">Password</label>
-                            <input 
-                                type="password" 
-                                onChange={this.handleChange} 
-                                className="form-control" 
-                                name="password" 
-                                id="inputPassword" 
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-success login-btn">Submit</button>
-                    </form>
+            <div>
+                <SideNavBar />
+                <div className="login-page">
+                    <div className="login-bg"></div>
+                    <div className="login-body">
+                        {this.redirectToHome()}      
+                        <form onSubmit={(e) => this.handleSubmit(e)} className="login-form">
+                            <h4 className="mb-5">Login</h4>
+                            <div className="error-message">
+                                <h6 style={{color: 'red'}}>{this.state.error}</h6>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="inputEmail">Email</label>
+                                <input 
+                                    type="email" 
+                                    onChange={this.handleChange} 
+                                    className="form-control" 
+                                    name="email" 
+                                    id="inputEmail" 
+                                    aria-describedby="emailHelp" 
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="inputPassword">Password</label>
+                                <input 
+                                    type="password" 
+                                    onChange={this.handleChange} 
+                                    className="form-control" 
+                                    name="password" 
+                                    id="inputPassword" 
+                                />
+                            </div>
+                            <button type="submit" className="btn btn-success login-btn">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         );
