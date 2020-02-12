@@ -6,19 +6,20 @@ import Loader from 'react-loader-spinner'
 const LoadingPayment = () => {
     const { promiseInProgress } = usePromiseTracker();
 
-    return (
+    return (     
         <div>
-            { 
-                promiseInProgress ? 
-                    <div className="payment-loader">
-                        <div className="payment-spinner">
-                            <h1>Processing Payment...</h1>
-                            <Loader type="TailSpin" color="#f67280" height={100} width={100} />
-                        </div>
-                    </div>
-                        :
-                    null
-            }
+        {
+            // promiseInProgress ?
+            <div className="payment-loader">
+                <div className="payment-spinner">
+                    <h1>Processing Payment...</h1>
+                    <Loader type="TailSpin" color="#f67280" height={100} width={100} />
+                </div>
+            </div>
+            // : 
+            // null
+            
+        }
         </div>
     )
 }

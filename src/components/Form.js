@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { removeAllCartItems } from '../actions';
 import SuccessModel from './SuccessModel';
 import { Redirect } from 'react-router-dom';
-import { trackPromise} from 'react-promise-tracker';
+import { trackPromise, usePromiseTracker } from 'react-promise-tracker';
+
 import LoadingPyament from './LoadingPayment';
 
 class Form extends Component {
@@ -182,7 +183,7 @@ class Form extends Component {
                 {this.redirectToOrder()}
                 <SuccessModel hideModel={this.hideModel} display={this.state.display}/>
                 <form onSubmit={this.handleSubmit} className="row">
-                    <div className="form-inputs col-md-8">
+                    <div className="form-inputs col-md-7">
                         <div className="contact-info">
                             <div className="contact-header">
                                 <i className='fa fa-user-circle'></i> Contact Info
@@ -327,7 +328,7 @@ class Form extends Component {
                         </div>
                     </div>
                     
-                    <div className="form-total col-md-4">
+                    <div className="form-total col-md-5">
                         <div className="total-box">
                             <h5>Total </h5>
                             <input readOnly value={`$${this.props.amount}`} required/><br/>

@@ -407,7 +407,6 @@ input {
 /********************* TOP NAV *************************/
 
 .col-sm-2 {
-    /* background-color: pink; */
     display: inline-block;
 }
 
@@ -489,12 +488,12 @@ input {
 
 .checkout-body {
     margin-left: 260px;
-    /* padding: 2rem; */
 }
 
 .checkout-form {
     margin: auto;
-    width: 70%;
+    width: 75%;
+    height: 100%;
     font-size: 0.8rem;
     font-weight: bold;
 }
@@ -527,7 +526,6 @@ input {
 }
 
 .total-box > input {
-    
     border: none;
     outline: none !important;
     box-shadow: none !important;
@@ -541,6 +539,8 @@ input {
 }
 
 /********************* Success Model ***********************/
+
+
 .success-model {
     position: absolute;
     background: rgba(0, 0, 0, 0.6);
@@ -622,7 +622,6 @@ input {
 /******************** Loading Indicator *******************/
 
 .loading-indicator {
-    margin-left: 260px;
     text-align: center;
 }
 
@@ -631,13 +630,14 @@ input {
 }
 
 .payment-loader {
-    position: absolute;
+    position: fixed;
     background-color: rgba(0, 0, 0, 0.6);
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 1;
+    height: 100%
 }
 
 .payment-spinner {
