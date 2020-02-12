@@ -11,8 +11,10 @@ import Login from './components/Login';
 import NoMatch from './components/NoMatch';
 
 class App extends Component {
+  
 
   componentDidMount() {
+
     //fetch all data from backend
     this.props.fetchAllData();
 
@@ -25,20 +27,24 @@ class App extends Component {
       let newCart = [];
       localStorage.cart = JSON.stringify(newCart)
     }
+  }
 
+  initMap() {
+    
   }
 
   render() {
-    return (
+    return (        
       <div className='App'>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/order" component={MenuContainer}/>
-          <Route path="/checkout" component={Checkout} />
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <Route component={NoMatch} />
-        </Switch>
+         
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/order" component={MenuContainer}/>
+            <Route path="/checkout" component={Checkout} />
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
+            <Route component={NoMatch} />
+          </Switch>
       </div>
     )
   }

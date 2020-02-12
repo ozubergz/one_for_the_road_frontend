@@ -322,7 +322,7 @@ input {
 /******************** LOGIN PAGE ********************/
 
 .login-page {
-    height: 100%;
+    height: 100vh;
     background-color: black;
     font-size: 0.9rem;
     font-weight: bold;
@@ -361,7 +361,7 @@ input {
 /******************** REGISTER PAGE ********************/
 
 .register-page {
-    height: 100%;
+    height: 100vh;
     background-color: black;
     font-size: 0.9rem;
     font-weight: bold;
@@ -520,9 +520,23 @@ input {
     border-radius: 5px;
     padding: 1rem;
 }
+/* 
+.total {
+    background-color: pink;
+    width: 100%;
+    text-align: right;
+}
+
+.amount {
+    background-color: gray;
+    text-align: right;
+} */
 
 .total-box > h5 {
+    /* width: 100%; */
+    /* background-color: pink; */
     display: inline;
+    
 }
 
 .total-box > input {
@@ -542,7 +556,7 @@ input {
 
 
 .success-model {
-    position: absolute;
+    position: fixed;
     background: rgba(0, 0, 0, 0.6);
     top: 0;
     left: 0;
@@ -552,13 +566,12 @@ input {
 }
 
 .model {
-    margin-left: 60px;
     position: relative;
     z-index: 2;
     color: black;
     background-color: white;
     border-radius: 5px;
-    width: 25%;
+    width: 30%;
     top: 20%;
     left: 50%;
     transform: translateX(-50%);

@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { removeAllCartItems } from '../actions';
 import SuccessModel from './SuccessModel';
 import { Redirect } from 'react-router-dom';
-import { trackPromise, usePromiseTracker } from 'react-promise-tracker';
+import { trackPromise } from 'react-promise-tracker';
+import LoadingPayment from './LoadingPayment';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
-import LoadingPyament from './LoadingPayment';
 
 class Form extends Component {
     
@@ -27,10 +28,12 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        
+
         //get token from localStorage
         const token = localStorage.token;
-    
+
+        // this.distanceMatrix();
+        
         //fetch user's profile by sending token to the backend
         //send the jwt token in the Authorization header
         fetch("http://localhost:3000/api/profile", {
@@ -121,7 +124,21 @@ class Form extends Component {
         e.preventDefault();
 
         let amount = this.props.amount;
+
+        const origin = '40-25 150th St Flushing NY 11354';
+        const dest = `${this.state.address} ${this.state.city} ${this.state.state} ${this.state.zip}`
+        const unitSystem = window.google.maps.UnitSystem.IMPERIAL;
         
+        //google map api distance matrix that handles distance from origin to destination
+        this.googleMap().getDistanceMatrix({
+            origins: [origin],
+            destinations: [dest],
+            travelMode: 'DRIVING',
+            unitSystem: unitSystem
+        }, (res, status) => {
+            console.log(res, status)
+        });
+
         //creates strip token
         let token = this.props.stripe.createToken({
             name: `${this.state.first_name} ${this.state.last_name}`,
@@ -134,16 +151,19 @@ class Form extends Component {
 
         token.then(res => {
             if(res.error) {
-                // error wrong inputs
                 // console.log(res.error)
                 return;
             } else {
-                let token = res.token
+                let token = res.token;
                 //method to handle fetch
                 this.tokenHandler(token.id, amount)
             }
         });
+    }
 
+    googleMap = (map) => {
+        const distanceMatrix = new window.google.maps.DistanceMatrixService();
+        return distanceMatrix;
     }
 
     renderSubmitBtn() {
@@ -179,11 +199,19 @@ class Form extends Component {
     render() {
         return (
             <div className="checkout-form">
-                <LoadingPyament />
+                <LoadScript
+                    id="script-loader"
+                    googleMapsApiKey="AIzaSyCOQSGaHZoAR8x7N_xbe2B0-T3kB5TzZ9g"
+                >
+                    <GoogleMap
+                        onLoad={this.googleMap}
+                    />
+                </LoadScript >
+                <LoadingPayment />
                 {this.redirectToOrder()}
                 <SuccessModel hideModel={this.hideModel} display={this.state.display}/>
                 <form onSubmit={this.handleSubmit} className="row">
-                    <div className="form-inputs col-md-7">
+                    <div className="form-inputs col-md-8">
                         <div className="contact-info">
                             <div className="contact-header">
                                 <i className='fa fa-user-circle'></i> Contact Info
@@ -328,9 +356,13 @@ class Form extends Component {
                         </div>
                     </div>
                     
-                    <div className="form-total col-md-5">
+                    <div className="form-total col-md-4">
                         <div className="total-box">
-                            <h5>Total </h5>
+                            {/* <div className="total">
+                                <h5>Total </h5> 
+                                <span className="amount">{`$${this.props.amount}`}</span>
+                            </div> */}
+                            <h5>Total</h5>
                             <input readOnly value={`$${this.props.amount}`} required/><br/>
                             {this.renderSubmitBtn()}
                         </div>
