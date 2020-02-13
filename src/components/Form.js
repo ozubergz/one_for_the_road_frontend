@@ -6,8 +6,8 @@ import SuccessModel from './SuccessModel';
 import { Redirect } from 'react-router-dom';
 import { trackPromise } from 'react-promise-tracker';
 import LoadingPayment from './LoadingPayment';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
-
+import { GoogleMap } from '@react-google-maps/api';
+import Autocomplete from 'react-google-autocomplete';
 
 class Form extends Component {
     
@@ -17,11 +17,6 @@ class Form extends Component {
         last_name: '',
         email: '',
         address: '',
-        address1: '',
-        city: '',
-        state: '',
-        zip: '',
-        phone: '',
         display: false,
         redirect: false,
         error: ''
@@ -31,8 +26,6 @@ class Form extends Component {
 
         //get token from localStorage
         const token = localStorage.token;
-
-        // this.distanceMatrix();
         
         //fetch user's profile by sending token to the backend
         //send the jwt token in the Authorization header
@@ -98,6 +91,32 @@ class Form extends Component {
         )
     }
 
+    handleCreateToken() {
+        let amount = this.props.amount;
+
+        //creates strip token
+        let token = this.props.stripe.createToken({
+            name: `${this.state.first_name} ${this.state.last_name}`,
+            address_line1: this.state.address,
+            address_line2: this.state.address1,
+            address_city: this.state.city,
+            address_state: this.state.state,
+            address_zip: this.state.zip
+        });
+        
+        //token is a promise
+        token.then(res => {
+            if(res.error) {
+                // console.log(res.error)
+                return;
+            } else {
+                let token = res.token;
+                //method to handle fetch
+                this.tokenHandler(token.id, amount)
+            }
+        });
+    }
+
     handleSaveCart() {
         if(this.state.user_id && localStorage.cart) {
             let items = JSON.parse(localStorage.cart);
@@ -112,10 +131,10 @@ class Form extends Component {
                     items
                 })
             })
-            .then(res => res.json())
-            .then(res => {
-               console.log(res)
-            });
+            // .then(res => res.json())
+            // .then(res => {
+            //    console.log(res)
+            // });
         }
     }
 
@@ -123,42 +142,32 @@ class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        let amount = this.props.amount;
-
         const origin = '40-25 150th St Flushing NY 11354';
-        const dest = `${this.state.address} ${this.state.city} ${this.state.state} ${this.state.zip}`
+        const address = this.state.address;
         const unitSystem = window.google.maps.UnitSystem.IMPERIAL;
         
-        //google map api distance matrix that handles distance from origin to destination
+        // google map api distance matrix that handles distance from origin to destination
         this.googleMap().getDistanceMatrix({
             origins: [origin],
-            destinations: [dest],
+            destinations: [address],
             travelMode: 'DRIVING',
             unitSystem: unitSystem
         }, (res, status) => {
-            console.log(res, status)
-        });
-
-        //creates strip token
-        let token = this.props.stripe.createToken({
-            name: `${this.state.first_name} ${this.state.last_name}`,
-            address_line1: this.state.address,
-            address_line2: this.state.address1,
-            address_city: this.state.city,
-            address_state: this.state.state,
-            address_zip: this.state.zip
-        });
-
-        token.then(res => {
-            if(res.error) {
-                // console.log(res.error)
-                return;
-            } else {
-                let token = res.token;
-                //method to handle fetch
-                this.tokenHandler(token.id, amount)
+            if(status === 'OK') {
+                let miles = res.rows[0].elements[0].distance.text;
+                let distance = miles.replace('mi', '');
+                
+                //check if the distance is within the limit
+                if(Number(distance) > 3) {
+                    //when distance is out of zone send alert 
+                    alert("I'm sorry we don't deliver that far.")
+                } else {
+                    this.handleCreateToken();
+                }
             }
+            
         });
+        
     }
 
     googleMap = (map) => {
@@ -199,14 +208,9 @@ class Form extends Component {
     render() {
         return (
             <div className="checkout-form">
-                <LoadScript
-                    id="script-loader"
-                    googleMapsApiKey="AIzaSyCOQSGaHZoAR8x7N_xbe2B0-T3kB5TzZ9g"
-                >
-                    <GoogleMap
-                        onLoad={this.googleMap}
-                    />
-                </LoadScript >
+                <GoogleMap
+                    onLoad={this.googleMap}
+                />
                 <LoadingPayment />
                 {this.redirectToOrder()}
                 <SuccessModel hideModel={this.hideModel} display={this.state.display}/>
@@ -276,71 +280,16 @@ class Form extends Component {
                                 <i className="fa fa-address-card"></i> Address Info
                                 <hr/>
                             </div>
-                            <div className="form-row">
-                                <div className="col-md-6">
-                                    <label htmlFor="address">Address</label>
-                                    <input 
-                                        id="address"
-                                        type="text" 
-                                        name="address" 
-                                        placeholder="1234 Main st."
-                                        onChange={this.handleChange} 
-                                        value={this.state.address} 
-                                        className="form-control"
-                                        required
-                                    /><br/>
-                                </div>
-                                <div className="col-md-6">
-                                    <label htmlFor="address1">Address 2</label>
-                                    <input 
-                                        id="address1"
-                                        type="text" 
-                                        name="address1" 
-                                        placeholder="Apartment, studio, or floor "
-                                        onChange={this.handleChange} 
-                                        value={this.state.address1} 
-                                        className="form-control"
-                                    /><br/>
-                                </div>
-                            </div>
-                            <div className="form-row">
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="city">City</label>
-                                    <input
-                                        id="city" 
-                                        type="text" 
-                                        name="city" 
-                                        onChange={this.handleChange}
-                                        value={this.state.city}
-                                        className="form-control"
-                                        required
-                                    /><br />
-                                </div>
-                                <div className="form-group col-md-4">
-                                    <label htmlFor="state">State</label>
-                                    <input
-                                        id="state" 
-                                        type="text" 
-                                        name="state"
-                                        placeholder="State" 
-                                        onChange={this.handleChange}
-                                        value={this.state.state}
-                                        className="form-control"
-                                        required
-                                    /><br />
-                                </div>
-                                <div className="form-group col-md-2">
-                                    <label htmlFor="zip">ZIP Code</label>
-                                    <input 
-                                        id="zip"
-                                        type="text" 
-                                        name="zip" 
-                                        onChange={this.handleChange}
-                                        value={this.state.zip}
-                                        className="form-control"
-                                        required
-                                    /><br />
-                                </div>
+                            <div className="form-group">
+                                <label htmlFor="address">Address</label>
+                                <Autocomplete
+                                    style={{width: '90%'}}
+                                    onPlaceSelected={(place) => {
+                                        this.setState({address: place.formatted_address})
+                                    }}
+                                    types={['address']}
+                                    componentRestrictions={{country: "us"}}
+                                />
                             </div>
                         </div>
                         <div className="payment-info">
@@ -358,10 +307,6 @@ class Form extends Component {
                     
                     <div className="form-total col-md-4">
                         <div className="total-box">
-                            {/* <div className="total">
-                                <h5>Total </h5> 
-                                <span className="amount">{`$${this.props.amount}`}</span>
-                            </div> */}
                             <h5>Total</h5>
                             <input readOnly value={`$${this.props.amount}`} required/><br/>
                             {this.renderSubmitBtn()}
