@@ -19,7 +19,8 @@ class Form extends Component {
         address: '',
         display: false,
         redirect: false,
-        error: ''
+        payError: '',
+        distanceErr: ''
     }
 
     componentDidMount() {
@@ -85,7 +86,7 @@ class Form extends Component {
                     this.setState({display: true});
 
                 } else {
-                    this.setState({error: "Your payment has failed, please try again."})
+                    this.setState({payError: "Your payment has failed, please try again."})
                 }
             })
         )
@@ -160,7 +161,7 @@ class Form extends Component {
                 //check if the distance is within the limit
                 if(Number(distance) > 3) {
                     //when distance is out of zone send alert 
-                    alert("I'm sorry we don't deliver that far.")
+                    this.setState({distanceErr: "I'm sorry we don't deliver that far."})
                 } else {
                     this.handleCreateToken();
                 }
@@ -283,6 +284,9 @@ class Form extends Component {
                             <div className="form-group">
                                 <label htmlFor="address">Address</label>
                                 <br/>
+                                <div className="error-message mt-2">
+                                    <h6>{this.state.distanceErr}</h6>
+                                </div>
                                 <Autocomplete
                                     id="address"
                                     className="form-control"
@@ -300,12 +304,13 @@ class Form extends Component {
                                 <i className="fa fa-credit-card"></i> Payment
                                 <hr/>
                             </div>
+                            <div className="error-message mt-4">
+                                <h6>{this.state.payError}</h6>
+                            </div>
                             <label>Card Detail</label>
                             <CardElement className="form-control"  />
                         </div>
-                        <div className="error-message mt-4">
-                            <h6>{this.state.error}</h6>
-                        </div>
+                        
                     </div>
                     
                     <div className="form-total col-md-4">
