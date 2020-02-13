@@ -282,8 +282,11 @@ class Form extends Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="address">Address</label>
+                                <br/>
                                 <Autocomplete
-                                    style={{width: '90%'}}
+                                    id="address"
+                                    className="form-control"
+                                    style={{width: '100%'}}
                                     onPlaceSelected={(place) => {
                                         this.setState({address: place.formatted_address})
                                     }}
