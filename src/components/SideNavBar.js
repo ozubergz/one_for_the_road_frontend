@@ -17,7 +17,7 @@ class SideNavBar extends Component {
 
     renderLoginAndRegisterLinks() {
         return (
-            <div className="mt-4">
+            <div className="login-signup-group mt-4">
                 <button className="btn btn-primary link-btn">
                     Login
                     <Link className="sidebar-link" to="/login"></Link>

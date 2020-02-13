@@ -11,8 +11,8 @@ class Home extends Component {
                 <SideNavBar />
                 <Banner />
                 <div className="home-body">
-                    <div className="bg-1">
-                        <div style={{backgroundColor: '#fdd365'}} className="text-col">
+                    <div className="bg-1 row">
+                        <div style={{backgroundColor: '#fdd365'}} className="text-col col-12 col-lg-6">
                             <div className="text-col-content">
                                 <h1>About</h1>
                                 One for the Road works to please our customers with various
@@ -24,21 +24,21 @@ class Home extends Component {
                                 and dining room.
                             </div>
                         </div>
-                        <div className="img-col">
+                        <div className="img-col col-12 col-lg-6">
                             <div 
                                 style={{backgroundImage: `url(${ribs})`}}
                                 className="img-col-content"
                             ></div>
                         </div>
                     </div>
-                    <div className="bg-1" style={{backgroundColor: "#ffae8f"}} >
-                        <div className="img-col">
+                    <div className="bg-1 row" style={{backgroundColor: "#ffae8f"}} >
+                        <div className="img-col col-12 col-lg-6">
                             <div 
                                 style={{backgroundImage: `url(${chicken})`}}
                                 className="img-col-content">
                             </div>
                         </div>
-                        <div className="text-col">
+                        <div className="text-col col-12 col-lg-6">
                             <div className="text-col-content">
                                 <h1>Specialties</h1>
                                 Our specialty is asian fusion food. We offer varieties of omellettes, 
