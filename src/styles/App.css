@@ -735,13 +735,8 @@ input {
 
     .disabled-checkout-btn {
         font-size: 0.8rem;
-        background-color: gray;
         padding: 0.2rem;
         margin-top: -10px;
-    }
-
-    .disabled-checkout-btn:hover {
-        cursor: not-allowed;
     }
 
     .checkout-btn {
@@ -750,69 +745,45 @@ input {
         padding: 0.2rem;
     }
 
-    /* .checkout-link {
+    /******************** LOGIN PAGE ********************/
+
+    .login-page {
+        width: 100vh;
+        height: 100vh;
+        background-color: black;
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    .login-bg {
         position: absolute;
+        background-image: url('../images/restaurant-pic.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
     }
 
-    .fa-shopping-cart {
-        margin-right: 10px;
-    } */
-
-    /******************** MENU ITEMS **********************/
-
-
-    .items-body {
+    .login-body {
+        margin-left: 0px;
+        padding: 7rem;
         position: relative;
-        border-bottom: 1px solid rgb(194, 194, 194);
-        display: flex;
-        padding: 1rem;
-        position: relative;
-    }
-
-    .items-body:hover {
-        cursor: pointer;
-    }
-
-    .items-content {
-        width: 80%;
-    }
-
-    .items-name {
-        margin-bottom: -3px;
-    }
-
-    .items-price {
-        width: 20%;
-        text-align: right;
-        color: rgb(1, 55, 155);
-    }
-
-    .overlay{
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
-
-    @keyframes opacity {
-        from {opacity: 0;}
-        to {opacity: 1;}
-    }
-
-    .overlay-text {
+        z-index: 0;
         color: white;
-        position: absolute;
-        text-align: center;
-        top: 50%;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
     }
+
+    .login-form {
+        width: 100%;
+        margin: 0;
+    }
+
+    .login-btn {
+        width: 100%;
+    }
+
 
 }

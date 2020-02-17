@@ -154,6 +154,9 @@ class Form extends Component {
             travelMode: 'DRIVING',
             unitSystem: unitSystem
         }, (res, status) => {
+            if(res) {
+
+            
             if(status === 'OK') {
                 let miles = res.rows[0].elements[0].distance.text;
                 let distance = miles.replace('mi', '');
@@ -165,6 +168,7 @@ class Form extends Component {
                 } else {
                     this.handleCreateToken();
                 }
+            }
             }
             
         });
