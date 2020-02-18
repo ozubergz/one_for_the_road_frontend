@@ -12,6 +12,8 @@ Website for a restaurant, One For The Road, that provides food delivery service
 - Built backend with Ruby on Rails to create a new client and authenticate client's password
 - Linked repo to backend (https://github.com/ozubergz/one_for_the_round_backend)
 
+Demo - (https://vimeo.com/392122133)
+
 <img src="./oftr.gif">
 
 
