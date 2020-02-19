@@ -886,4 +886,126 @@ input {
         padding: 0.5rem;
     }
 
+    /***************** MENU PAGE CONTENTS *******************/
+
+    .menu-page {
+        margin-left: 170px;
+        font-size: 0.8rem;
+    }
+
+    .menu-body {
+        padding: 1.3rem;
+        width: 68%;
+    }
+
+    .menu-header > h4 {
+        font-size: 1.2rem;
+    }
+
+    .menu-header {
+        margin-bottom: 0.8rem;
+    }
+
+    /********************* CART *************************/
+
+    .menu-cart {
+        padding: 0.1rem;
+        top: 125px;
+    }
+
+    .cart-header {
+        font-size: 0.9rem;
+        padding: 0.3rem;
+    }
+
+    .cart-body {
+        padding: 0.5rem;
+    }
+
+    .cart-box-footer {
+        padding: 0.5rem;
+
+        text-align: center;
+        font-weight: bold;
+        border-top: 1px solid rgb(219, 219, 219);
+    }
+
+    .cart-items {
+        padding: 1px;
+        margin-bottom: 2px;
+    }
+
+    .cart-items-name {
+        font-size: 0.7rem;
+    }
+
+    .cart-items-price {
+        font-size: .6rem;
+    }
+
+    .cart-total {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .disabled-checkout-btn {
+        font-size: 0.8rem;
+    }
+
+    .checkout-btn {
+        font-size: 0.8rem;
+    }
+
+    /******************** MENU ITEMS **********************/
+
+    .items-body {
+        padding: 0.6rem;
+    }
+
+    .items-body:hover {
+        cursor: pointer;
+    }
+
+    .items-content {
+        width: 80%;
+    }
+
+    .items-name {
+        font-size: .9rem;
+
+        margin-bottom: -3px;
+    }
+
+    .items-price > h6 {
+        font-size: .8rem;
+    }
+
+    .items-price {
+        font-size: .8rem;
+    }
+
+    /******************** LOGIN PAGE ********************/
+
+    .login-page {
+        font-size: 0.7rem;
+    }
+
+    .login-body {
+        margin-left: 180px;
+        padding: 3rem;
+    }
+
+    .login-form {
+        width: 80%;
+    }
+
+    .login-form > h4 {
+        font-size: 1rem;
+        margin-bottom: 2rem !important;
+    }
+
+    .login-btn {
+        font-size: .8rem;
+    }
+
 }
