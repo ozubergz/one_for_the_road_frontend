@@ -20,7 +20,7 @@ class Form extends Component {
         display: false,
         redirect: false,
         payError: '',
-        distanceErr: ''
+        addressErr: ''
     }
 
     componentDidMount() {
@@ -147,31 +147,29 @@ class Form extends Component {
         const address = this.state.address;
         const unitSystem = window.google.maps.UnitSystem.IMPERIAL;
         
-        // google map api distance matrix that handles distance from origin to destination
-        this.googleMap().getDistanceMatrix({
-            origins: [origin],
-            destinations: [address],
-            travelMode: 'DRIVING',
-            unitSystem: unitSystem
-        }, (res, status) => {
-            if(res) {
-
-            
-            if(status === 'OK') {
-                let miles = res.rows[0].elements[0].distance.text;
-                let distance = miles.replace('mi', '');
-                
-                //check if the distance is within the limit
-                if(Number(distance) > 3) {
-                    //when distance is out of zone send alert 
-                    this.setState({distanceErr: "I'm sorry we don't deliver that far."})
-                } else {
-                    this.handleCreateToken();
+        if(address) {
+            // google map api distance matrix that handles distance from origin to destination
+            this.googleMap().getDistanceMatrix({
+                origins: [origin],
+                destinations: [address],
+                travelMode: 'DRIVING',
+                unitSystem: unitSystem
+            }, (res, status) => {
+                if(status === 'OK') {
+                    let miles = res.rows[0].elements[0].distance.text;
+                    let distance = miles.replace('mi', '');
+                    //check if the distance is within the limit
+                    if(Number(distance) > 3) {
+                        //when distance is out of zone send alert 
+                        this.setState({addressErr: "I'm sorry, we don't deliver that far"})
+                    } else {
+                        this.handleCreateToken();
+                    }
                 }
-            }
-            }
-            
-        });
+            });
+        } else {
+            this.setState({addressErr: "Please enter address"})
+        }
         
     }
 
@@ -289,7 +287,7 @@ class Form extends Component {
                                 <label htmlFor="address">Address</label>
                                 <br/>
                                 <div className="error-message mt-2">
-                                    <h6>{this.state.distanceErr}</h6>
+                                    <h6>{this.state.addressErr}</h6>
                                 </div>
                                 <Autocomplete
                                     id="address"

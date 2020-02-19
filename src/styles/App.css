@@ -795,5 +795,62 @@ input {
     .register-form {
         width: 100%;
     }
+
+    /************************ CHECKOUT PAGE *************************/
+
+    .checkout-body {
+        margin-left: 0;
+    }
+
+    .checkout-form {
+        width: 100vh;
+        padding: 3rem;
+
+        /* margin: auto; */
+        /* height: 100%; */
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .form-inputs {
+        padding: 1rem;
+    }
+
+    .form-total {
+        padding: 1rem;
+    }
+
+
+    .email-phone-row {
+        margin-top: -15px;
+    }
+
+    .order-btn {
+        width: 100%;
+    }
+
+    .total-box {
+        border: 1px solid rgb(189, 189, 189);
+        border-radius: 5px;
+        padding: 1rem;
+    }
+
+
+    .total-box > h5 {
+        display: inline;
+    }
+
+    .total-box > input {
+        border: none;
+        outline: none !important;
+        box-shadow: none !important;
+        font-size: 16px !important;
+        text-align: right;
+        font-weight: bold;
+    }
+
+    .contact-header, .address-header, .payment-header {
+        font-size: 1.1rem;
+    }
     
 }
