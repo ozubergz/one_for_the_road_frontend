@@ -748,42 +748,52 @@ input {
     /******************** LOGIN PAGE ********************/
 
     .login-page {
+        margin-top: 180px;
         width: 100vh;
-        height: 100vh;
-        background-color: black;
-        font-size: 0.9rem;
-        font-weight: bold;
+        height: 1580px;
     }
 
     .login-bg {
-        position: absolute;
-        background-image: url('../images/restaurant-pic.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        filter: blur(0px);
-        -webkit-filter: blur(0px);
+        margin-top: 180px;
+        width: 100vh;
+        height: 1580px;
     }
 
     .login-body {
         margin-left: 0px;
-        padding: 7rem;
-        position: relative;
-        z-index: 0;
-        color: white;
+        padding: 5rem;
     }
 
     .login-form {
         width: 100%;
-        margin: 0;
     }
 
-    .login-btn {
+    /******************* REGISTER PAGE ******************/
+
+    .register-page {
+        margin-top: 180px;
+        width: 100vh;
+        height: 1580px;
+    }
+    
+    .register-bg {
+        margin-top: 180px;
+        width: 100vh;
+        height: 1580px;
+    }
+    
+    .register-overlay {
+        width: 100vh;
+        height: 1580px;
+    }
+    
+    .register-body {
+        margin-left: 0;
+        padding: 3rem;
+    }
+    
+    .register-form {
         width: 100%;
     }
-
-
+    
 }
