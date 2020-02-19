@@ -221,7 +221,7 @@ class Form extends Component {
                     <div className="form-inputs col-md-8">
                         <div className="contact-info">
                             <div className="contact-header">
-                                <i className='fa fa-user-circle'></i> Contact Info
+                                <i className='fa fa-user-circle icon'></i> <span className="header">Payment</span>
                                 <hr/>
                             </div>
                             <div className="form-row">
@@ -280,7 +280,7 @@ class Form extends Component {
 
                         <div className="address-info">
                             <div className="address-header">
-                                <i className="fa fa-address-card"></i> Address Info
+                                <i className="fa fa-address-card icon"></i> <span className="header">Address Info</span>
                                 <hr/>
                             </div>
                             <div className="form-group">
@@ -303,14 +303,14 @@ class Form extends Component {
                         </div>
                         <div className="payment-info">
                             <div className="payment-header">
-                                <i className="fa fa-credit-card"></i> Payment
+                                <i className="fa fa-credit-card icon"></i> <span className="header">Payment</span>
                                 <hr/>
                             </div>
                             <div className="error-message mt-4">
                                 <h6>{this.state.payError}</h6>
                             </div>
                             <label>Card Detail</label>
-                            <CardElement className="form-control"  />
+                            <CardElement className="card-elemnt form-control"  />
                         </div>
                         
                     </div>

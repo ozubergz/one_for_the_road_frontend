@@ -818,6 +818,10 @@ input {
 /* Tablet Screen */
 @media (min-width: 768px) and (max-width: 1024px) {
 
+    .btn {
+        padding: .3rem !important;
+    }
+
     /******************** BANNER *************************/
 
     .banner {
@@ -871,11 +875,20 @@ input {
     }
 
     .bg-1 {
-        font-size: .8rem;        
+        font-size: .8rem;
+        height: 500px; 
+    }
+
+    .text-col-content > h1 {
+        font-size: 1.8rem;
     }
 
     .footer {
         font-size: .8rem;
+    }
+
+    .footer-heading {
+        font-size: 1rem;
     }
 
     .footer-col > h6 {
@@ -923,11 +936,7 @@ input {
     }
 
     .cart-box-footer {
-        padding: 0.5rem;
-
-        text-align: center;
-        font-weight: bold;
-        border-top: 1px solid rgb(219, 219, 219);
+        padding: 0.2rem;
     }
 
     .cart-items {
@@ -944,8 +953,8 @@ input {
     }
 
     .cart-total {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
     }
 
     .disabled-checkout-btn {
@@ -1007,5 +1016,89 @@ input {
     .login-btn {
         font-size: .8rem;
     }
+
+    /******************** REGISTER PAGE ********************/
+
+    .register-page {
+        font-size: 0.7rem;
+    }
+
+    .register-body {
+        margin-left: 180px;
+        padding: 3rem;
+    }
+
+    .register-form {
+        width: 90%;
+    }
+
+    .register-form > h4 {
+        font-size: 1rem;
+    }
+
+    .register-btn {
+        font-size: .8rem;
+    }
+
+    /************************ CHECKOUT PAGE *************************/
+
+    .checkout-body {
+        margin-left: 180px;
+        padding: 1.3rem;
+    }
+
+    .checkout-form {
+        font-size: 0.7rem;
+        width: 100%;
+    }
+
+    .header {
+        font-size: .9rem;
+    }
+
+    .icon {
+        font-size: .9rem;
+    }
+
+    .form-inputs {
+        padding: 0.5rem;
+    }
+
+    .form-total {
+        padding: 0;
+    }
+
+    .order-btn {
+        font-size: .8rem;
+    }
+
+    .total-box {
+        padding: .4rem;
+    }
+
+
+    .total-box > h5 {
+        font-size: .8rem;
+    }
+
+    .total-box > input {
+        font-size: 12px !important;
+    }
+
+    input {
+        font-size: .7rem !important;
+    }
+
+    .remove-btn {
+        border-radius: 100%;
+        width: 17px;
+        height: 17px;
+        padding: 0 !important;
+        font-size: 10px;
+        margin-right: 5px;
+        position: relative;
+        bottom: 2px;
+    }
+
 
 }
