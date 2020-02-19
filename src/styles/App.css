@@ -425,7 +425,6 @@ input {
     color: white;
 }
 
-
 .link-btn {
     position: relative;
     width: 100%;
@@ -613,6 +612,7 @@ input {
 
 /***************** MEDIA QUERY ********************/
 
+/* Mobile Screen */
 @media (min-width: 320px) and (max-width: 720px) {
 
     /***************** BANNER *****************/
@@ -805,52 +805,85 @@ input {
     .checkout-form {
         width: 100vh;
         padding: 3rem;
-
-        /* margin: auto; */
-        /* height: 100%; */
-        font-size: 0.8rem;
-        font-weight: bold;
     }
 
-    .form-inputs {
-        padding: 1rem;
-    }
+    /********************* Success Model ***********************/
 
-    .form-total {
-        padding: 1rem;
-    }
-
-
-    .email-phone-row {
-        margin-top: -15px;
-    }
-
-    .order-btn {
-        width: 100%;
-    }
-
-    .total-box {
-        border: 1px solid rgb(189, 189, 189);
-        border-radius: 5px;
-        padding: 1rem;
-    }
-
-
-    .total-box > h5 {
-        display: inline;
-    }
-
-    .total-box > input {
-        border: none;
-        outline: none !important;
-        box-shadow: none !important;
-        font-size: 16px !important;
-        text-align: right;
-        font-weight: bold;
-    }
-
-    .contact-header, .address-header, .payment-header {
-        font-size: 1.1rem;
+    .model {
+        width: 80%;
     }
     
+}
+
+/* Tablet Screen */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /******************** BANNER *************************/
+
+    .banner {
+        margin-left: 180px;
+        background-color: gray;
+        height: 120px;
+
+        background-image: url('../images/banner-image.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .banner-logo {
+        width: 50%;
+    }
+
+    /************************ SIDE BAR *************************/
+    .main-sidebar {
+        width: 180px;
+        padding: 0.8rem;
+    }
+
+    .side-bar-logo {
+        width: 130px;
+        height: 130px;
+        top: 30px;
+        background-size: 110px;
+    }
+
+    .side-bar-logo:active {
+        transform: translate(1px, 1px);
+        box-shadow: none;
+    }
+
+    .side-bar-btn-group {
+        position: relative;
+        top: 80px; 
+    }
+
+    .link-btn {
+        font-size: 0.8rem;
+    }
+
+    /************** HOME PAGE *****************/
+
+    .home-body {
+        margin-left: 180px;
+    }
+
+    .bg-1 {
+        font-size: .8rem;        
+    }
+
+    .footer {
+        font-size: .8rem;
+    }
+
+    .footer-col > h6 {
+        font-size: .8rem;
+    }
+
+    .footer-col {
+        padding: 0.5rem;
+    }
+
 }
