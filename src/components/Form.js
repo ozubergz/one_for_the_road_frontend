@@ -317,7 +317,7 @@ class Form extends Component {
                     
                     <div className="form-total col-md-4">
                         <div className="total-box">
-                            <h5>Total <span style={{textAlign: 'right'}}>{this.props.amount}</span></h5>
+                            <h5>Total <span style={{textAlign: 'right'}}>{`$${this.props.amount}`}</span></h5>
                             {this.renderSubmitBtn()}
                         </div>
                     </div>

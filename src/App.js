@@ -9,10 +9,10 @@ import Checkout from './components/Checkout';
 import Register from './components/Register';
 import Login from './components/Login';
 import NoMatch from './components/NoMatch';
+import AdminForm from './components/AdminForm';
 
 class App extends Component {
   
-
   componentDidMount() {
 
     //fetch all data from backend
@@ -21,7 +21,7 @@ class App extends Component {
     if(localStorage.cart) {
       //if localStorage cart exists, put the cart items in redux state
       let cartLS = JSON.parse(localStorage.cart);
-      this.props.addLocalItems(cartLS)
+      this.props.addLocalItems(cartLS);
     } else {
       //else create new empty array in localStorage
       let newCart = [];
@@ -29,9 +29,7 @@ class App extends Component {
     }
   }
 
-  initMap() {
-    
-  }
+
 
   render() {
     return (        
@@ -42,6 +40,7 @@ class App extends Component {
             <Route path="/checkout" component={Checkout} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
+            <Route path="/secret/admin" component={AdminForm} />
             <Route component={NoMatch} />
           </Switch>
       </div>

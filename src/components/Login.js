@@ -26,7 +26,7 @@ class Login extends Component {
         fetch('http://localhost:3000/api/login', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
-            'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state)
         })
