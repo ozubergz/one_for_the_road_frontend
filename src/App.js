@@ -29,8 +29,6 @@ class App extends Component {
     }
   }
 
-
-
   render() {
     return (        
       <div className='App'>
@@ -40,7 +38,7 @@ class App extends Component {
             <Route path="/checkout" component={Checkout} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
-            <Route path="/secret/admin" component={AdminForm} />
+            <Route path="/admin" component={AdminForm} />
             <Route component={NoMatch} />
           </Switch>
       </div>

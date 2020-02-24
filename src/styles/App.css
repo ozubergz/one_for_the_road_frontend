@@ -828,7 +828,6 @@ input {
         margin-left: 180px;
         background-color: gray;
         height: 120px;
-
         background-image: url('../images/banner-image.jpg');
         background-size: cover;
         background-position: center;
@@ -838,7 +837,7 @@ input {
     }
 
     .banner-logo {
-        width: 50%;
+        width: 285px;
     }
 
     /************************ SIDE BAR *************************/
