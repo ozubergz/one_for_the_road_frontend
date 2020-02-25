@@ -9,7 +9,8 @@ import Checkout from './components/Checkout';
 import Register from './components/Register';
 import Login from './components/Login';
 import NoMatch from './components/NoMatch';
-import AdminForm from './components/AdminForm';
+import AdminForm from './components/AdminLogin';
+import AdminContainer from './containers/AdminContainer';
 
 class App extends Component {
   
@@ -39,6 +40,7 @@ class App extends Component {
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/admin" component={AdminForm} />
+            <Route path="/main" component={AdminContainer} />
             <Route component={NoMatch} />
           </Switch>
       </div>

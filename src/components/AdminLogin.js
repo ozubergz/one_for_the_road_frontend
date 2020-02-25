@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class AdminForm extends Component {
 
     state = {
         email: '',
-        password: ''
+        password: '',
+        redirect: null,
+        error: null
     }
 
     handleSubmit = (e) => {
@@ -18,7 +21,16 @@ class AdminForm extends Component {
             body: JSON.stringify(this.state)
         })
         .then(res => res.json())
-        .then(console.log)
+        .then(res => {
+            if(res.user) {
+                this.setState({
+                    error: null,
+                    redirect: true
+                });
+            } else {
+                this.setState({error: res.message})
+            }
+        })
     }
 
     handleChange = (e) => {
@@ -26,11 +38,22 @@ class AdminForm extends Component {
             [e.target.name]: e.target.value
         });
     }
+
+    directToAdmin() {
+        if(this.state.redirect) {
+            return <Redirect to="/main" />
+        }
+    }
+    
     
     render() {
         return (
             <div className="container admin-form">
+                {this.directToAdmin()}
                 <h1>Admin Login</h1>
+                <div className="error-message">
+                    {this.state.error ? <h6>{this.state.error}</h6> : null }
+                </div>
                 <form onSubmit={this.handleSubmit} >
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
