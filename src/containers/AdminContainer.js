@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Admin } from 'react-admin';
+// import { Admin } from 'react-admin';
 
 
 class AdminContainer extends Component {

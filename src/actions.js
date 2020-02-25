@@ -52,3 +52,9 @@ export const removeUser = () => {
         type: "REMOVE_USER"
     }
 }
+
+export const accessAdmin = () => {
+    return {
+        type: "ADMIN_ACCESS"
+    }
+}

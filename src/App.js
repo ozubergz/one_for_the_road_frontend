@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles/App.css';
-import { Route, Switch } from "react-router";
+import { Route, Switch, Redirect } from "react-router";
 import MenuContainer from "./containers/MenuContainer";
 import Home from "./components/Home";
 import { connect } from "react-redux";
@@ -12,8 +12,9 @@ import NoMatch from './components/NoMatch';
 import AdminForm from './components/AdminLogin';
 import AdminContainer from './containers/AdminContainer';
 
+
 class App extends Component {
-  
+
   componentDidMount() {
 
     //fetch all data from backend
@@ -30,6 +31,14 @@ class App extends Component {
     }
   }
 
+  privateRoute = (props) => {
+    if(this.props.isAdminAuthenticated) {
+      return <AdminContainer />
+    } else {
+      return <Redirect to="/admin" />
+    }
+  }
+
   render() {
     return (        
       <div className='App'>
@@ -40,7 +49,7 @@ class App extends Component {
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/admin" component={AdminForm} />
-            <Route path="/main" component={AdminContainer} />
+            <Route path="/dashboard" render={this.privateRoute} />
             <Route component={NoMatch} />
           </Switch>
       </div>
@@ -48,5 +57,11 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    isAdminAuthenticated: state.admin
+  }
+}
 
-export default connect(null, { fetchAllData, addLocalItems })(App);
+
+export default connect(mapStateToProps, { fetchAllData, addLocalItems })(App);

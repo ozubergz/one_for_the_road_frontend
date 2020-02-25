@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { accessAdmin } from '../actions';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 
 class AdminForm extends Component {
 
@@ -23,10 +25,8 @@ class AdminForm extends Component {
         .then(res => res.json())
         .then(res => {
             if(res.user) {
-                this.setState({
-                    error: null,
-                    redirect: true
-                });
+                this.props.accessAdmin();
+                this.setState({redirect: true});
             } else {
                 this.setState({error: res.message})
             }
@@ -38,18 +38,17 @@ class AdminForm extends Component {
             [e.target.name]: e.target.value
         });
     }
-
-    directToAdmin() {
+    
+    redirectToDashboard() {
         if(this.state.redirect) {
-            return <Redirect to="/main" />
+            return <Redirect to="/dashboard" />
         }
     }
-    
     
     render() {
         return (
             <div className="container admin-form">
-                {this.directToAdmin()}
+                {this.redirectToDashboard()}
                 <h1>Admin Login</h1>
                 <div className="error-message">
                     {this.state.error ? <h6>{this.state.error}</h6> : null }
@@ -82,4 +81,11 @@ class AdminForm extends Component {
     }
 }
 
-export default AdminForm;
+
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         accessAdmin: () => dispatch(accessAdmin())
+//     }
+// }
+
+export default connect(null, { accessAdmin })(AdminForm);
