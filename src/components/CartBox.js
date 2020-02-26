@@ -55,7 +55,7 @@ class CartBox extends Component {
 
     calculateTotal() {
         let items = this.props.items;
-        let total = 0
+        let total = 0;
         if(items.length > 0) {
             total = items.reduce((accum, curr) => {
                 return accum + curr.price

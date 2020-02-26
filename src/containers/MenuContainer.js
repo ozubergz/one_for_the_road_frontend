@@ -8,7 +8,6 @@ import SideNavBar from '../components/SideNavBar';
 import LoadingIndicator from '../components/LoadingIndicator';
 
 class MenuContainer extends Component {
-    
 
     //render the main menu page of food items
     renderMenu() {
@@ -64,9 +63,9 @@ class MenuContainer extends Component {
             let cartItems = JSON.parse(localStorage.cart);
             //filter cart items based on index postion
             let newCart = cartItems.filter((item, i) => i !== index);
+            
             //set new cart to localStorage
             localStorage.cart = JSON.stringify(newCart);
-
             //store new cart to redux state
             this.props.addLocalItems(newCart);
         }
