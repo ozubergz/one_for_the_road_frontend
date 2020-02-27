@@ -11,6 +11,7 @@
     "dotenv": "^8.2.0",
     "history": "^4.10.1",
     "i18n": "^0.8.5",
+    "query-string": "^6.11.0",
     "ra-data-simple-rest": "^3.2.2",
     "ra-i18n-polyglot": "^3.2.3",
     "react": "^16.12.0",

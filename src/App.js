@@ -9,7 +9,7 @@ import Checkout from './components/Checkout';
 import Register from './components/Register';
 import Login from './components/Login';
 import NoMatch from './components/NoMatch';
-import AdminForm from './components/AdminLogin';
+import AdminForm from './adminComponents/AdminLogin';
 import AdminContainer from './containers/AdminContainer';
 
 
@@ -62,6 +62,5 @@ const mapStateToProps = state => {
     isAdminAuthenticated: state.admin
   }
 }
-
 
 export default connect(mapStateToProps, { fetchAllData, addLocalItems })(App);

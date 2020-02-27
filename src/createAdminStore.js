@@ -9,7 +9,7 @@ import {
 } from 'react-admin';
 
 export default ({
-    authProvider,
+    // authProvider,
     dataProvider,
     history,
 }) => {
@@ -23,7 +23,7 @@ export default ({
     const saga = function* rootSaga() {
         yield all(
             [
-                adminSaga(dataProvider, authProvider),
+                adminSaga(dataProvider),
                 // add your own sagas here
             ].map(fork)
         );
@@ -47,9 +47,7 @@ export default ({
             applyMiddleware(
                 sagaMiddleware,
                 routerMiddleware(history),
-                // add your own middlewares here
             ),
-            // add your own enhancers here
         ),        
     );
     sagaMiddleware.run(saga);
