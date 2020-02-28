@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, Provider } from 'react-redux';
 import { createHashHistory } from 'history';
-import { fetchUtils, Admin, Resource, ListGuesser } from 'react-admin';
+import { fetchUtils, Admin, Resource, ListGuesser, ShowGuesser } from 'react-admin';
 import simpleRestProvider from 'ra-data-simple-rest';
 // import defaultMessages from 'ra-language-english';
 // import polyglotI18nProvider from 'ra-i18n-polyglot';
@@ -66,7 +66,8 @@ const AdminContainer = () => (
             history={history}
             title="My Admin"
         >
-            <Resource name="categories" list={PostList} />
+            <Resource name="categories" list={PostList}/>
+            <Resource name="items" list={ListGuesser} />
         </Admin>
     </Provider>
 );
