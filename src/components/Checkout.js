@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import Banner from './Banner';
 import SideNavBar from './SideNavBar';
 
-
 class Checkout extends Component {
 
     calculateTotal() {

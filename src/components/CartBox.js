@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import uuid from 'uuid';
 
-
 class CartBox extends Component {
 
     renderCartItems() {

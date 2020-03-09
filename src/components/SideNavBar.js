@@ -5,7 +5,6 @@ import { removeAllCartItems, removeUser } from '../actions';
 
 class SideNavBar extends Component {
 
-
     clearLocalStorage = () => {
         //clear localStorage
         localStorage.clear();

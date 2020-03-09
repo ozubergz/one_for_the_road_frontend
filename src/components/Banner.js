@@ -7,6 +7,7 @@ const Banner = () => {
             <img className="banner-logo" src={bannerLogo} alt="Banner Logo" />
         </div>
     )
+    
 }
 
 export default Banner;

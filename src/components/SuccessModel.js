@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const SuccessModel = (props) => {
     return (
         <div className="success-model"style={{display: props.display ? "block" : "none"}} >
