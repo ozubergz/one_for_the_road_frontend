@@ -8,6 +8,7 @@ import { trackPromise } from 'react-promise-tracker';
 import LoadingPayment from './LoadingPayment';
 import { GoogleMap } from '@react-google-maps/api';
 import Autocomplete from 'react-google-autocomplete';
+import PhoneInput from "react-phone-input-auto-format";
 
 class Form extends Component {
     
@@ -17,6 +18,7 @@ class Form extends Component {
         last_name: '',
         email: '',
         address: '',
+        phone: '',
         display: false,
         redirect: false,
         payError: '',
@@ -112,6 +114,7 @@ class Form extends Component {
                 return;
             } else {
                 let token = res.token;
+                console.log(token)
                 //method to handle fetch
                 this.tokenHandler(token.id, amount)
             }
@@ -195,6 +198,12 @@ class Form extends Component {
         });
     }
 
+    handlePhone = (number) => {
+        this.setState({
+            phone: number
+        });
+    }
+
     hideModel = () => {
         this.setState({
             redirect: true,
@@ -265,7 +274,13 @@ class Form extends Component {
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="phone-num">Phone Number</label>
-                                    <input 
+                                    <PhoneInput
+                                        id="phone"
+                                        onChange={this.handlePhone}
+                                        className="form-control"
+                                        required
+                                    />
+                                    {/* <input 
                                         id="phone-num"
                                         type="text" 
                                         name="phone"
@@ -273,7 +288,7 @@ class Form extends Component {
                                         value={this.state.phone} 
                                         className="form-control"
                                         required
-                                    /><br/>
+                                    /><br/> */}
                                 </div>
                             </div>
                         </div>
