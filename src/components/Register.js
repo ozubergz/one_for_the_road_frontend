@@ -3,14 +3,14 @@ import { Redirect } from 'react-router-dom';
 import { setUser } from '../actions';
 import { connect } from 'react-redux';
 import SideNavBar from './SideNavBar';
-
+import PhoneInput from "react-phone-input-auto-format";
 
 class Register extends Component {
 
     state = {
         email: '',
         password: '',
-        telephone: '',
+        phone: '',
         first_name: '',
         last_name: '',
         redirect: null,
@@ -22,11 +22,17 @@ class Register extends Component {
             [e.target.name]: e.target.value
         });
     }
+
+    handlePhone = (number) => {
+        this.setState({
+           phone: number 
+        });
+    }
     
     //send user's info to the backend
     handleSubmit = (e) => {
         e.preventDefault();
-        
+
         fetch('http://localhost:3000/api/signup', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -41,7 +47,6 @@ class Register extends Component {
                 //output => {message: "Email has already been taken"}
                 // console.log(data)
                 this.setState({errors: data})
-
             } else {
                 //set token and user id to localStorage
                 localStorage.token = data.jwt;
@@ -56,7 +61,7 @@ class Register extends Component {
                 this.setState({
                     email: '',
                     password: '',
-                    telephone: '',
+                    phone: '',
                     first_name: '',
                     last_name: '',
                     redirect: true
@@ -114,13 +119,19 @@ class Register extends Component {
                             <div className="form-row">
                                 <div className="form-group col-md-6">
                                     <label htmlFor="phone-num">Phone Number</label>
-                                    <input 
+                                    <PhoneInput
+                                        id="phone"
+                                        onChange={this.handlePhone}
+                                        className="form-control"
+                                        required
+                                    />
+                                    {/* <input 
                                         type="text" 
                                         onChange={this.handleChange} 
                                         className="form-control" 
-                                        name="telephone" 
+                                        name="phone" 
                                         id="phone-num" 
-                                    />
+                                    /> */}
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="inputEmail">Email</label>
@@ -130,7 +141,7 @@ class Register extends Component {
                                             className="form-control" 
                                             name="email" 
                                             id="inputEmail"
-                                            aria-describedby="emailHelp" 
+                                            aria-describedby="emailHelp"
                                         />
                                 </div>
                             </div>

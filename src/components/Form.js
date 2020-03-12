@@ -26,7 +26,7 @@ class Form extends Component {
     }
 
     componentDidMount() {
-
+        
         //get token from localStorage
         const token = localStorage.token;
         
@@ -40,17 +40,16 @@ class Form extends Component {
         })
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
             if(data.user) {
-                const {first_name, last_name, email, id, telephone} = data.user;
+                const {first_name, last_name, email, id, phone} = data.user;
                 this.setState({
                     first_name: first_name,
                     last_name: last_name,
                     email: email,
                     user_id: id,
-                    phone: telephone
+                    phone: phone
                 });
-            } 
+            }
         });
     }
 
@@ -59,7 +58,6 @@ class Form extends Component {
         localStorage.removeItem("cart");
         //clear cart items from redux state
         this.props.removeAllCartItems();
-
         this.setState({
             address: '',
             address1: '',
