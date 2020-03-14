@@ -125,13 +125,6 @@ class Register extends Component {
                                         className="form-control"
                                         required
                                     />
-                                    {/* <input 
-                                        type="text" 
-                                        onChange={this.handleChange} 
-                                        className="form-control" 
-                                        name="phone" 
-                                        id="phone-num" 
-                                    /> */}
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="inputEmail">Email</label>

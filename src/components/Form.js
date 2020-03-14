@@ -26,10 +26,9 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        
         //get token from localStorage
         const token = localStorage.token;
-        
+
         //fetch user's profile by sending token to the backend
         //send the jwt token in the Authorization header
         fetch("http://localhost:3000/api/profile", {
@@ -56,15 +55,8 @@ class Form extends Component {
     clear() {
         //clear localStorage
         localStorage.removeItem("cart");
-        //clear cart items from redux state
+        //clear cart items from redux store
         this.props.removeAllCartItems();
-        this.setState({
-            address: '',
-            address1: '',
-            city: '',
-            state: '',
-            zip: ''
-        });
     }
 
     //handles token to send to backend
@@ -81,7 +73,7 @@ class Form extends Component {
                 if(res.ok) {
                     //when charge was a success
                     //persist users cart to the backend if payment was successful
-                    this.handleSaveCart();
+                    this.handleSaveOrder();
                     this.clear();
                     this.setState({display: true});
 
@@ -99,7 +91,6 @@ class Form extends Component {
         let token = this.props.stripe.createToken({
             name: `${this.state.first_name} ${this.state.last_name}`,
             address_line1: this.state.address,
-            address_line2: this.state.address1,
             address_city: this.state.city,
             address_state: this.state.state,
             address_zip: this.state.zip
@@ -112,17 +103,15 @@ class Form extends Component {
                 return;
             } else {
                 let token = res.token;
-                console.log(token)
                 //method to handle fetch
                 this.tokenHandler(token.id, amount)
             }
         });
     }
 
-    handleSaveCart() {
+    handleSaveOrder() {
         if(this.state.user_id && localStorage.cart) {
             let items = JSON.parse(localStorage.cart);
-
             fetch('http://localhost:3000/api/checkout', {
                 method: 'POST',
                 headers: {
@@ -133,10 +122,6 @@ class Form extends Component {
                     items
                 })
             })
-            // .then(res => res.json())
-            // .then(res => {
-            //    console.log(res)
-            // });
         }
     }
 
@@ -171,7 +156,6 @@ class Form extends Component {
         } else {
             this.setState({addressErr: "Please enter address"})
         }
-        
     }
 
     googleMap = (map) => {
@@ -218,9 +202,7 @@ class Form extends Component {
     render() {
         return (
             <div className="checkout-form">
-                <GoogleMap
-                    onLoad={this.googleMap}
-                />
+                <GoogleMap onLoad={this.googleMap}/>
                 <LoadingPayment />
                 {this.redirectToOrder()}
                 <SuccessModel hideModel={this.hideModel} display={this.state.display}/>
@@ -278,15 +260,6 @@ class Form extends Component {
                                         className="form-control"
                                         required
                                     />
-                                    {/* <input 
-                                        id="phone-num"
-                                        type="text" 
-                                        name="phone"
-                                        onChange={this.handleChange} 
-                                        value={this.state.phone} 
-                                        className="form-control"
-                                        required
-                                    /><br/> */}
                                 </div>
                             </div>
                         </div>
