@@ -28,7 +28,6 @@ class Form extends Component {
     componentDidMount() {
         //get token from localStorage
         const token = localStorage.token;
-
         //fetch user's profile by sending token to the backend
         //send the jwt token in the Authorization header
         fetch("http://localhost:3000/api/profile", {
@@ -76,7 +75,6 @@ class Form extends Component {
                     this.handleSaveOrder();
                     this.clear();
                     this.setState({display: true});
-
                 } else {
                     this.setState({payError: "Your payment has failed, please try again."})
                 }
@@ -86,16 +84,11 @@ class Form extends Component {
 
     handleCreateToken() {
         let amount = this.props.amount;
-
         //creates strip token
         let token = this.props.stripe.createToken({
             name: `${this.state.first_name} ${this.state.last_name}`,
-            address_line1: this.state.address,
-            address_city: this.state.city,
-            address_state: this.state.state,
-            address_zip: this.state.zip
+            address_line1: this.state.address
         });
-        
         //token is a promise
         token.then(res => {
             if(res.error) {
@@ -110,7 +103,7 @@ class Form extends Component {
     }
 
     handleSaveOrder() {
-        if(this.state.user_id && localStorage.cart) {
+        if(localStorage.cart) {
             let items = JSON.parse(localStorage.cart);
             fetch('http://localhost:3000/api/checkout', {
                 method: 'POST',
@@ -118,7 +111,11 @@ class Form extends Component {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    user_id: this.state.user_id,
+                    customer: `${this.state.first_name} ${this.state.last_name}`,
+                    email: this.state.email,
+                    phone: this.state.phone,
+                    address: this.state.address,
+                    amount: this.props.amount,
                     items
                 })
             })
@@ -258,6 +255,7 @@ class Form extends Component {
                                         id="phone"
                                         onChange={this.handlePhone}
                                         className="form-control"
+                                        value={this.state.phone}
                                         required
                                     />
                                 </div>
