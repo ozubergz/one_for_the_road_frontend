@@ -10,6 +10,10 @@ import { GoogleMap } from '@react-google-maps/api';
 import Autocomplete from 'react-google-autocomplete';
 import PhoneInput from "react-phone-input-auto-format";
 
+
+const URL = "ws://localhost:3000/cable"; //WebSocket requests on ws://localhost:3000/cable
+const ws = new WebSocket(URL); //new WebSocket to connect to server side
+
 class Form extends Component {
     
     state = {
@@ -26,15 +30,28 @@ class Form extends Component {
     }
 
     componentDidMount() {
+        this.getUserProfile();
+
+        ws.onopen = () => {
+            //on connecting, do nothing but log it on console
+            console.log('WebSocket Client Connected');
+        }
+
+        
+        
+    }
+
+    getUserProfile() {
         //get token from localStorage
         const token = localStorage.token;
+
         //fetch user's profile by sending token to the backend
         //send the jwt token in the Authorization header
         fetch("http://localhost:3000/api/profile", {
-          method: "GET",
-          headers: {
+        method: "GET",
+        headers: {
             Authorization: token
-          }
+        }
         })
         .then(res => res.json())
         .then(data => {
