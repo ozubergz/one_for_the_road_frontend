@@ -10,9 +10,11 @@ import { GoogleMap } from '@react-google-maps/api';
 import Autocomplete from 'react-google-autocomplete';
 import PhoneInput from "react-phone-input-auto-format";
 
+//WebSocket requests on ws://localhost:3000/cable
+// const URL = "ws://localhost:3000/cable";
 
-const URL = "ws://localhost:3000/cable"; //WebSocket requests on ws://localhost:3000/cable
-const ws = new WebSocket(URL); //new WebSocket to connect to server side
+//new WebSocket to connect to server side
+// const ws = new WebSocket(URL); 
 
 class Form extends Component {
     
@@ -32,12 +34,15 @@ class Form extends Component {
     componentDidMount() {
         this.getUserProfile();
 
-        ws.onopen = () => {
-            //on connecting, do nothing but log it on console
-            console.log('WebSocket Client Connected');
-        }
+        // ws.onopen = () => {
+        //     //on connecting, do nothing but log it on console
+        //     console.log('WebSocket Client Connected');
+        // }
 
-        
+        // ws.onclose = () => {
+        //     //when disconnected, log it
+        //     console.log('WebSocket disconnect')
+        // }
         
     }
 
@@ -48,10 +53,10 @@ class Form extends Component {
         //fetch user's profile by sending token to the backend
         //send the jwt token in the Authorization header
         fetch("http://localhost:3000/api/profile", {
-        method: "GET",
-        headers: {
-            Authorization: token
-        }
+            method: "GET",
+            headers: {
+                Authorization: token
+            }
         })
         .then(res => res.json())
         .then(data => {
@@ -136,7 +141,15 @@ class Form extends Component {
                     items
                 })
             })
+            .then(res => res.json())
+            .then(res => {
+                if (!res.error) this.handleNotification() 
+            });
         }
+    }
+
+    handleNotification() {
+        fetch('http://localhost:3000/notification')
     }
 
     ///handles form submit event handler
