@@ -79,7 +79,10 @@ class MenuContainer extends Component {
                 <Banner/>
                 <LoadingIndicator />
                 {this.renderMenu()}
-                <CartBox removeCartItems={this.removeCartItems} items={this.props.cartItems} />
+                <CartBox 
+                    removeCartItems={this.removeCartItems} 
+                    items={this.props.cartItems}
+                />
             </div>
         );
     }

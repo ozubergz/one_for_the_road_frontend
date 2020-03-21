@@ -219,17 +219,29 @@ input {
 
 /******************** MENU ITEMS **********************/
 
-
-.items-body {
+.items {
     position: relative;
-    border-bottom: 1px solid rgb(194, 194, 194);
-    display: flex;
     padding: 1rem;
-    position: relative;
+    border-bottom: 1px solid rgb(194, 194, 194);
 }
 
-.items-body:hover {
+.items:hover {
     cursor: pointer;
+}
+
+.items-body {
+    display: flex;
+    /* position: relative; */
+    /* border-bottom: 1px solid rgb(194, 194, 194); */
+    /* padding: 1rem; */
+}
+
+/* .items-body:hover {
+    cursor: pointer;
+} */
+
+.items-options {
+    background-color: pink;
 }
 
 .items-content {
