@@ -225,21 +225,10 @@ input {
     border-bottom: 1px solid rgb(194, 194, 194);
 }
 
-.items:hover {
-    /* cursor: pointer; */
-}
-
 .items-body {
     display: flex;
     cursor: pointer;
-    /* position: relative; */
-    /* border-bottom: 1px solid rgb(194, 194, 194); */
-    /* padding: 1rem; */
 }
-
-/* .items-body:hover {
-    cursor: pointer;
-} */
 
 .items-options {
     background-color: pink;
