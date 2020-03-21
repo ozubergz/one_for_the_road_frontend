@@ -226,11 +226,12 @@ input {
 }
 
 .items:hover {
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .items-body {
     display: flex;
+    cursor: pointer;
     /* position: relative; */
     /* border-bottom: 1px solid rgb(194, 194, 194); */
     /* padding: 1rem; */

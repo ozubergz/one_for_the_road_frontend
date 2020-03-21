@@ -45,15 +45,17 @@ class MenuItems extends Component {
                 className="items"
                 onMouseOut={() => {this.handleMouseOut()}}
                 onMouseOver={() => this.handleMouseOver(item.id)}
-                onClick={() => { 
-                    item_options.length !== 0 ? 
-                        this.toggleOptions()
-                        :
-                        this.props.addItemsToCart(item)                        
-                 }
-                }
             >
-                <div className="items-body">
+                <div 
+                    className="items-body"
+                    onClick={() => { 
+                        item_options.length !== 0 ? 
+                            this.toggleOptions()
+                            :
+                            this.props.addItemsToCart(item)                        
+                     }
+                    }
+                >
                     <div className="items-content">
                         <h6 className="items-name">{name.toUpperCase()}</h6>
                         <span className="items-description">{description}</span>
@@ -61,16 +63,15 @@ class MenuItems extends Component {
                     <div className="items-price">
                         <h6>{price.toFixed(2)}</h6>
                     </div>
+
+                    <div className="overlay" style={this.opacity(item.id)}>
+                        <div className="overlay-text" >
+                            <i className="fa fa-plus"></i> Add to Cart <i className="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
                 </div>
                 
                 {item_options.length !== 0 ? <ItemOptionsContainer displayOptions={this.state.displayOptions} itemOptions={item_options} /> : null }
-
-                <div className="overlay" style={this.opacity(item.id)}>
-                    <div className="overlay-text" >
-                        <i className="fa fa-plus"></i> Add to Cart <i className="fa fa-shopping-cart"></i>
-                    </div>
-                </div>
-
             </div>
         )
     }
