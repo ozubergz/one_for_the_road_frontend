@@ -71,7 +71,7 @@ class MenuItems extends Component {
                     </div>
                 </div>
                 
-                {item_options.length !== 0 ? <ItemOptionsContainer displayOptions={this.state.displayOptions} itemOptions={item_options} /> : null }
+                {item_options.length !== 0 ? <ItemOptionsContainer displayOptions={this.state.displayOptions} itemOptions={item_options} /> : null}
             </div>
         )
     }

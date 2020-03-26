@@ -5,8 +5,8 @@ class ItemOptionsContainer extends Component {
     renderOptions(itemOptionId, options) {
         return options.map(option => {
             return (
-                <div className="form-check form-check-inline">
-                    <input className="form-check-input" type="radio" name={`option-${itemOptionId}`} value={option.name} id={option.id} />
+                <div key={option.id} className="form-check form-check-inline">
+                    <input className="form-check-input" type={option.input_type} name={`option-${itemOptionId}`} value={option.id} id={option.id} />
                     <label className="form-check-label" htmlFor={option.id}>
                         {option.name}
                     </label>
