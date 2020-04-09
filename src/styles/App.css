@@ -231,7 +231,15 @@ input {
 }
 
 .items-options {
-    background-color: pink;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 13px;
+    background-color: rgb(238, 238, 238);
+}
+
+.option-btn-group {
+    text-align: right;
+    margin-top: 10px;
 }
 
 .items-content {
