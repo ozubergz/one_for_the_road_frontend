@@ -237,9 +237,25 @@ input {
     background-color: rgb(238, 238, 238);
 }
 
+.item-options-title > h6 {
+    margin-bottom: -2px;
+}
+
 .option-btn-group {
     text-align: right;
     margin-top: 10px;
+}
+
+.input-option-group {
+    margin-top: 10px;
+}
+
+.form-check-input:hover {
+    cursor: pointer;
+}
+
+.form-check-label:hover {
+    cursor: pointer;
 }
 
 .items-content {
