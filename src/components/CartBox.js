@@ -35,21 +35,20 @@ class CartBox extends Component {
 
     renderCheckoutBtn() {
         let total = Math.round(this.calculateTotal());
-        if(total === 0) {
-            return (
+        return total === 0 ?
+            (
                 <button className="btn btn-secondary disabled-checkout-btn" disabled>
                     Checkout
                 </button>
-            )
-        } else {
-            return (
+            ) 
+                :
+            (
                 <button className="btn btn-danger checkout-btn">
                     Checkout
                     <Link className="checkout-link" to="/checkout">
                     </Link>
                 </button>   
             )
-        }
     }
 
     calculateTotal() {
