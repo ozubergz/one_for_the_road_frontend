@@ -39,7 +39,7 @@ class MenuItems extends Component {
     
     render() {
         const { item } = this.props;
-        const { price, name, description, item_options } = item;
+        const { price, name, description, group_options } = item;
         return (
             <div
                 className="items"
@@ -49,7 +49,7 @@ class MenuItems extends Component {
                 <div 
                     className="items-body"
                     onClick={() => { 
-                        item_options.length !== 0 ? 
+                        group_options.length !== 0 ? 
                             this.toggleOptions()
                             :
                             this.props.addItemsToCart(item)                        
@@ -71,7 +71,7 @@ class MenuItems extends Component {
                     </div>
                 </div>
                 
-                {item_options.length !== 0 ? <ItemOptionsContainer displayOptions={this.state.displayOptions} itemOptions={item_options} /> : null}
+                {group_options.length !== 0 ? <ItemOptionsContainer displayOptions={this.state.displayOptions} itemOptions={group_options} /> : null}
             </div>
         )
     }
