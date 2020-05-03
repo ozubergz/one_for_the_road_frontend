@@ -67,6 +67,10 @@ input {
     margin-right: 10px;
 }
 
+.section-1-content {
+    display: flex;
+}
+
 .schedule-time-day {
     display: flex;
     font-size: 20px;
@@ -84,20 +88,23 @@ input {
     margin-bottom: -5px;
 }
 
-.address-container {
-    color: white;
-    font-size: 20px;
+.address-contact {
     width: 50%;
     text-align: right;
+    color: white;
+}
+
+.address-container {
+    font-size: 20px;
+    margin-bottom: 20px;
+    /* width: 50%; */
 }
 
 .address-title > i {
     margin-right: 10px;
 }
 
-.section-1-content {
-    display: flex;
-}
+
 
 
 /* .home-body {
