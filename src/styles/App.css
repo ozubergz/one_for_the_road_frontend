@@ -36,22 +36,31 @@ input {
     background-position: fixed;
 }
 
+.section-1-body {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .home-body {
     margin-left: 260px;
 }
 
-.home-page-logo {
-    /* position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%); */
+.section-1-logo {
     height: 200px;
+    margin-bottom: 15px;
+}
+
+.section-1-body {
+    width: 570px;
 }
 
 .schedule {
     display: flex;
     flex-direction: column;
     color: white;
+    width: 50%;
 }
 
 .schedule-title > i {
@@ -78,11 +87,18 @@ input {
 .address-container {
     color: white;
     font-size: 20px;
+    width: 50%;
+    text-align: right;
 }
 
 .address-title > i {
     margin-right: 10px;
 }
+
+.section-1-content {
+    display: flex;
+}
+
 
 /* .home-body {
     margin-left: 260px;
