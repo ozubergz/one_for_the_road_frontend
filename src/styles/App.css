@@ -27,8 +27,28 @@ input {
 
 /************** HOME PAGE *****************/
 
+.section-1 {
+    height: 100vh;
+    background-image: url('../images/banner-image.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position: fixed;
+}
+
+.home-page-logo {
+    /* position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); */
+    height: 200px;
+}
 
 .home-body {
+    margin-left: 260px;
+}
+
+/* .home-body {
     margin-left: 260px;
 }
 
@@ -96,7 +116,7 @@ input {
 .days {
     width: 80px;
     text-align: left;
-}
+} */
 
 
 /***************** MENU PAGE CONTENTS *******************/

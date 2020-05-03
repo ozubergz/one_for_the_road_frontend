@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Banner from './Banner';
-import ribs from '../images/ribs.jpg';
-import chicken from '../images/roasted-chicken.jpg';
+import logo from '../images/banner-logo.png';
+// import Banner from './Banner';
+// import ribs from '../images/ribs.jpg';
+// import chicken from '../images/roasted-chicken.jpg';
 import SideNavBar from './SideNavBar';
 
 class Home extends Component {
@@ -9,8 +10,15 @@ class Home extends Component {
         return (
             <div>
                 <SideNavBar />
-                <Banner />
                 <div className="home-body">
+
+                    <div className="section-1">
+                        <img className="home-page-logo" src={logo} alt="One for the Road Logo" />
+                    </div>
+                </div>
+
+                {/* <Banner /> */}
+                {/* <div className="home-body">
                     <div className="bg-1 row">
                         <div style={{backgroundColor: '#fdd365'}} className="text-col col-12 col-lg-6">
                             <div className="text-col-content">
@@ -99,7 +107,7 @@ class Home extends Component {
                             <h6>347-732-9732</h6>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         );
     }
