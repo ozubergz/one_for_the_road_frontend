@@ -49,16 +49,34 @@ input {
 }
 
 .schedule {
+    display: flex;
+    flex-direction: column;
     color: white;
+}
+
+.schedule-title > i {
+    margin-right: 10px;
+}
+
+.schedule-time-day {
     display: flex;
     font-size: 20px;
 }
 
 .days {
-    display: flex;
-    flex-direction: column;
     margin-right: 15px;
 }
+
+.days > div {
+    margin-bottom: -5px;
+}
+
+.time > div {
+    margin-bottom: -5px;
+}
+
+
+
 
 /* .home-body {
     margin-left: 260px;
