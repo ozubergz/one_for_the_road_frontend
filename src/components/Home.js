@@ -41,6 +41,20 @@ class Home extends Component {
                             </div>
                         </div>
 
+                        <div className="address-container">
+                            <h5 className="address-title">
+                                <i className="fa fa-home"></i>
+                                Address
+                            </h5>
+                            <div className="address">
+                                <div>
+                                    40-25 150th Street
+                                </div>
+                                <div>
+                                    Flushing, NY 11354
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

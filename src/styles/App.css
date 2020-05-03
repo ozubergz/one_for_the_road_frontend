@@ -75,8 +75,14 @@ input {
     margin-bottom: -5px;
 }
 
+.address-container {
+    color: white;
+    font-size: 20px;
+}
 
-
+.address-title > i {
+    margin-right: 10px;
+}
 
 /* .home-body {
     margin-left: 260px;
