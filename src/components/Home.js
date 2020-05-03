@@ -6,18 +6,35 @@ import logo from '../images/banner-logo.png';
 import SideNavBar from './SideNavBar';
 
 class Home extends Component {
+    state = {
+        height: 0
+    }
+
+    componentDidMount() {
+        window.addEventListener("scroll", this.handleScroll);
+        this.setState({height: this.section.clientHeight});
+    }
+
+    handleScroll = () => {
+        let scroll = window.scrollY;
+        let height = this.state.height;
+        let velocity = 13;
+        let position = `${50 + (scroll / height) * velocity}%`;        
+        this.section.style.backgroundPosition = `50% ${position}`;
+    }
+
     render() {
+        // console.log(this.state.height)
         return (
             <div>
                 <SideNavBar />
                 <div className="home-body">
 
-                    <div className="section-1">
+                    <div className="section-1" ref={ section => this.section = section }>
                         <div className="section-1-body">
                             <img className="section-1-logo" src={logo} alt="One for the Road Logo" />
                             
                             <div className="section-1-content">
-
                                 <div className="schedule">
                                     <h5 className="schedule-title">
                                         <i className="fa fa-clock-o"></i> 
@@ -44,7 +61,6 @@ class Home extends Component {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="address-contact">
                                     <div className="address-container">
                                         <h5 className="address-title">
@@ -68,10 +84,10 @@ class Home extends Component {
                                         <h6>347-732-9732</h6>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
+                    
 
                 </div>
             </div>
