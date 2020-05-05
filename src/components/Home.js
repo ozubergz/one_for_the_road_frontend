@@ -6,21 +6,26 @@ import logo from '../images/banner-logo.png';
 import SideNavBar from './SideNavBar';
 
 class Home extends Component {
-    state = {
-        height: 0
-    }
+    
+    sections = [];
 
     componentDidMount() {
         window.addEventListener("scroll", this.handleScroll);
-        this.setState({height: this.section.clientHeight});
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll)
     }
 
     handleScroll = () => {
         let scroll = window.scrollY;
-        let height = this.state.height;
         let velocity = 13;
-        let position = `${50 + (scroll / height) * velocity}%`;        
-        this.section.style.backgroundPosition = `50% ${position}`;
+
+        this.sections.forEach(section => {
+            let height = section.clientHeight;
+            let position = `${50 + (scroll / height) * velocity}%`;        
+            section.style.backgroundPosition = `50% ${position}`;
+        });
     }
 
     render() {
@@ -30,7 +35,7 @@ class Home extends Component {
                 <SideNavBar />
                 <div className="home-body">
 
-                    <div className="section-1" ref={ section => this.section = section }>
+                    <div className="section-1" ref={ sect => this.sections.push(sect) }>
                         <div className="section-1-body">
                             <img className="section-1-logo" src={logo} alt="One for the Road Logo" />
                             
@@ -88,6 +93,9 @@ class Home extends Component {
                         </div>
                     </div>
                     
+                    <div className="section-2" >
+                        <h1>Section 2</h1>
+                    </div>
 
                 </div>
             </div>

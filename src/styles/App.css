@@ -33,7 +33,7 @@ input {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-position: fixed;
+    background-attachment: fixed;
 }
 
 .section-1-body {
@@ -103,7 +103,9 @@ input {
     margin-right: 10px;
 }
 
-
+.section-2 {
+    height: 100vh;
+}
 
 
 /* .home-body {
