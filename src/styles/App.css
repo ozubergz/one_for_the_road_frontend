@@ -103,10 +103,38 @@ input {
     margin-right: 10px;
 }
 
-.section-2 {
-    height: 100vh;
+.contact-title > i {
+    margin-right: 10px;
 }
 
+.schedule-title {
+    font-family: 'Pacifico', cursive;
+}
+
+.address-title {
+    font-family: 'Pacifico', cursive;
+}
+
+.contact-title {
+    font-family: 'Pacifico', cursive;
+}
+
+.section-2 {
+    /* height: 100vh; */
+    text-align: center;
+    padding: 30px;
+    background-color: #fdd365;
+}
+
+
+.section-3 {
+    height: 100vh;
+    background-image: url('../images/ribs.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 400px;
+}
 
 /* .home-body {
     margin-left: 260px;

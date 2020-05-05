@@ -10,7 +10,7 @@ class Home extends Component {
     sections = [];
 
     componentDidMount() {
-        window.addEventListener("scroll", this.handleScroll);
+        window.addEventListener('scroll', this.handleScroll);
     }
 
     componentWillUnmount() {
@@ -94,7 +94,18 @@ class Home extends Component {
                     </div>
                     
                     <div className="section-2" >
-                        <h1>Section 2</h1>
+                        <h1>About us</h1>
+                        <p>One for the Road works to please our customers with various
+                        delicious home baked pastries, Sweet and Savory crepes, Peruvian Chicken, 
+                        Sandwiches (Continental, Bahnmi, Korean) Frozen Yogurt/ Gelato, and 
+                        locally Roasted Hot & Cold Brewed coffee, Summer Drinks, Dessert 
+                        (freshly baked cheese cakes, Tiramisu) plus many more! Stop by 
+                        and take one for the road or seat and relax outside street cafe 
+                        and dining room.</p>              
+                    </div>
+
+                    <div className="section-3">
+                        
                     </div>
 
                 </div>
