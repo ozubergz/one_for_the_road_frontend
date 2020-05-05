@@ -19,7 +19,7 @@ class Home extends Component {
 
     handleScroll = () => {
         let scroll = window.scrollY;
-        let velocity = 13;
+        let velocity = 20;
 
         this.sections.forEach(section => {
             let height = section.clientHeight;
@@ -29,7 +29,6 @@ class Home extends Component {
     }
 
     render() {
-        // console.log(this.state.height)
         return (
             <div>
                 <SideNavBar />
@@ -104,7 +103,7 @@ class Home extends Component {
                         and dining room.</p>              
                     </div>
 
-                    <div className="section-3">
+                    <div className="section-3" ref={ sect => this.sections.push(sect) }>
                         
                     </div>
 

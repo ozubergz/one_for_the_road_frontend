@@ -120,7 +120,7 @@ input {
 }
 
 .section-2 {
-    /* height: 100vh; */
+    height: 100vh;
     text-align: center;
     padding: 30px;
     background-color: #fdd365;
@@ -129,11 +129,11 @@ input {
 
 .section-3 {
     height: 100vh;
-    background-image: url('../images/ribs.jpg');
+    background-image: url('../images/burger-and-vege.jpg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 400px;
+    background-size: cover;
 }
 
 /* .home-body {
