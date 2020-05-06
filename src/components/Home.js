@@ -92,21 +92,26 @@ class Home extends Component {
                         </div>
                     </div>
                     
-                    <div className="section-2" >
-                        <h1>About us</h1>
-                        <p>One for the Road works to please our customers with various
-                        delicious home baked pastries, Sweet and Savory crepes, Peruvian Chicken, 
-                        Sandwiches (Continental, Bahnmi, Korean) Frozen Yogurt/ Gelato, and 
-                        locally Roasted Hot & Cold Brewed coffee, Summer Drinks, Dessert 
-                        (freshly baked cheese cakes, Tiramisu) plus many more! Stop by 
-                        and take one for the road or seat and relax outside street cafe 
-                        and dining room.</p>              
+                    <div className="section-2" ref={ sect => this.sections.push(sect) }>
+                        {/* <div className="overlay"></div> */}
+                        <div className="about">
+                            <h1>About Us</h1>
+                            <p>One for the Road works to please our customers with various
+                            delicious home baked pastries, Sweet and Savory crepes, Peruvian Chicken, 
+                            Sandwiches (Continental, Bahnmi, Korean) Frozen Yogurt/ Gelato, and 
+                            locally Roasted Hot & Cold Brewed coffee, Summer Drinks, Dessert 
+                            (freshly baked cheese cakes, Tiramisu) plus many more! Stop by 
+                            and take one for the road or seat and relax outside street cafe 
+                            and dining room.</p>              
+                        </div>
+                        <div className="specialties">
+                            <h1>Specialties</h1>
+                            <p>Our specialty is asian fusion food. We offer varieties of omellettes, 
+                            homebaked desserts, Banh Mi, korean style food, cold/hot sandwiches, smoothies and juice 
+                            that are all made fresh. We also offer peruvain style food with juicy
+                            and well seasoned roasted chicken, beans, rice and burritos.</p>
+                        </div>
                     </div>
-
-                    <div className="section-3" ref={ sect => this.sections.push(sect) }>
-                        
-                    </div>
-
                 </div>
             </div>
         );
