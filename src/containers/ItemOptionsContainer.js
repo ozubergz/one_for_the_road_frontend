@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { v4 as uuidv4 } from 'uuid';
 
 class ItemOptionsContainer extends Component {
 
@@ -6,7 +7,13 @@ class ItemOptionsContainer extends Component {
         return options.map(option => {
             return (
                 <div key={option.id} className="form-check form-check-inline">
-                    <input className="form-check-input" type={option.input_type} name={`option-${itemOptionId}`} value={option.id} id={option.id} />
+                    <input 
+                        className="form-check-input" 
+                        type={option.input_type} 
+                        name={`option-${itemOptionId}`} 
+                        value={option.id} 
+                        id={option.id} 
+                    />
                     <label className="form-check-label" htmlFor={option.id}>
                         {option.name} {option.price && option.price !== 0 ? `$${option.price.toFixed(2)}` : null}
                     </label>
@@ -16,12 +23,14 @@ class ItemOptionsContainer extends Component {
     }
 
     render() {
+        // console.log(this.props.itemId)
         return (
             <div>
                 {this.props.itemOptions.map(itemOption => {
                     return(
                         <div 
                             key={itemOption.id} 
+                            // key={uuidv4()}
                             className="items-options" 
                             style={{display: this.props.displayOptions ? '' : 'none' }}
                         >

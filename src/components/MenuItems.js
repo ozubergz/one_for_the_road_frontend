@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ItemOptionsContainer from '../containers/ItemOptionsContainer';
+// import { v4 as uuidv4 } from 'uuid';
 
 class MenuItems extends Component {
     
@@ -71,7 +72,16 @@ class MenuItems extends Component {
                     </div>
                 </div>
                 
-                {group_options.length !== 0 ? <ItemOptionsContainer displayOptions={this.state.displayOptions} itemOptions={group_options} /> : null}
+                { 
+                    group_options.length !== 0 ? 
+                        <ItemOptionsContainer 
+                            displayOptions={this.state.displayOptions} 
+                            itemOptions={group_options}
+                            // itemId={uuidv4()}
+                        /> 
+                            : 
+                        null
+                }
             </div>
         )
     }
