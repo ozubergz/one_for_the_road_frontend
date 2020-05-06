@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ItemOptionsContainer from '../containers/ItemOptionsContainer';
+import GroupOptionsContainer from '../containers/GroupOptionsContainer';
 // import { v4 as uuidv4 } from 'uuid';
 
 class MenuItems extends Component {
@@ -41,6 +41,7 @@ class MenuItems extends Component {
     render() {
         const { item } = this.props;
         const { price, name, description, group_options } = item;
+
         return (
             <div
                 className="items"
@@ -74,12 +75,11 @@ class MenuItems extends Component {
                 
                 { 
                     group_options.length !== 0 ? 
-                        <ItemOptionsContainer 
+                        <GroupOptionsContainer 
                             displayOptions={this.state.displayOptions} 
-                            itemOptions={group_options}
-                            // itemId={uuidv4()}
+                            groupOptions={group_options}
                         /> 
-                            : 
+                            :
                         null
                 }
             </div>
