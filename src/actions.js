@@ -15,7 +15,6 @@ export const fetchAllData = () => {
                     console.log("Server Error")
                 } else {
                     
-
                     //iterate all data
                     data.map(cat => {
                         return cat.items.map(item =>{
@@ -30,9 +29,7 @@ export const fetchAllData = () => {
                             });
                         });
                     });
-
-                    // console.log(data)
-
+                    
                     dispatch({type: "ADD_MENUS", payload: data})
                 }
             })

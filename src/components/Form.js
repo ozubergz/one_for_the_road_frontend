@@ -28,7 +28,8 @@ class Form extends Component {
         display: false,
         redirect: false,
         payError: '',
-        addressErr: ''
+        addressErr: '',
+        disabled: false
     }
 
     componentDidMount() {
@@ -156,6 +157,8 @@ class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        this.setState({disabled: true});
+
         const origin = '40-25 150th St Flushing NY 11354';
         const address = this.state.address;
         const unitSystem = window.google.maps.UnitSystem.IMPERIAL;
@@ -192,11 +195,11 @@ class Form extends Component {
 
     renderSubmitBtn() {
         let amount = Math.round(this.props.amount);
-        if(amount === 0) {
+        if(amount === 0 || this.state.disabled) {
             return (<button className="btn btn-secondary order-btn mt-2" disabled>Confirm order</button>)
         } else {
             return (
-                <button className="btn btn-danger order-btn mt-2">Confirm order</button>
+                <button className="btn btn-danger order-btn mt-2" >Confirm order</button>
             )
         }
     }
