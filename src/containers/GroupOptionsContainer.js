@@ -6,10 +6,14 @@ class GroupOptionsContainer extends Component {
 
     handleChange = (e) => {
         const { name, value } = e.target;
-
+        
         this.setState({
             [name]: value
         });
+    }
+
+    handleClick = () => {
+        console.log(this.state)
     }
 
     renderInputOptions(itemOptionId, options) {
@@ -62,7 +66,11 @@ class GroupOptionsContainer extends Component {
                 
                 { this.props.displayOptions ?
                     <div className="option-btn-group">
-                        <button className="option-add-btn btn btn-danger btn-sm">Add to Cart</button> 
+                        <button 
+                            className="option-add-btn btn btn-danger btn-sm"
+                            onClick={this.handleClick}
+                        >Add to Cart
+                        </button> 
                     </div>
                         : 
                     null
