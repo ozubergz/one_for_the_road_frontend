@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import logo from '../images/banner-logo.png';
-// import Banner from './Banner';
-// import ribs from '../images/ribs.jpg';
-// import chicken from '../images/roasted-chicken.jpg';
 import SideNavBar from './SideNavBar';
 
 class Home extends Component {
@@ -19,9 +16,13 @@ class Home extends Component {
 
     handleScroll = () => {
         let scroll = window.scrollY;
-        let velocity = 20;
+        let velocity = 30;
 
-        this.sections.forEach(section => {
+        let sections = this.sections.filter((sect, i, s) => {
+            return sect && s.indexOf(sect) === i
+        });
+
+        sections.forEach(section => {
             let height = section.clientHeight;
             let position = `${50 + (scroll / height) * velocity}%`;        
             section.style.backgroundPosition = `50% ${position}`;
@@ -93,7 +94,6 @@ class Home extends Component {
                     </div>
                     
                     <div className="section-2" ref={ sect => this.sections.push(sect) }>
-                        {/* <div className="overlay"></div> */}
                         <div className="about">
                             <h1>About Us</h1>
                             <p>One for the Road works to please our customers with various
