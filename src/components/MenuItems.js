@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import GroupOptionsContainer from '../containers/GroupOptionsContainer';
-// import { v4 as uuidv4 } from 'uuid';
 
 class MenuItems extends Component {
     

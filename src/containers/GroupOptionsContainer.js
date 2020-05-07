@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 
-class ItemOptionsContainer extends Component {
+class GroupOptionsContainer extends Component {
+
+    state = {}
+
+    handleChange = (e) => {
+        const { name, value } = e.target;
+
+        this.setState({
+            [name]: value
+        });
+    }
 
     renderInputOptions(itemOptionId, options) {
         return options.map(option => {
             return (
                 <div key={option.id} className="form-check form-check-inline">
-                    <input 
+                    <input
+                        onChange={this.handleChange}
                         className="form-check-input" 
                         type={option.input_type} 
                         name={`option-${itemOptionId}`} 
-                        value={option.id} 
+                        value={option.name} 
                         id={option.id} 
                     />
                     <label className="form-check-label" htmlFor={option.id}>
@@ -51,7 +62,7 @@ class ItemOptionsContainer extends Component {
                 
                 { this.props.displayOptions ?
                     <div className="option-btn-group">
-                        <button className="option-add-btn btn btn-danger btn-sm" >Add to Cart</button> 
+                        <button className="option-add-btn btn btn-danger btn-sm">Add to Cart</button> 
                     </div>
                         : 
                     null
@@ -61,4 +72,4 @@ class ItemOptionsContainer extends Component {
     }
 }
 
-export default ItemOptionsContainer;
+export default GroupOptionsContainer;

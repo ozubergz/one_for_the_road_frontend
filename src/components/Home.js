@@ -18,6 +18,7 @@ class Home extends Component {
         let scroll = window.scrollY;
         let velocity = 30;
 
+        //filter any refs that are null or duplicates
         let sections = this.sections.filter((sect, i, s) => {
             return sect && s.indexOf(sect) === i
         });

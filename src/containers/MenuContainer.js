@@ -62,8 +62,10 @@ class MenuContainer extends Component {
         if(localStorage.cart) {
             //remove cart items
             let cartItems = JSON.parse(localStorage.cart);
+            
             //filter cart items based on index postion
             let newCart = cartItems.filter((item, i) => i !== index);
+
             //set new cart to localStorage
             localStorage.cart = JSON.stringify(newCart);
 
