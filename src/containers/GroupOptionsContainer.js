@@ -5,30 +5,31 @@ class GroupOptionsContainer extends Component {
     state = {}
 
     handleChange = (e) => {
-        const { name, value } = e.target;
+        const { target } = e;
+        const { checked, name } = target;
+        const value = checked ? target.value : ""
         
-        console.log(e.target.type, e.target.checked)
-                
         this.setState({
-            [name]: value
+            [name]:value
         });
+       
     }
 
     handleClick = () => {
-
+        // console.log(this.state)
         const optionIds = Object.values(this.state);
 
-        //store options
+        // store options
         const arrOptions = [];
 
-        //iterate over group options to collect only options
+        // iterate over group options to collect only options
         this.props.groupOptions.forEach(groupOption => {
             groupOption.options.forEach(option => arrOptions.push(option))
         });
         
         const options = arrOptions.filter(option => optionIds.find(id => id === option.id));
         
-        // console.log(options)
+        console.log(options)
 
     }
 
