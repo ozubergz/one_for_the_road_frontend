@@ -9,11 +9,15 @@ class MenuItems extends Component {
     }
 
     handleMouseOver = (id) => {
-        this.setState({position: id})
+        this.setState({ 
+            position: id 
+        });
     }
 
     handleMouseOut = () => {
-        this.setState({position: null})
+        this.setState({ 
+            position: null
+        });
     }
     
     //add opacity effect when item is hovered 
@@ -54,8 +58,7 @@ class MenuItems extends Component {
                             this.toggleOptions()
                             :
                             this.props.addItemsToCart(item)                        
-                     }
-                    }
+                     }}
                 >
                     <div className="items-content">
                         <h6 className="items-name">{name.toUpperCase()}</h6>
@@ -77,6 +80,7 @@ class MenuItems extends Component {
                         <GroupOptionsContainer 
                             displayOptions={this.state.displayOptions} 
                             groupOptions={group_options}
+                            item={item}
                         /> 
                             :
                         null

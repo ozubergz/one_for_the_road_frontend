@@ -7,13 +7,29 @@ class GroupOptionsContainer extends Component {
     handleChange = (e) => {
         const { name, value } = e.target;
         
+        console.log(e.target.type, e.target.checked)
+                
         this.setState({
             [name]: value
         });
     }
 
     handleClick = () => {
-        console.log(this.state)
+
+        const optionIds = Object.values(this.state);
+
+        //store options
+        const arrOptions = [];
+
+        //iterate over group options to collect only options
+        this.props.groupOptions.forEach(groupOption => {
+            groupOption.options.forEach(option => arrOptions.push(option))
+        });
+        
+        const options = arrOptions.filter(option => optionIds.find(id => id === option.id));
+        
+        // console.log(options)
+
     }
 
     renderInputOptions(itemOptionId, options) {
@@ -25,7 +41,7 @@ class GroupOptionsContainer extends Component {
                         className="form-check-input" 
                         type={option.input_type} 
                         name={`option-${itemOptionId}`} 
-                        value={option.name} 
+                        value={option.id} 
                         id={option.id} 
                     />
                     <label className="form-check-label" htmlFor={option.id}>
@@ -64,16 +80,17 @@ class GroupOptionsContainer extends Component {
                     )
                 })}
                 
-                { this.props.displayOptions ?
-                    <div className="option-btn-group">
-                        <button 
-                            className="option-add-btn btn btn-danger btn-sm"
-                            onClick={this.handleClick}
-                        >Add to Cart
-                        </button> 
-                    </div>
-                        : 
-                    null
+                { 
+                    this.props.displayOptions ?
+                        <div className="option-btn-group">
+                            <button 
+                                className="option-add-btn btn btn-danger btn-sm"
+                                onClick={this.handleClick}
+                            >Add to Cart
+                            </button> 
+                        </div>
+                            :
+                        null
                 } 
             </div>
         );
