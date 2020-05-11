@@ -119,6 +119,7 @@ class Form extends Component {
                 return;
             } else {
                 let token = res.token;
+
                 //method to handle fetch
                 this.tokenHandler(token.id, amount)
             }
