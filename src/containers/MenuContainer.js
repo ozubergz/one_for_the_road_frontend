@@ -42,7 +42,9 @@ class MenuContainer extends Component {
 
     //add item to redux state and localStorage
     addItemsToCart = (item) => {
-        // call dispatch to addItems
+        console.log(item)
+
+        // call dispatch action to addItems to cart
         this.props.addItemToCart(item);
         
         if(!localStorage.cart) {

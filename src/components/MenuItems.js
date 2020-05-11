@@ -80,6 +80,7 @@ class MenuItems extends Component {
                         <GroupOptionsContainer 
                             displayOptions={this.state.displayOptions} 
                             groupOptions={group_options}
+                            addItemsToCart={this.props.addItemsToCart}
                             item={item}
                         /> 
                             :

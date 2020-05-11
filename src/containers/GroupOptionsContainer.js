@@ -28,8 +28,13 @@ class GroupOptionsContainer extends Component {
         });
         
         const options = arrOptions.filter(option => optionIds.find(id => id === option.id));
+
+        //resassign group_option with options that's been selected;
+        const item = {...this.props.item };
+        item.group_options = options;
         
-        console.log(options)
+        // console.log(item)
+        this.props.addItemsToCart(item)
 
     }
 
