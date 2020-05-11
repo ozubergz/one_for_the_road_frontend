@@ -23,7 +23,15 @@ class CartBox extends Component {
                         <i className="fa fa-minus"></i>
                     </button>
                     <div className="cart-items-name">
-                        {item.name} 
+                        {item.name}
+                        <div className="cart-items-options">
+                            {
+                                item.selectOptions ?
+                                    item.selectOptions.map(option => {
+                                        return <div key={option.id} > - {option.name} {option.price ? `+${option.price.toFixed(2)}` : null} </div>
+                                    }) : null
+                            }
+                        </div>
                     </div>
                     <div className="cart-items-price">
                         {item.price.toFixed(2)}

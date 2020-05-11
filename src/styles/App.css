@@ -220,6 +220,10 @@ p {
     width: 90%;
 }
 
+.cart-items-options {
+    color: gray;
+}
+
 .cart-items-price {
     text-align: right;
     width: 10%;
