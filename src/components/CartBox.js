@@ -26,8 +26,8 @@ class CartBox extends Component {
                         {item.name}
                         <div className="cart-items-options">
                             {
-                                item.selectOptions ?
-                                    item.selectOptions.map(option => {
+                                item.select_options ?
+                                    item.select_options.map(option => {
                                         return <div key={option.id} > - {option.name} {option.price ? `+${option.price.toFixed(2)}` : null} </div>
                                     }) : null
                             }
@@ -67,9 +67,9 @@ class CartBox extends Component {
             items.forEach(item => {
                 total += item.price;
                 
-                const { selectOptions } = item;
-                if(selectOptions) {
-                    selectOptions.forEach(option => {
+                const { select_options } = item;
+                if(select_options) {
+                    select_options.forEach(option => {
                         total += option.price;
                     });
                 }

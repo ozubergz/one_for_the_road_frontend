@@ -31,7 +31,7 @@ class GroupOptionsContainer extends Component {
 
         //assign new property with selected options
         const item = {...this.props.item };
-        item.selectOptions = options;
+        item.select_options = options;
         
         //add item to cart
         this.props.addItemsToCart(item);
