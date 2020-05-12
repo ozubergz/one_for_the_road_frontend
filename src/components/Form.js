@@ -190,8 +190,14 @@ class Form extends Component {
                             disabled: false
                         });
                     } else {
+                        this.setState({addressErr: ""})
                         this.handleCreateToken();
                     }
+                } else {
+                    this.setState({
+                        addressErr: "Please enter address",
+                        disabled: false
+                    });
                 }
             });
         } else {
