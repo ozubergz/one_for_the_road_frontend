@@ -107,11 +107,13 @@ class Form extends Component {
 
     handleCreateToken() {
         let amount = this.props.amount;
+
         //creates strip token
         let token = this.props.stripe.createToken({
             name: `${this.state.first_name} ${this.state.last_name}`,
             address_line1: this.state.address
         });
+
         //token is a promise
         token.then(res => {
             if(res.error) {
@@ -161,7 +163,10 @@ class Form extends Component {
         this.setState({disabled: true});
 
         const origin = '40-25 150th St Flushing NY 11354';
-        const address = this.state.address;
+        
+        //autocomplete input value
+        const address = this.addressInput.refs.input.value;
+
         const unitSystem = window.google.maps.UnitSystem.IMPERIAL;
         
         if(address) {
@@ -171,21 +176,29 @@ class Form extends Component {
                 destinations: [address],
                 travelMode: 'DRIVING',
                 unitSystem: unitSystem
-            }, (res, status) => {
+            }, (res) => {
+                // check if address status is "OK"
+                const { status } = res.rows[0].elements[0];
                 if(status === 'OK') {
-                    let miles = res.rows[0].elements[0].distance.text;
-                    let distance = miles.replace('mi', '');
-                    //check if the distance is within the limit
-                    if(Number(distance) > 3) {
+                    //get distance
+                    const { distance } = res.rows[0].elements[0];
+                    const miles = distance.text.replace('mi', '');
+                    if(Number(miles) > 3) {
                         //when distance is out of zone send alert 
-                        this.setState({addressErr: "I'm sorry, we don't deliver that far"})
+                        this.setState({
+                            addressErr: "I'm sorry, we don't deliver that far",
+                            disabled: false
+                        });
                     } else {
                         this.handleCreateToken();
                     }
                 }
             });
         } else {
-            this.setState({addressErr: "Please enter address"})
+            this.setState({
+                addressErr: "Please enter address",
+                disabled: false
+            });
         }
     }
 
@@ -195,14 +208,19 @@ class Form extends Component {
     }
 
     renderSubmitBtn() {
-        let amount = Math.round(this.props.amount);
-        if(amount === 0 || this.state.disabled) {
-            return (<button className="btn btn-secondary order-btn mt-2" disabled>Confirm order</button>)
-        } else {
-            return (
-                <button className="btn btn-danger order-btn mt-2" >Confirm order</button>
-            )
-        }
+        // let amount = Math.round(this.props.amount);
+        // if(amount === 0 || this.state.disabled) {
+        //     return (<button className="btn btn-secondary order-btn mt-2" disabled>Confirm order</button>)
+        // } else {
+        //     return (
+        //         <button className="btn btn-danger order-btn mt-2" >Confirm order</button>
+        //     )
+        // }
+
+        const amount = Math.round(this.props.amount);
+        const bool = (amount === 0 || this.state.disabled);
+
+        return <button className="btn btn-danger order-btn mt-2" disabled={bool}>Confirm order</button>
     }
 
     handleChange = (e) => {
@@ -308,11 +326,12 @@ class Form extends Component {
                                     <h6>{this.state.addressErr}</h6>
                                 </div>
                                 <Autocomplete
+                                    ref={(ref) => this.addressInput = ref}
                                     id="address"
                                     className="form-control"
                                     style={{width: '100%'}}
                                     onPlaceSelected={(place) => {
-                                        this.setState({address: place.formatted_address})
+                                        this.setState({address: place.formatted_address})                                        
                                     }}
                                     types={['address']}
                                     componentRestrictions={{country: "us"}}
