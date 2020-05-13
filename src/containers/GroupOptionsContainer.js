@@ -39,19 +39,19 @@ class GroupOptionsContainer extends Component {
 
     //this renders all radio or checkbox inputs
     renderInputOptions(itemOptionId, options) {
-        return options.map(option => {
+        return options.map(({id, input_type, name, price}) => {
             return (
-                <div key={option.id} className="form-check form-check-inline">
+                <div key={id} className="form-check form-check-inline">
                     <input
                         onChange={this.handleChange}
                         className="form-check-input" 
-                        type={option.input_type} 
+                        type={input_type} 
                         name={`option-${itemOptionId}`} 
-                        value={option.id} 
-                        id={option.id} 
+                        value={id} 
+                        id={id} 
                     />
-                    <label className="form-check-label" htmlFor={option.id}>
-                        {option.name} {option.price && option.price !== 0 ? `$${option.price.toFixed(2)}` : null}
+                    <label className="form-check-label" htmlFor={id}>
+                        {name} { price && price !== 0 ? `$${price.toFixed(2)}` : null}
                     </label>
                 </div>
             )
