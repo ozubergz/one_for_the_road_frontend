@@ -7,7 +7,8 @@ class GroupOptionsContainer extends Component {
     handleChange = (e) => {
         const { target } = e;
         const { checked, name } = target;
-        const value = checked ? target.value : ""
+        const value = checked ? target.value : "";
+        
         
         this.setState({
             [name]: value
@@ -29,7 +30,7 @@ class GroupOptionsContainer extends Component {
         const options = arrOptions.filter(option => optionIds.find(id => id === option.id));
 
         //assign new property with selected options
-        const item = {...this.props.item };
+        const item = { ...this.props.item };
         item.select_options = options;
         
         //add item to cart
@@ -59,17 +60,18 @@ class GroupOptionsContainer extends Component {
     }
 
     render() {
+        const { groupOptions, displayOptions } = this.props;
         return (
             <div>
-                {this.props.groupOptions.map(({id, name, required, options}) => {
+                {groupOptions.map(({id, name, required, options}) => {
                     
-                    required = required === 'true' ? true : false;
+                    required = (required === 'true') ? true : false;
 
                     return(
                         <div 
                             key={id} 
                             className="items-options" 
-                            style={{display: this.props.displayOptions ? '' : 'none' }}
+                            style={{display: displayOptions ? '' : 'none' }}
                         >
                             <div className="item-options-title">
                                 <h6>{name}</h6>
@@ -84,14 +86,14 @@ class GroupOptionsContainer extends Component {
 
                             {/* each item have groups of inputs */}
                             <div className="input-option-group">
-                                {this.renderInputOptions(id, options)}
+                                { this.renderInputOptions(id, options) }
                             </div>
                         </div>
                     )
                 })}
                 
                 { 
-                    this.props.displayOptions ?
+                    displayOptions ?
                         <div className="option-btn-group">
                             <button 
                                 className="option-add-btn btn btn-danger btn-sm"
