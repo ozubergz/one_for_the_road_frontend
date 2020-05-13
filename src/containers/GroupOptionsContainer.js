@@ -10,13 +10,12 @@ class GroupOptionsContainer extends Component {
         const value = checked ? target.value : ""
         
         this.setState({
-            [name]:value
+            [name]: value
         });
        
     }
 
     handleClick = () => {
-        // console.log(this.state)
         const optionIds = Object.values(this.state);
 
         // store options
@@ -38,6 +37,7 @@ class GroupOptionsContainer extends Component {
 
     }
 
+    //this renders all radio or checkbox inputs
     renderInputOptions(itemOptionId, options) {
         return options.map(option => {
             return (
@@ -61,26 +61,30 @@ class GroupOptionsContainer extends Component {
     render() {
         return (
             <div>
-                {this.props.groupOptions.map(groupOption => {
+                {this.props.groupOptions.map(({id, name, required, options}) => {
+                    
+                    required = required === 'true' ? true : false;
+
                     return(
                         <div 
-                            key={groupOption.id} 
+                            key={id} 
                             className="items-options" 
                             style={{display: this.props.displayOptions ? '' : 'none' }}
                         >
                             <div className="item-options-title">
-                                <h6>{groupOption.name}</h6>
+                                <h6>{name}</h6>
                             </div>
                             <div className="item-optitons-required">
                                 { 
-                                    groupOption.required === 'true' ?
-                                        <span style={{color: "red"}}>Required - Choose 1</span>
-                                            :
-                                        <span style={{color: "grey"}}>Optional</span>
+                                    <span style={{ color: required ? "red" : "grey" }}>
+                                        { required ? "Required - Choose 1" : "Optional" }
+                                    </span>
                                 }
                             </div>
+
+                            {/* each item have groups of inputs */}
                             <div className="input-option-group">
-                                {this.renderInputOptions(groupOption.id, groupOption.options)}
+                                {this.renderInputOptions(id, options)}
                             </div>
                         </div>
                     )

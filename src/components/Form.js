@@ -130,7 +130,7 @@ class Form extends Component {
 
     handleSaveOrder() {
         if(localStorage.cart) {
-            let items = JSON.parse(localStorage.cart);
+            const items = JSON.parse(localStorage.cart);
             fetch('http://localhost:3000/api/checkout', {
                 method: 'POST',
                 headers: {
@@ -225,7 +225,7 @@ class Form extends Component {
 
         const amount = Math.round(this.props.amount);
         const bool = (amount === 0 || this.state.disabled);
-
+        
         return <button className="btn btn-danger order-btn mt-2" disabled={bool}>Confirm order</button>
     }
 
