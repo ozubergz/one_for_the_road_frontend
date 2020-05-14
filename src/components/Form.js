@@ -214,15 +214,6 @@ class Form extends Component {
     }
 
     renderSubmitBtn() {
-        // let amount = Math.round(this.props.amount);
-        // if(amount === 0 || this.state.disabled) {
-        //     return (<button className="btn btn-secondary order-btn mt-2" disabled>Confirm order</button>)
-        // } else {
-        //     return (
-        //         <button className="btn btn-danger order-btn mt-2" >Confirm order</button>
-        //     )
-        // }
-
         const amount = Math.round(this.props.amount);
         const bool = (amount === 0 || this.state.disabled);
         

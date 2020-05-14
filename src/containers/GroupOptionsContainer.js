@@ -5,10 +5,11 @@ class GroupOptionsContainer extends Component {
     state = {}
 
     handleChange = (e) => {
+        // console.log(e.target.value)
+
         const { target } = e;
         const { checked, name } = target;
         const value = checked ? target.value : "";
-        
         
         this.setState({
             [name]: value
@@ -35,62 +36,91 @@ class GroupOptionsContainer extends Component {
         
         //add item to cart
         this.props.addItemsToCart(item);
-
     }
 
     //this renders all radio or checkbox inputs
     renderInputOptions(itemOptionId, options) {
-        return options.map(({id, input_type, name, price}) => {
+        const selectOptions = options.filter((option) => {
+           return option.input_type === 'radio' 
+        });
+        
+        if (selectOptions.length !== 0 ) {
             return (
-                <div key={id} className="form-check form-check-inline">
-                    <input
-                        onChange={this.handleChange}
-                        className="form-check-input" 
-                        type={input_type} 
-                        name={`option-${itemOptionId}`} 
-                        value={id} 
-                        id={id} 
-                    />
-                    <label className="form-check-label" htmlFor={id}>
-                        {name} { price && price !== 0 ? `$${price.toFixed(2)}` : null}
-                    </label>
-                </div>
+                <select onChange={this.handleChange}>
+                    {
+                        selectOptions.map(option => {
+                            return ( 
+                                <option 
+                                    
+                                    value={option.id}
+                                    key={option.id} 
+                                >
+                                    {option.name}
+                                </option>
+                            )
+                        })
+                    }
+                </select>
             )
-        })
+        } else {
+            return options.map(({ id, input_type, name, price }) => {
+                return (
+                    <div key={id} className="form-check form-check-inline">
+                        { input_type === 'checkbox' ? 
+                            <input
+                                onChange={this.handleChange}
+                                className="form-check-input" 
+                                type={input_type} 
+                                name={`option-${itemOptionId}`} 
+                                value={id} 
+                                id={id} 
+                            />
+                            : null
+                        }
+                        <label className="form-check-label" htmlFor={id}>
+                            {name} { price && price !== 0 ? `$${price.toFixed(2)}` : null}
+                        </label>
+                    </div>
+                )
+            });
+        }
     }
 
     render() {
         const { groupOptions, displayOptions } = this.props;
+
         return (
             <div>
-                {groupOptions.map(({id, name, required, options}) => {
+                {
+                    groupOptions.map(({id, name, required, options}) => {
                     
-                    required = (required === 'true') ? true : false;
+                        required = (required === 'true') ? true : false;              
 
-                    return(
-                        <div 
-                            key={id} 
-                            className="items-options" 
-                            style={{display: displayOptions ? '' : 'none' }}
-                        >
-                            <div className="item-options-title">
-                                <h6>{name}</h6>
-                            </div>
-                            <div className="item-optitons-required">
-                                { 
-                                    <span style={{ color: required ? "red" : "grey" }}>
-                                        { required ? "Required - Choose 1" : "Optional" }
-                                    </span>
-                                }
-                            </div>
+                        return(
+                            <div 
+                                key={id} 
+                                className="items-options" 
+                                style={{display: displayOptions ? '' : 'none' }}
+                            >
+                                <div className="item-options-title">
+                                    <h6>{name}</h6>
+                                </div>
+                                <div className="item-optitons-required">
+                                    { 
+                                        <span style={{ color: required ? "red" : "grey" }}>
+                                            { required ? "Required - Choose 1" : "Optional" }
+                                        </span>
+                                    }
+                                </div>
 
-                            {/* each item have groups of inputs */}
-                            <div className="input-option-group">
-                                { this.renderInputOptions(id, options) }
+                                {/* each item have groups of inputs */}
+                                <div className="input-option-group">
+                                    { this.renderInputOptions(id, options) }
+                                </div>
                             </div>
-                        </div>
-                    )
-                })}
+                        )
+                    })
+                }
                 
                 { 
                     displayOptions ?
@@ -98,6 +128,7 @@ class GroupOptionsContainer extends Component {
                             <button 
                                 className="option-add-btn btn btn-danger btn-sm"
                                 onClick={this.handleClick}
+                                // disabled
                             >Add to Cart
                             </button> 
                         </div>
