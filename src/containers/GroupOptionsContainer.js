@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
+import { thatReturnsThis } from 'react-phone-input-auto-format';
 
 class GroupOptionsContainer extends Component {
 
     state = {}
 
     handleChange = (e) => {
-        // console.log(e.target.value)
-
         const { target } = e;
         const { checked, name } = target;
         const value = checked ? target.value : "";
@@ -14,12 +13,24 @@ class GroupOptionsContainer extends Component {
         this.setState({
             [name]: value
         });
-       
     }
 
-    handleClick = () => {
-        const optionIds = Object.values(this.state);
+    handleSubmit = (e) => {
+        e.preventDefault();
 
+        const { target } = e;
+        const optionIds = Object.values(this.state);
+        
+        //select inputs are uncontrolled
+        //manually get select tag
+        const selectElements = target.getElementsByTagName('select');
+        
+        //iterate all select values assign to an object
+        for(let i = 0; i < selectElements.length; i++) {
+            const value = selectElements[i].value;
+            optionIds.push(value)
+        }
+        
         // store options
         const arrOptions = [];
 
@@ -34,28 +45,31 @@ class GroupOptionsContainer extends Component {
         const item = { ...this.props.item };
         item.select_options = options;
         
-        //add item to cart
+        // //add item to cart
         this.props.addItemsToCart(item);
     }
 
     //this renders all radio or checkbox inputs
     renderInputOptions(itemOptionId, options) {
+
         const selectOptions = options.filter((option) => {
            return option.input_type === 'radio' 
         });
-        
+
         if (selectOptions.length !== 0 ) {
+            
+            const name = `group_option_${itemOptionId}`;
+
             return (
-                <select onChange={this.handleChange}>
+                <select>
                     {
                         selectOptions.map(option => {
                             return ( 
                                 <option 
-                                    
                                     value={option.id}
                                     key={option.id} 
                                 >
-                                    {option.name}
+                                    {option.name} {option.price && option.price !== 0 ? `$${option.price.toFixed(2)}` : null}
                                 </option>
                             )
                         })
@@ -66,16 +80,17 @@ class GroupOptionsContainer extends Component {
             return options.map(({ id, input_type, name, price }) => {
                 return (
                     <div key={id} className="form-check form-check-inline">
-                        { input_type === 'checkbox' ? 
-                            <input
-                                onChange={this.handleChange}
-                                className="form-check-input" 
-                                type={input_type} 
-                                name={`option-${itemOptionId}`} 
-                                value={id} 
-                                id={id} 
-                            />
-                            : null
+                        { 
+                            input_type === 'checkbox' ? 
+                                <input
+                                    onChange={this.handleChange}
+                                    className="form-check-input" 
+                                    type={input_type} 
+                                    name={name}
+                                    value={id} 
+                                    id={id} 
+                                />
+                                : null
                         }
                         <label className="form-check-label" htmlFor={id}>
                             {name} { price && price !== 0 ? `$${price.toFixed(2)}` : null}
@@ -91,6 +106,7 @@ class GroupOptionsContainer extends Component {
 
         return (
             <div>
+                <form onSubmit={this.handleSubmit}>
                 {
                     groupOptions.map(({id, name, required, options}) => {
                     
@@ -135,6 +151,7 @@ class GroupOptionsContainer extends Component {
                             :
                         null
                 } 
+                </form>
             </div>
         );
     }
