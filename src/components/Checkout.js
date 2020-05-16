@@ -8,19 +8,21 @@ import SideNavBar from './SideNavBar';
 class Checkout extends Component {
 
     calculateTotal() {
+        
+        console.log(this.props.items)
+
         let { items } = this.props;
         let total = 0;
         if(items.length > 0) {
             items.forEach(item => {
+                const { select_options } = item;
                 total += item.price;
-                
-                const { selectOptions } = item;
-                if(selectOptions) {
-                    selectOptions.forEach(option => {
+                if(select_options) {
+                    select_options.forEach(option => {
                         total += option.price;
                     });
                 }
-            });            
+            }); 
         }
         return total.toFixed(2);
       }
