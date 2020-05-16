@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {CardElement, injectStripe} from 'react-stripe-elements';
+import { CardElement, injectStripe } from 'react-stripe-elements';
 import { connect } from 'react-redux';
 import { removeAllCartItems } from '../actions';
 import SuccessModel from './SuccessModel';
@@ -8,7 +8,7 @@ import { trackPromise } from 'react-promise-tracker';
 import LoadingPayment from './LoadingPayment';
 import { GoogleMap } from '@react-google-maps/api';
 import Autocomplete from 'react-google-autocomplete';
-import PhoneInput from "react-phone-input-auto-format";
+import PhoneInput, { thatReturnsFalse } from "react-phone-input-auto-format";
 
 //WebSocket requests on ws://localhost:3000/cable
 // const URL = "ws://localhost:3000/cable";
@@ -99,7 +99,10 @@ class Form extends Component {
                     this.clear();
                     this.setState({display: true});
                 } else {
-                    this.setState({payError: "Your payment has failed, please try again."})
+                    this.setState({
+                        payError: "Your payment has failed, please try again.",
+                        disabled: false
+                    });
                 }
             })
         )
@@ -121,7 +124,6 @@ class Form extends Component {
                 return;
             } else {
                 let token = res.token;
-
                 //method to handle fetch
                 this.tokenHandler(token.id, amount)
             }
@@ -344,7 +346,17 @@ class Form extends Component {
                                 <h6>{this.state.payError}</h6>
                             </div>
                             <label>Card Detail</label>
-                            <CardElement className="card-elemnt form-control"  />
+                            <CardElement 
+                                onChange={(e) => {
+                                    const { complete } = e;
+                                    if (complete) {
+                                        this.setState({ 
+                                            disabled: false
+                                        });
+                                    }
+                                }}
+                                className="card-elemnt form-control"
+                            />
                         </div>
                         
                     </div>
