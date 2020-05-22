@@ -29,10 +29,6 @@ class App extends Component {
     }
   }
 
-  initMap() {
-    
-  }
-
   render() {
     return (        
       <div className='App'>
